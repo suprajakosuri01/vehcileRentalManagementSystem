@@ -45,7 +45,7 @@
 		
 		//tags
 		
-		<a href="confirm-reservation.htm?bookId=${vehicle.carId}&usrEmail=${sessionScope.usrEmail}">Select</a>
+		<a href="reservationConfirm.htm?bookId=${vehicle.carId}&usrEmail=${sessionScope.usrEmail}">Select</a>
 		</c:otherwise>
 		</c:choose>
 		</td>

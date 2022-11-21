@@ -167,7 +167,7 @@ public class VehicleDAO extends DAO {
 
 //FETCH VEHICLES BY ID
 	
-	public Vehicle fetchVehiclesby(int carId) throws VehicleException {
+	public Vehicle fetchVehiclesbyId(int carId) throws VehicleException {
 
 	try {
 		begin();

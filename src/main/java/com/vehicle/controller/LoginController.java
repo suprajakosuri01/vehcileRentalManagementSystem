@@ -46,9 +46,13 @@ public class LoginController {
 		try {
 
 			flagCustomer = userdao.Customervalid(usrEmail, usrPassword);
+			System.out.println("in user validation 1");
 			flagAdmin = userdao.Adminvalid(usrEmail, usrPassword);
+			System.out.println("in user validation 2");
 			flagEmp = userdao.Employeevalid(usrEmail, usrPassword);
-		} catch (Exception e) {
+			System.out.println("in user validation 3");
+		} 
+		catch (Exception e) {
 			
 			System.out.println("Error in validate customer method///userValidation");
 		}
@@ -57,7 +61,7 @@ public class LoginController {
 			System.out.println("user is a customer");
 			session.setAttribute("usrEmail", usrEmail);
 			
-			return "customer/customer-dashboard";
+			return "customer/cusHome";
 		} else if (flagAdmin) {
 			System.out.println("user is a admin");
 			session.setAttribute("usrEmail", usrEmail);

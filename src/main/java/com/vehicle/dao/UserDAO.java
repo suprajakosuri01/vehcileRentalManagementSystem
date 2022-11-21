@@ -66,7 +66,7 @@ public class UserDAO extends DAO {
 		try {
 
 			Query q = getSession()
-					.createQuery("from User where usrEmail=:usrEmail and usrPassword=:usrPassword and role='customer'");
+					.createQuery("from User where usrEmail=:usrEmail and usrPassword=:usrPassword and title='customer'");
 			q.setString("usrEmail", userEmail);
 			q.setString("usrPassword", usrPassword);
 			Object obj = q.uniqueResult();
@@ -89,7 +89,7 @@ public class UserDAO extends DAO {
 		try {
 
 			Query q = getSession()
-					.createQuery("from User where  usrEmail=:usrEmail and usrPassword=:usrPassword and role='admin'");
+					.createQuery("from User where  usrEmail=:usrEmail and usrPassword=:usrPassword and title='admin'");
 			q.setString("usrEmail", userEmail);
 			q.setString("usrPassword", usrPassword);
 			Object obj = q.uniqueResult();
@@ -112,7 +112,7 @@ public class UserDAO extends DAO {
 		try {
 
 			Query q = getSession()
-					.createQuery("from User usrEmail=:usrEmail and usrPassword=:usrPassword and role='employee'");
+					.createQuery("from User usrEmail=:usrEmail and usrPassword=:usrPassword and title='employee'");
 			q.setString("usrEmail", userEmail);
 			q.setString("usrPassword", usrPassword);
 			Object obj = q.uniqueResult();

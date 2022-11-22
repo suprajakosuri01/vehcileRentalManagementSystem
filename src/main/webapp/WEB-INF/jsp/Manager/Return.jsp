@@ -56,9 +56,9 @@
 	
 	<input type="hidden" name="rentEndDate" value="${vehicle.getRentReturnDate()}"/>
 	
-	<input type="hidden" name="returnDate" value="${book.getReturnDate()}"/>
+	<input type="hidden" name="returnDate" value="${vehicle.getRentEndDate()}"/>
 	
-	<input type="hidden" name="username" value="${book.getTheUser().getUsername()}"/>
+	<input type="hidden" name="usrEmail" value="${vehicle.getxUser().getUsrEmail()}"/>
 	
 <p align="center"><input type="submit" value="Confirm"></p> 
 </form>

@@ -15,7 +15,7 @@
 <jsp:include page="ManagerNav.jsp"/>
 <h2 align="center">Vehicles</h2>
 
-<p align="center"><a href="add-books.htm">Add Vehicles</a></p>
+<p align="center"><a href="vehiclesadd.htm">Add Vehicles</a></p>
 <br><br>
 <c:choose>
 <c:when test="${vehicles.size() gt 0}">
@@ -45,9 +45,9 @@
 		<td>${vehicle.getxUser.getusrEmail()}</td>
 		
 		
-		<td><a href="confirm-edit.htm?bookId=${vehicle.carId}">Edit</a>
+		<td><a href="editvehicle.htm?carId=${vehicle.carId}">Edit</a>
 		
-		<a href="confirm-delete.htm?bookId=${vehicle.carId}">Delete</a>
+		<a href="deleteall.htm?carId=${vehicle.carId}">Delete</a>
 		</td>
 	</tr>
 	</c:forEach>

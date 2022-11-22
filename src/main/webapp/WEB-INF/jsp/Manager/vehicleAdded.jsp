@@ -12,6 +12,6 @@
 
 <h3 align="center">Vehicles added successfully</h3>
 <br><br>
-<p align="center"><a href="add-books.htm?usrEmail=${sessionScope.usrEmail}">Add another Vehicle</a></p></body>
+<p align="center"><a href="vehiclesadd.htm?usrEmail=${sessionScope.usrEmail}">Add another Vehicle</a></p></body>
 </body>
 </html>

@@ -36,7 +36,7 @@
 		<td>${vehicle.key.rentReturnDate}</td>
 		<td>${vehicle.value}</td>
 		<td>	
- 		<a href="confirm-pickup.htm?bookId=${vehicle.key.carId}&usrEmail=${vehicle.value}">Pickup By Customer</a>
+ 		<a href="pickup.htm?carId=${vehicle.key.carId}&usrEmail=${vehicle.value}">Pickup By Customer</a>
 		</td>
 	</tr>
 	</c:forEach>

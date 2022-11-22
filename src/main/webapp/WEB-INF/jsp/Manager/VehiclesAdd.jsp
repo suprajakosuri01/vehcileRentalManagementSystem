@@ -20,7 +20,7 @@
 	<tr><td>
 	licensePlate(4): 
 	</td><td>
-	<form:input pattern="[0-9]{3}[0-9]{3}[0-9]{4}" path="licensePlate" required="required" minlength="4" maxlength="6"/>
+	<form:input pattern="[0-9]{3}[0-9]{3}[0-9]{4}" path="licensePlate" required="required" minlength="4" maxlength="8"/>
 	</td></tr>
 	<tr><td>
 	model: 

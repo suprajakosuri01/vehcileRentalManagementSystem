@@ -2,6 +2,7 @@ package com.vehicle.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -133,26 +134,50 @@ public class ManagerController {
 
 		@PostMapping("/deleteall.htm.htm")
 		public String postDeleteall(SessionStatus status,
-				 VehicleDAO vehicleDAO, HttpServletRequest request, UserDAO userdao) throws Exception {
+				VehicleDAO vehicleDAO	, HttpServletRequest request, UserDAO userdao) throws Exception {
 			
 			System.out.println("############### EMPLOYEE: Confirm EDIT Post Mapping ###############");
 			HttpSession session = request.getSession();
 
-			String id = request.getParameter("id");
-			long bookid = Long.parseLong(id);
+            String cid = request.getParameter("carId");
+
+			
+            int carId = Integer.parseInt(cid);
+		
+			
+		
 			
 			
-			Book book=bookdao.getBookById(bookid);
+            Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 			
 			
-			bookdao.delete(book);
+            vehicleDAO.deleteVehicle(vehicle);
 			
 			status.setComplete();
 			
-			return "employee/delete-success";
+			return "Manager/Deleted";
 		}
 		
+// user reservations
+		@GetMapping("/vehiclereserve.htm")
+	    public String getReservations(Model model,VehicleDAO vehicleDAO,HttpServletRequest request,SessionStatus status) throws Exception {
 
+			
+			
+			LinkedHashMap<Vehicle,String> vehcilesRsvd = vehicleDAO.fetchReservedAllVechiles();
+			
+			if(vehcilesRsvd !=null) {
+				System.out.println("Got resreved books");
+			}
+
+			model.addAttribute("vehicles", vehcilesRsvd);
+
+	        return "Manager/VehicleReserve";
+	        
+	    }
+		
+		
+			
 		
 		
 }

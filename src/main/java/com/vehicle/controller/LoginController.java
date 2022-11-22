@@ -48,6 +48,7 @@ public class LoginController {
 			flagCustomer = userdao.Customervalid(usrEmail, usrPassword);
 			System.out.println("in user validation 1");
 			flagAdmin = userdao.Adminvalid(usrEmail, usrPassword);
+			
 			System.out.println("in user validation 2");
 			flagEmp = userdao.Employeevalid(usrEmail, usrPassword);
 			System.out.println("in user validation 3");
@@ -70,7 +71,7 @@ public class LoginController {
 			System.out.println("user is a employee");
 			session.setAttribute("usrEmail", usrEmail);
 			model.addAttribute(usrEmail);
-			return "employee/employee-dashboard";
+			return "Manager/ManagerHome";
 		}
 		String error="Incorrect Username/password";
 		model.addAttribute("error",error);

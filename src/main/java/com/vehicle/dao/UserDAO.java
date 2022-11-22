@@ -112,7 +112,7 @@ public class UserDAO extends DAO {
 		try {
 
 			Query q = getSession()
-					.createQuery("from User usrEmail=:usrEmail and usrPassword=:usrPassword and title='employee'");
+					.createQuery("from User where usrEmail=:usrEmail and usrPassword=:usrPassword and title='employee'");
 			q.setString("usrEmail", userEmail);
 			q.setString("usrPassword", usrPassword);
 			Object obj = q.uniqueResult();

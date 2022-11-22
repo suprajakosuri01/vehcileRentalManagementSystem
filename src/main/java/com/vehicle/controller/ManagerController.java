@@ -107,11 +107,11 @@ public class ManagerController {
 			throws Exception {
 
 		HttpSession session = request.getSession();
-		String carid = request.getParameter("carId");
+		String carid3 = request.getParameter("carId");
 
 		System.out.println("IN delete method");
 
-		int carId = Integer.parseInt(carid);
+		int carId = Integer.parseInt(carid3);
 
 		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 
@@ -165,9 +165,9 @@ public class ManagerController {
 
 		HttpSession session = request.getSession();
 		String usrEmail = request.getParameter("usrEmail");
-		String cid = request.getParameter("carId");
+		String cid2 = request.getParameter("carId");
 
-		int carId = Integer.parseInt(cid);
+		int carId = Integer.parseInt(cid2);
 		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 
 		User user = userdao.fetchUserByusrEmail(usrEmail);
@@ -223,7 +223,7 @@ public class ManagerController {
 	
 	//RETURNS
 	
-		@GetMapping("/return.htm")
+		@GetMapping("/returnvehicle.htm")
 	    public String getBookReturns(Model model,VehicleDAO vehicleDAO,HttpServletRequest request) throws Exception {
 			
 			HttpSession session=request.getSession();
@@ -239,12 +239,83 @@ public class ManagerController {
 
 
 			model.addAttribute("vehicles", vehiclespickedup);
-	        return "Manager/Return";
+	        return "Manager/ReturnVehicle";
 	        
-	        
-	        
-	        
+	      
 	    }
+		
+		// cONFIRM RETURN 
+		
+			@GetMapping("/return.htm")
+			public String getConfirmReturn(Model model, HttpServletRequest request, VehicleDAO vehicleDAO, UserDAO userdao)
+					throws Exception {
+				
+				HttpSession session = request.getSession();
+				String usrEmail = request.getParameter("usrEmail");
+				
+				String id = request.getParameter("carId");
+
+				int carId = Integer.parseInt(id);
+				
+				
+				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+				
+				
+				User user = userdao.fetchUserByusrEmail(usrEmail);
+
+				request.setAttribute("vehicle", vehicle);
+				request.setAttribute("usrEmail", usrEmail);
+
+				System.out.println("usrId:" + usrEmail);
+
+
+				return "Manager/Return";
+				
+			}
+			
+			@PostMapping("/confirm-return.htm")
+			public String postConfirmReturn(SessionStatus status,
+					VehicleDAO vehicleDAO, HttpServletRequest request, UserDAO userdao) throws Exception {
+				
+				System.out.println("############### EMPLOYEE: Confirm RETURN Post Mapping ###############");
+				
+				HttpSession session = request.getSession();
+				String usrEmail = request.getParameter("usrEmail");
+				System.out.println("Post username:" + usrEmail);
+				User user = userdao.fetchUserByusrEmail(usrEmail);
+
+				String cid1 = request.getParameter("carId");
+
+				int carId = Integer.parseInt(cid1);
+				
+				
+
+				
+				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+				
+				
+				
+				vehicle.setCarId(vehicle.getCarId());
+				vehicle.setLicensePlate(vehicle.getLicensePlate());
+				vehicle.setModel(vehicle.getModel());
+				vehicle.setRentStartDate(null);
+				vehicle.setRentEndDate(null);
+				vehicle.setRentReturnDate(null);
+				vehicle.setPickupReady(false);
+				vehicle.setReservedByUser(null);
+				vehicle.setxUser(null);
+
+				
+			
+				
+//				SET IMAGE PATH
+				vehicle.setImagePath(vehicle.getImagePath());
+				
+				vehicleDAO.updateVehicle(vehicle);
+				
+				status.setComplete();
+				return "Manager/ReturnComplete";
+			}
 		
 		
 		

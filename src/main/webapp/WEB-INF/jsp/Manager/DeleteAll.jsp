@@ -55,7 +55,7 @@
 	
 	<input type="hidden" name="Year" value="${vehicle.getYear()}"/>
 	
-	<input type="hidden" name="rentReturnDate" value="${vehicle.getRentStartDate()}"/>
+	<input type="hidden" name="rentStartDate" value="${vehicle.getRentStartDate()}"/>
 	<input type="hidden" name="rentEndDate" value="${vehicle.getRentEndDate()}"/>
 	
 	<input type="hidden" name="rentReturnDate" value="${vehicle.getRentReturnDate()}"/>

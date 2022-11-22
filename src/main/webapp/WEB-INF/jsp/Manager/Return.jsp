@@ -52,9 +52,9 @@
 	
 	<input type="hidden" name="Year" value="${vehicle.getYear()}"/>
 	
-	<input type="hidden" name="bookingStartDate" value="${book.getBookingStartDate()}"/>
+	<input type="hidden" name="rentStartDate" value="${vehicle.getRentStartDate()}"/>
 	
-	<input type="hidden" name="bookingEndDate" value="${book.getBookingEndDate()}"/>
+	<input type="hidden" name="rentEndDate" value="${vehicle.getRentReturnDate()}"/>
 	
 	<input type="hidden" name="returnDate" value="${book.getReturnDate()}"/>
 	

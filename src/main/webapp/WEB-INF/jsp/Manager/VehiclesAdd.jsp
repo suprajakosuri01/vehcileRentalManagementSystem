@@ -12,7 +12,7 @@
 <jsp:include page="ManagerNav.jsp"/>
 <h2 align="center">Add Vehicles</h2>
 
-<p align="center" style="color:red">${licensePlateExistsErr}</p>
+<p align="center" style="color:red">${licencsePlateError}</p>
 
 <form:form modelAttribute="vehicle" method="post" enctype="multipart/form-data">
 

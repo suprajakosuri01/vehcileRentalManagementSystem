@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <style><%@include file="/WEB-INF/css/layout.css"%></style>
-<title>Delete Success</title>
+<title>Pickup Success</title>
 </head>
 <body>
-<jsp:include page="employee-menu.jsp"/>
-<h3 align="center">Delete Successful</h3>
+<jsp:include page="ManagerNav.jsp"/>
+<h3 align="center">Pickup Successful</h3>
 </body>
 </html>

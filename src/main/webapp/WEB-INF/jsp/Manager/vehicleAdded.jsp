@@ -8,9 +8,10 @@
 <title>Add Success</title>
 </head>
 <body>
-<jsp:include page="employee-menu.jsp"/>
-<h3 align="center">Book added successfully</h3>
+<jsp:include page="ManagerNav.jsp"/>
+
+<h3 align="center">Vehicles added successfully</h3>
 <br><br>
-<p align="center"><a href="add-books.htm?username=${sessionScope.username}">Add another book</a></p></body>
+<p align="center"><a href="add-books.htm?usrEmail=${sessionScope.usrEmail}">Add another Vehicle</a></p></body>
 </body>
 </html>

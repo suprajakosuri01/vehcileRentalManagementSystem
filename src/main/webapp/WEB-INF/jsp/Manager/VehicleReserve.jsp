@@ -9,33 +9,34 @@
 <title>Book Reservations</title>
 </head>
 <body>
-<jsp:include page="employee-menu.jsp"/>
+<jsp:include page="ManagerNav.jsp"/>
 <h2 align="center">Customer Reservations</h2>
 <c:choose>
-<c:when test="${books.size() gt 0}">
+<c:when test="${vehicles.size() gt 0}">
 <table id="tablestyle" align="center" border="1" cellpadding="1" cellspacing="1">
+	
 	<th></th>
-	<th>ISBN</th>
-	<th>Title</th>
-	<th>Author</th>
+	<th>licensePlate</th>
+	<th>model</th>
+	<th>year</th>
 	<th>Reserved From</th>
 	<th>Reserved Until</th>
 	<th>Return Date</th>
 	<th>Reserved By</th>
 	<th>Action</th>
 	
-	<c:forEach items="${books}" var="book">
+	<c:forEach items="${vehicles}" var="vehicle">
 	<tr>
-		<td><img width="100" height="100" src="/lib2/images/${book.key.imagePath}"/></td>
-		<td>${book.key.isbn}</td>
-		<td>${book.key.title}</td>
-		<td>${book.key.author}</td>
-		<td>${book.key.bookingStartDate}</td>
-		<td>${book.key.bookingEndDate}</td>
-		<td>${book.key.returnDate}</td>
-		<td>${book.value}</td>
+		<td><img width="100" height="100" src="/vehicle/images/${vehicle.imagePath}"/></td>
+		<td>${vehicle.key.licensePlate}</td>
+		<td>${vehicle.key.model}</td>
+		<td>${vehicle.key.year}</td>
+		<td>${vehicle.key.rentStartDate}</td>
+		<td>${vehicle.key.rentEndDate}</td>
+		<td>${vehicle.key.rentReturnDate}</td>
+		<td>${vehicle.value}</td>
 		<td>	
- 		<a href="confirm-pickup.htm?bookId=${book.key.bookId}&username=${book.value}">Pickup By Customer</a>
+ 		<a href="confirm-pickup.htm?bookId=${vehicle.key.carId}&usrEmail=${vehicle.value}">Pickup By Customer</a>
 		</td>
 	</tr>
 	</c:forEach>

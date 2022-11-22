@@ -5,10 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <style><%@include file="/WEB-INF/css/layout.css"%></style>
-<title>Delete Success</title>
+<title>Manager Home</title>
 </head>
 <body>
-<jsp:include page="employee-menu.jsp"/>
-<h3 align="center">Delete Successful</h3>
+<body>
+<jsp:include page="ManagerNav.jsp"/>
+
+<h2 align="center">Employee Homepage</h2>
+<p align="center"> You can manage user reservations and  vehicle information.</p>
+</body>
 </body>
 </html>

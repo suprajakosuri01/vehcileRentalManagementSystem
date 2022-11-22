@@ -10,13 +10,13 @@
 <title>Confirm Pickup</title>
 </head>
 <body>
-<jsp:include page="employee-menu.jsp"/>
+<jsp:include page="ManagerNav.jsp"/>
 <h2 align="center">Confirm Pickup</h2>
 
 <table id="tablestyle" cellpadding="1" cellspacing="1" align="center">
 	<tr>
 	<td>ISBN: </td>
-	<td>${book.getIsbn()}</td>
+	<td>${vehicle.getLicensePlate()}</td>
 	</tr>
 	<tr>
 	<td>Title: </td>

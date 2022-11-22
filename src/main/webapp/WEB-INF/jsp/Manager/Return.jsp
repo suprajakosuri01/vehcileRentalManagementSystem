@@ -10,48 +10,56 @@
 <title>Confirm Pickup</title>
 </head>
 <body>
-<jsp:include page="employee-menu.jsp"/>
+<jsp:include page="ManagerNav.jsp"/>
+
 <h2 align="center">Confirm Return</h2>
 
 <table id="tablestyle" align="center" cellpadding="1" cellspacing="1">
 	<tr>
-	<td>ISBN: </td>
-	<td>${book.getIsbn()}</td>
+	<td>licensePlate: </td>
+	<td>${vehicle.getLicensePlate()}</td>
 	</tr>
 	<tr>
-	<td>Title: </td>
-	<td>${book.getTitle()}</td>
+	<td>Model: </td>
+	<td>${vehicle.getModel()}</td>
 	</tr>
 	<tr>
-	<td>Author: </td>
-	<td>${book.getAuthor()}</td>
+	<td>Year: </td>
+	<td>${vehicle.getYear()}</td>
 	</tr>
 	<tr>
-	<td>Reserved From: </td>
-	<td>${book.getBookingStartDate()}</td>
+	<td>BookingStartDate: </td>
+	<td>${vehicle.getRentStartDate()}</td>
 	</tr>
 	<tr>
-	<td>Reserved Until: </td>
-	<td>${book.getBookingEndDate()}</td>
+	<td>RentEndDate:</td>
+	<td>${vehicle.getRentEndDate()}</td>
 	</tr>
 	<tr>
 	<td>Return Date: </td>
-	<td>${book.getReturnDate()}</td>
+	<td>${vehicle.getRentReturnDate()}</td>
 	</tr>
 	<tr>
 	<td>Reserved By: </td>
-	<td>${book.getTheUser().getUsername()}</td>
+	<td>${vehicle.getxUser().getUsrEmail()}</td>
 	</tr>
 </table>
-<form action="confirm-return.htm" method="POST">
-	<input type="hidden" name="id" value="${book.getBookId()}"/>
-    <input type="hidden" name="isbn" value="${book.getIsbn()}"/>
-	<input type="hidden" name="title" value="${book.getTitle()}"/>
-	<input type="hidden" name="author" value="${book.getAuthor()}"/>
+<form action="return.htm" method="POST">
+
+	<input type="hidden" name="carId" value="${vehicle.getCarId()}"/>
+    <input type="hidden" name="licensePlate" value="${vehicle.getLicensePlate()}"/>
+	<input type="hidden" name="Model" value="${vehicle.getModel()}"/>
+	
+	<input type="hidden" name="Year" value="${vehicle.getYear()}"/>
+	
 	<input type="hidden" name="bookingStartDate" value="${book.getBookingStartDate()}"/>
+	
 	<input type="hidden" name="bookingEndDate" value="${book.getBookingEndDate()}"/>
+	
 	<input type="hidden" name="returnDate" value="${book.getReturnDate()}"/>
+	
 	<input type="hidden" name="username" value="${book.getTheUser().getUsername()}"/>
+	
 <p align="center"><input type="submit" value="Confirm"></p> 
 </form>
 

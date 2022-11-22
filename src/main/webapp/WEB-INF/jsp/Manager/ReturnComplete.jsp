@@ -5,13 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <style><%@include file="/WEB-INF/css/layout.css"%></style>
-<title>Employee Home</title>
+<title>Return Success</title>
 </head>
 <body>
-<body>
-<jsp:include page="employee-menu.jsp"/>
-<h2 align="center">Employee Homepage</h2>
-<p align="center"> You can manage user reservations and book catalog.</p>
-</body>
+<jsp:include page="ManagerNav.jsp"/>
+<h3 align="center">Return Successfull</h3>
 </body>
 </html>

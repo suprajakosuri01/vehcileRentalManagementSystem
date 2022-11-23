@@ -23,7 +23,7 @@
 
 <table id="tablestyle" align="center" border="1" cellpadding="1" cellspacing="1">
 
-	<th></th>
+	<th>Vehicle</th>
 	<th>licensePlate</th>
 	<th>model</th>
 	<th>year</th>
@@ -45,14 +45,13 @@
 		<td>${v1.rentEndDate}</td>
 		<td>${v1.rentReturnDate}</td>
 		<td>${v1.getReservedByUser().getusrEmail()}</td>
-	
-		
-		
-		<td>
-		
-		<a href="editvehicle.htm?carId=${v1.carId}">Edit</a>
+		<td>${v1.getxUser().getusrEmail()}</td>
+	<td><a href="editvehicle.htm?carId=${v1.carId}">Edit</a> |
 		
 		<a href="deleteall.htm?carId=${v1.carId}">Delete</a>
+		
+		
+		
 		
 		</td>
 	</tr>

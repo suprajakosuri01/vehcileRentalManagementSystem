@@ -16,7 +16,9 @@
 
 <form style="text-align:left" action="editvehicle.htm" method="POST">
 
-<input type="hidden" name="id" value="${vehicle.getcarId()}"/>
+
+
+<input type="hidden" name="c1" value="${vehicle.getCarId()}"/>
 
 <table id="tablestyle" cellpadding="1" cellspacing="1" align="center">
 

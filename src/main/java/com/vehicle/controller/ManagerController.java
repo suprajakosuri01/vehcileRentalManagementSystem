@@ -118,9 +118,11 @@ public class ManagerController {
 			
 //			String carid = request.getParameter("carId");
 //			int carId = Integer.parseInt(carid);
-			String carid = request.getParameter("carid");
+//			carid
+			
+			String cid = request.getParameter("carId");
 
-			int cId = Integer.parseInt(carid);
+			int cId = Integer.parseInt(cid);
 
 			
 			System.out.println("IN confirm edit method");
@@ -143,15 +145,17 @@ public class ManagerController {
 
 //			String carid = request.getParameter("carId");
 //			int carId = Integer.parseInt(carid);
-			String carid = request.getParameter("carid");
+			
+			String c1 = request.getParameter("carId");
 
-			int cId = Integer.parseInt(carid);
+			int cId = Integer.parseInt(c1);
 			
 			
 			
 			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
 			
 			String model=request.getParameter("model");
+			
 			String year=request.getParameter("year");
 			String deleteRsvrtn=request.getParameter("deleteRsvrtn");
 			String deleteUsr=request.getParameter("deleteUsr");
@@ -211,6 +215,7 @@ public class ManagerController {
 
 	// delete all
 
+
 	@GetMapping("/deleteall.htm")
 	public String fetchDeleteall(Model model, HttpServletRequest request, VehicleDAO vehicleDAO, UserDAO userdao)
 			throws Exception {
@@ -222,7 +227,7 @@ public class ManagerController {
 
 //		int carId = Integer.parseInt(carid3);
 		
-		String carid = request.getParameter("carid");
+		String carid = request.getParameter("carId");
 
 		int cId = Integer.parseInt(carid);
 
@@ -233,7 +238,7 @@ public class ManagerController {
 		return "Manager/DeleteAll";
 	}
 
-	@PostMapping("/deleteall.htm.htm")
+	@PostMapping("/deleteall.htm.")
 	public String postDeleteall(SessionStatus status, VehicleDAO vehicleDAO, HttpServletRequest request,
 			UserDAO userdao) throws Exception {
 
@@ -244,7 +249,7 @@ public class ManagerController {
 //
 //		int carId = Integer.parseInt(cid);
 		
-		String carid = request.getParameter("carid");
+		String carid = request.getParameter("carId");
 
 		int cId = Integer.parseInt(carid);
 
@@ -285,7 +290,7 @@ public class ManagerController {
 //		String cid2 = request.getParameter("carId");
 //
 //		int carId = Integer.parseInt(cid2);
-		String carid = request.getParameter("carid");
+		String carid = request.getParameter("carId");
 
 		int cId = Integer.parseInt(carid);
 		
@@ -320,7 +325,7 @@ public class ManagerController {
 //
 //		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 		
-		String carid = request.getParameter("carid");
+		String carid = request.getParameter("carId");
 
 		int cId = Integer.parseInt(carid);
 		
@@ -390,7 +395,7 @@ public class ManagerController {
 //				
 //				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 				
-				String carid = request.getParameter("carid");
+				String carid = request.getParameter("carId");
 
 				int cId = Integer.parseInt(carid);
 				
@@ -431,7 +436,7 @@ public class ManagerController {
 //				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 				
 //				
-				String carid = request.getParameter("carid");
+				String carid = request.getParameter("carId");
 
 				int cId = Integer.parseInt(carid);
 				

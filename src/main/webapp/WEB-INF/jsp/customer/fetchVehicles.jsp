@@ -13,6 +13,7 @@
 <jsp:include page="cusNavbar.jsp"/>
 <h2 align="center">Browse Cars</h2>
 <c:if test="${usrvehicles.size() eq 3}">
+
 <p style="color:red" align="center">Cannot reserve more vechiles since you already have 3 vechiles reserved/in use.</p>
 </c:if>
 <c:choose>
@@ -38,14 +39,16 @@
 		<td>	
  		<c:choose>
 		<c:when test= "${vehicle.rentEndDate != null || vehicle.rentReturnDate !=null}">
-		Reserved</c:when>
+		Reserved
+		</c:when>
 		<c:when test="${usrvehicles.size() eq 3}">
 		</c:when>
 		<c:otherwise>
 		
 		
 		
-		<a href="reservationConfirm.htm?carId=${vehicle.carId}&usrEmail=${sessionScope.usrEmail}">Select</a>
+		<a href="reservationconfirm.htm?carId=${vehicle.carId} & usrEmail=${sessionScope.usrEmail}">Select</a>
+		
 		</c:otherwise>
 		</c:choose>
 		</td>

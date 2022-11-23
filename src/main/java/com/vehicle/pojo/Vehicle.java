@@ -53,7 +53,7 @@ public class Vehicle {
 		return carId;
 	}
 
-	public void setCarId(int carId) {
+	public void setCarId(int cId) {
 		this.carId = carId;
 	}
 

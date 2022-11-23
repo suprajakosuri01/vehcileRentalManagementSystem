@@ -43,8 +43,12 @@ public class ManagerController {
 
 		List<Vehicle> vehicle = vehicleDAO.fetchAllVehicles();
 		
+		System.out.println("getModel in fetch vehicle" +vehicle.get(0).getModel());
 		model.addAttribute("vehicle", vehicle);
+
+		
 		return "Manager/Vehicles";
+		
 	}
 
 	// vehicles add
@@ -112,12 +116,16 @@ public class ManagerController {
 		
 			HttpSession session = request.getSession();
 			
-			String carid = request.getParameter("carId");
-			int carId = Integer.parseInt(carid);
+//			String carid = request.getParameter("carId");
+//			int carId = Integer.parseInt(carid);
+			String carid = request.getParameter("carid");
+
+			int cId = Integer.parseInt(carid);
+
 			
 			System.out.println("IN confirm edit method");
 			
-			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
 			
 
 			model.addAttribute(vehicle);
@@ -133,12 +141,15 @@ public class ManagerController {
 			System.out.println("############### EMPLOYEE: Confirm EDIT Post Mapping ###############");
 			HttpSession session = request.getSession();
 
-			String carid = request.getParameter("carId");
-			int carId = Integer.parseInt(carid);
+//			String carid = request.getParameter("carId");
+//			int carId = Integer.parseInt(carid);
+			String carid = request.getParameter("carid");
+
+			int cId = Integer.parseInt(carid);
 			
 			
 			
-			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
 			
 			String model=request.getParameter("model");
 			String year=request.getParameter("year");
@@ -149,6 +160,7 @@ public class ManagerController {
 			vehicle.setCarId(vehicle.getCarId());
 			vehicle.setLicensePlate(vehicle.getLicensePlate());
 			vehicle.setModel(vehicle.getModel());
+			
 			vehicle.setYear(vehicle.getYear());
 			vehicle.setRentStartDate(vehicle.getRentStartDate());
 			vehicle.setRentEndDate(vehicle.getRentEndDate());
@@ -204,13 +216,17 @@ public class ManagerController {
 			throws Exception {
 
 		HttpSession session = request.getSession();
-		String carid3 = request.getParameter("carId");
+//		String carid3 = request.getParameter("carId");
 
 		System.out.println("IN delete method");
 
-		int carId = Integer.parseInt(carid3);
+//		int carId = Integer.parseInt(carid3);
+		
+		String carid = request.getParameter("carid");
 
-		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+		int cId = Integer.parseInt(carid);
+
+		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
 
 		model.addAttribute(vehicle);
 
@@ -224,11 +240,15 @@ public class ManagerController {
 		System.out.println("############### EMPLOYEE: Confirm EDIT Post Mapping ###############");
 		HttpSession session = request.getSession();
 
-		String cid = request.getParameter("carId");
+//		String cid = request.getParameter("carId");
+//
+//		int carId = Integer.parseInt(cid);
+		
+		String carid = request.getParameter("carid");
 
-		int carId = Integer.parseInt(cid);
+		int cId = Integer.parseInt(carid);
 
-		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
 
 		vehicleDAO.deleteVehicle(vehicle);
 
@@ -262,10 +282,15 @@ public class ManagerController {
 
 		HttpSession session = request.getSession();
 		String usrEmail = request.getParameter("usrEmail");
-		String cid2 = request.getParameter("carId");
+//		String cid2 = request.getParameter("carId");
+//
+//		int carId = Integer.parseInt(cid2);
+		String carid = request.getParameter("carid");
 
-		int carId = Integer.parseInt(cid2);
-		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+		int cId = Integer.parseInt(carid);
+		
+
+		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
 
 		User user = userdao.fetchUserByusrEmail(usrEmail);
 
@@ -289,11 +314,18 @@ public class ManagerController {
 		System.out.println("Post usrEmail:" + usrEmail);
 		User user = userdao.fetchUserByusrEmail(usrEmail);
 
-		String cid = request.getParameter("carId");
+//		String cid = request.getParameter("carId");
+//
+//		int carId = Integer.parseInt(cid);
+//
+//		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+		
+		String carid = request.getParameter("carid");
 
-		int carId = Integer.parseInt(cid);
+		int cId = Integer.parseInt(carid);
+		
 
-		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
 
 		System.out.println(vehicle.getCarId());
 
@@ -351,12 +383,19 @@ public class ManagerController {
 				HttpSession session = request.getSession();
 				String usrEmail = request.getParameter("usrEmail");
 				
-				String id = request.getParameter("carId");
+//				String id = request.getParameter("carId");
+//
+//				int carId = Integer.parseInt(id);
+//				
+//				
+//				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+				
+				String carid = request.getParameter("carid");
 
-				int carId = Integer.parseInt(id);
+				int cId = Integer.parseInt(carid);
 				
-				
-				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+
+				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
 				
 				
 				User user = userdao.fetchUserByusrEmail(usrEmail);
@@ -382,15 +421,22 @@ public class ManagerController {
 				System.out.println("Post username:" + usrEmail);
 				User user = userdao.fetchUserByusrEmail(usrEmail);
 
-				String cid1 = request.getParameter("carId");
+//				String cid1 = request.getParameter("carId");
+//
+//				int carId = Integer.parseInt(cid1);
+//				
+//				
+//
+//				
+//				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+				
+//				
+				String carid = request.getParameter("carid");
 
-				int carId = Integer.parseInt(cid1);
-				
+				int cId = Integer.parseInt(carid);
 				
 
-				
-				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
-				
+				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
 				
 				
 				vehicle.setCarId(vehicle.getCarId());

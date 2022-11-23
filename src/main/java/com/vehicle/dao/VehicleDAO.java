@@ -65,14 +65,19 @@ public class VehicleDAO extends DAO {
 
 	public List<Vehicle> fetchAllVehicles() throws VehicleException {
 		List<Vehicle> vehicles = new ArrayList<Vehicle>();
+		System.out.println("In fetch all vehicles method");
+		
+		
 		try {
 			begin();
 			Criteria criteria = getSession().createCriteria(Vehicle.class);
 			vehicles = criteria.list();
+			System.out.println("In fetch all vehicles method try ");
 			commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {
+			System.out.println("In fetch all vehicles finally");
 			close();
 		}
 		return vehicles;

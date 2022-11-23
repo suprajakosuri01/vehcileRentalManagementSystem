@@ -102,15 +102,16 @@ public class CustomerController {
 	
 	//  CONFIRM RESERVATION
 	
-		@GetMapping("/reservationConfirm.htm")
+		@GetMapping("/reservationconfirm.htm")
 		public String fetchConfirmReservation(Model model, HttpServletRequest request,VehicleDAO vehicleDAO, UserDAO userdao,SessionStatus status)
 				throws Exception {
 
 			HttpSession session = request.getSession();
 			String usrEmail = request.getParameter("usrEmail");
-			String carId = request.getParameter("carId");
+			
+			String carid = request.getParameter("carId");
 
-			int cId = Integer.parseInt(carId);
+			int cId = Integer.parseInt(carid);
 			
 			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
 			
@@ -134,7 +135,7 @@ public class CustomerController {
 
 		}
 
-		@PostMapping("/reservationConfirm.htm")
+		@PostMapping("/reservationconfirm.htm")
 		public String setConfirmReservation(@ModelAttribute("vehicle") Vehicle vehicle, BindingResult result, SessionStatus status,
 				VehicleDAO vehicleDAO, HttpServletRequest request, UserDAO userdao) throws Exception {
 
@@ -143,8 +144,9 @@ public class CustomerController {
 			String usrEmail = request.getParameter("usrEmail");
 			System.out.println("Post usrEmail:" + usrEmail);
 
-			String id = request.getParameter("id");
-		int carId = Integer.parseInt(id);
+			String carid = request.getParameter("carid");
+
+			int cId = Integer.parseInt(carid);
 
 
 			
@@ -168,9 +170,8 @@ public class CustomerController {
 			LocalDate red = LocalDate.parse(rentEndDate);
 			LocalDate rrd = LocalDate.parse(rentReturnDate);
 
-			vehicle.setCarId(carId);
+			vehicle.setCarId(cId);
 			vehicle.setLicensePlate(vehicle.getLicensePlate());
-			
 			vehicle.setModel(vehicle.getModel());
 			vehicle.setYear(vehicle.getYear());
 			vehicle.setRentStartDate(rsd);

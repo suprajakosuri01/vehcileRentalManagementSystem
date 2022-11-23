@@ -40,11 +40,11 @@
 </table>
 
 //tags
-<form action="reservationConfirm.htm" method="POST">
-	<input type="hidden" name="id" value="${vehicle.getCarId()}"/>
+<form action="reservationconfirm.htm" method="POST">
+	<input type="hidden" name="cid" value="${vehicle.getCarId()}"/>
     <input type="hidden" name="licensePlate" value="${vehicle.getLicensePlate()}"/>
 	<input type="hidden" name="model" value="${vehicle.getModel()}"/>
-	<input type="hidden" name="year" value="${vehicle.getyear()}"/>
+	<input type="hidden" name="year" value="${vehicle.getYear()}"/>
 	<input type="hidden" name="rentStartDate" value="${rentStartDate}"/>
 	<input type="hidden" name="rentEndDate" value="${rentEndDate}"/>
 	<input type="hidden" name="rentReturnDate" value="${rentReturnDate}"/>

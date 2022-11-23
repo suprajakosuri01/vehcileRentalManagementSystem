@@ -15,11 +15,14 @@
 <jsp:include page="ManagerNav.jsp"/>
 <h2 align="center">Vehicles</h2>
 
-<p align="center"><a href="vehiclesadd.htm">Add Vehicles</a></p>
+<p align="center">
+<a href="vehiclesadd.htm">Add Vehicles</a></p>
 <br><br>
 <c:choose>
-<c:when test="${vehicles.size() gt 0}">
+<c:when test="${vehicle.size() gt 0}">
+
 <table id="tablestyle" align="center" border="1" cellpadding="1" cellspacing="1">
+
 	<th></th>
 	<th>licensePlate</th>
 	<th>model</th>
@@ -32,22 +35,25 @@
 	<th>Action</th>
 	
 
-	<c:forEach items="${vehicles}" var="vehicle">
+	<c:forEach items="${vehicle}" var="v1">
 	<tr>
-		<td><img width="100" height="100" src="/vehicle/images/${vehicle.imagePath}"/></td>
-		<td>${vehicle.licensePlate}</td>
-		<td>${vehicle.model}</td>
-		<td>${vehicle.year}</td>
-		<td>${vehicle.rentStartDate}</td>
-		<td>${vehicle.rentEndDate}</td>
-		<td>${vehicle.rentReturnDate}</td>
-		<td>${vehicle.getReservedByUser().getusrEmail()}</td>
-		<td>${vehicle.getxUser.getusrEmail()}</td>
+		<td><img width="100" height="100" src="/vehicle/images/${v1.imagePath}"/></td>
+		<td>${v1.licensePlate}</td>
+		<td>${v1.model}</td>
+		<td>${v1.year}</td>
+		<td>${v1.rentStartDate}</td>
+		<td>${v1.rentEndDate}</td>
+		<td>${v1.rentReturnDate}</td>
+		<td>${v1.getReservedByUser().getusrEmail()}</td>
+	
 		
 		
-		<td><a href="editvehicle.htm?carId=${vehicle.carId}">Edit</a>
+		<td>
 		
-		<a href="deleteall.htm?carId=${vehicle.carId}">Delete</a>
+		<a href="editvehicle.htm?carId=${v1.carId}">Edit</a>
+		
+		<a href="deleteall.htm?carId=${v1.carId}">Delete</a>
+		
 		</td>
 	</tr>
 	</c:forEach>

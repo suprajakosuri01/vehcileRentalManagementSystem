@@ -39,9 +39,8 @@
 	</tr>
 </table>
 
-//tags
 <form action="reservationconfirm.htm" method="POST">
-	<input type="hidden" name="cid" value="${vehicle.getCarId()}"/>
+	<input type="hidden" name="c1" value="${vehicle.getCarId()}"/>
     <input type="hidden" name="licensePlate" value="${vehicle.getLicensePlate()}"/>
 	<input type="hidden" name="model" value="${vehicle.getModel()}"/>
 	<input type="hidden" name="year" value="${vehicle.getYear()}"/>

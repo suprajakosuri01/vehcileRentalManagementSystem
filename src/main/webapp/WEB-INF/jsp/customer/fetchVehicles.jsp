@@ -39,6 +39,7 @@
 		<td>	
  		<c:choose>
 		<c:when test= "${vehicle.rentEndDate != null || vehicle.rentReturnDate !=null}">
+		
 		Reserved
 		</c:when>
 		<c:when test="${usrvehicles.size() eq 3}">

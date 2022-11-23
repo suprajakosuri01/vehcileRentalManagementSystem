@@ -31,7 +31,7 @@ public class CustomerController {
 
 ////fetch vehicles
 
-//	// ################################### BROWSE Vehciles ##########################################################	
+//	//	
 
 	@GetMapping("/fetchVehicles.htm")
 	public String getBrowseBooks(Model model, VehicleDAO vehicleDAO, UserDAO userdao, HttpServletRequest request)
@@ -46,6 +46,7 @@ public class CustomerController {
 		model.addAttribute("vehicles", vehicles);
 
 		// cars in use for the user
+		
 		User user = userdao.fetchUserByusrEmail(usrEmail);
 		List<Vehicle> usrVehicles = vehicleDAO.fetchReservedVehicleByUser(user);
 		usrVehicles.addAll(vehicleDAO.fetchVechiclesInUserByUser(user));
@@ -54,6 +55,8 @@ public class CustomerController {
 
 		return "customer/fetchVehicles";
 	}
+	
+	
 
 	// ################################### MY vehicles(orders)
 	// ##########################################################
@@ -78,6 +81,9 @@ public class CustomerController {
 		return "customer/orders";
 	}
 
+	
+	
+	
 	// ################################### booked
 	// vehicles##########################################################
 
@@ -100,6 +106,11 @@ public class CustomerController {
 		return "customer/bookedVehicles";
 	}
 	
+	
+	
+	
+	
+	
 	//  CONFIRM RESERVATION
 	
 		@GetMapping("/reservationconfirm.htm")
@@ -107,21 +118,33 @@ public class CustomerController {
 				throws Exception {
 
 			HttpSession session = request.getSession();
+			
 			String usrEmail = request.getParameter("usrEmail");
-			
-			String carid = request.getParameter("carId");
+			System.out.println("email id obtained from session scope -- "+usrEmail);
 
-			int cId = Integer.parseInt(carid);
+
 			
-			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
+			String cid = request.getParameter("carId");
+			
+			System.out.println("carId obtained from session scope -- "+cid);
+
+
+			int castid = Integer.parseInt(cid.trim());
+			
+
+			System.out.println("in confirm reservation");
+			
+			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(castid);
+			
 			
 			User user = userdao.fetchUserByusrEmail(usrEmail);
-			model.addAttribute("vehicle", vehicle);
+			
+			model.addAttribute("vehicle",vehicle);
 
-			model.addAttribute("usrEmail", usrEmail);
+			model.addAttribute("usrEmail",usrEmail);
 			
 			
-			System.out.println("usrEmail:" + usrEmail);
+			System.out.println("usrEmail:" +usrEmail);
 
 			LocalDate rentStartDate = LocalDate.now();
 			LocalDate rentEndDate = LocalDate.now().plusDays(1);
@@ -134,6 +157,10 @@ public class CustomerController {
 			return "customer/reservationConfirm";
 
 		}
+		
+		
+		
+		
 
 		@PostMapping("/reservationconfirm.htm")
 		public String setConfirmReservation(@ModelAttribute("vehicle") Vehicle vehicle, BindingResult result, SessionStatus status,
@@ -144,11 +171,9 @@ public class CustomerController {
 			String usrEmail = request.getParameter("usrEmail");
 			System.out.println("Post usrEmail:" + usrEmail);
 
-			String carid = request.getParameter("carid");
-
-			int cId = Integer.parseInt(carid);
 
 
+			int carId = Integer.parseInt(request.getParameter("c1"));
 			
 			
 			
@@ -170,7 +195,7 @@ public class CustomerController {
 			LocalDate red = LocalDate.parse(rentEndDate);
 			LocalDate rrd = LocalDate.parse(rentReturnDate);
 
-			vehicle.setCarId(cId);
+			vehicle.setCarId(carId);
 			vehicle.setLicensePlate(vehicle.getLicensePlate());
 			vehicle.setModel(vehicle.getModel());
 			vehicle.setYear(vehicle.getYear());
@@ -195,6 +220,8 @@ public class CustomerController {
 
 
 			status.setComplete(); // mark it complete
+			
+			System.out.println("reserv success");
 			return "customer/successreserv";
 		}
 		

@@ -25,8 +25,10 @@
 	<tr><td>licensePlate</td>
 	<td>${vehicle.getLicensePlate()}</td></tr>
 	
-	<tr><td>Model:</td><td><input type="text" name="model" 
+	<tr><td>Model:</td><td>
+	<input type="text" name="model" 
 	value="${vehicle.getModel()}"
+	s
 	 style="font-weight: bold" required="required"/></td></tr>
 	
 	
@@ -45,14 +47,17 @@
 	<tr><td>Reserved By:</td>
 	<td>${vehicle.getReservedByUser().getUsrEmail()}</td>
 	
+	
 	<td><input type="checkbox" id="deleteRsvrtn" name="deleteRsvrtn" value="deleteRsvrtn"> Delete Reservation</td>
 	</tr>
+	
 	<tr><td>Current User:</td><td>${vehicle.getxUser().getUsrEmail()}</td>
 	
 	<td><input type="checkbox" id="deletecrntUser" name="deleteUsr" value="deleteUsr"> Remove Current User</td>
 	</tr>
 	<tr>
 	<td>
+	
 	<input style="width:100px"  type="submit" value="Edit"> 
 	</td>
 	</tr>

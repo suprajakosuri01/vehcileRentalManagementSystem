@@ -47,9 +47,10 @@
 	<td>${vehicle.getxUser().getUsrEmail()}</td>
 	</tr>
 </table>
+
 <form action="deleteall.htm" method="POST">
 
-	<input type="hidden" name="carId" value="${vehicle.getCarId())}"/>
+	<input type="hidden" name="c1" value="${vehicle.getCarId()}"/>
     <input type="hidden" name="licensePlate" value="${vehicle.getLicensePlate()}"/>
 	<input type="hidden" name="Model" value="${vehicle.getModel()}"/>
 	

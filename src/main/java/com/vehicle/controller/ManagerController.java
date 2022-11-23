@@ -43,7 +43,7 @@ public class ManagerController {
 
 		List<Vehicle> vehicle = vehicleDAO.fetchAllVehicles();
 		
-		System.out.println("getModel in fetch vehicle" +vehicle.get(0).getModel());
+//		System.out.println("getModel in fetch vehicle" +vehicle.get(0).getModel());
 		model.addAttribute("vehicle", vehicle);
 
 		
@@ -116,20 +116,25 @@ public class ManagerController {
 		
 			HttpSession session = request.getSession();
 			
-//			String carid = request.getParameter("carId");
-//			int carId = Integer.parseInt(carid);
-//			carid
+
 			
 			String cid = request.getParameter("carId");
-
-			int cId = Integer.parseInt(cid);
-
-			
-			System.out.println("IN confirm edit method");
-			
-			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
 			
 
+
+			int carId = Integer.parseInt(cid);
+			
+//     	int carId = Integer.parseInt(request.getParameter("c1"));
+			
+			System.out.println("IN confirm edit method1");
+			
+			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+			
+
+			System.out.println("succesfully fetched - model in edit vehicle"+vehicle.getModel());
+			System.out.println("year in edit vehicle"+vehicle.getYear());
+
+			
 			model.addAttribute(vehicle);
 			
 			return "Manager/EditVehicle";
@@ -143,33 +148,49 @@ public class ManagerController {
 			System.out.println("############### EMPLOYEE: Confirm EDIT Post Mapping ###############");
 			HttpSession session = request.getSession();
 
-//			String carid = request.getParameter("carId");
-//			int carId = Integer.parseInt(carid);
 			
-			String c1 = request.getParameter("carId");
+//			String c1 = request.getParameter("carId");
 
-			int cId = Integer.parseInt(c1);
+			int carId = Integer.parseInt(request.getParameter("c1"));
 			
 			
+
+			System.out.println("IN confirm edit method 1.5");
 			
-			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
+			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 			
 			String model=request.getParameter("model");
 			
-			String year=request.getParameter("year");
+			System.out.println("before fetching year");
+			String year1 = request.getParameter("year");
+			System.out.println("Got year value from front end - before type casting ");
+			
+			 int castedYear =Integer.parseInt(year1);
+			System.out.println("Casted year value - " + castedYear);
+
+			
 			String deleteRsvrtn=request.getParameter("deleteRsvrtn");
+			
 			String deleteUsr=request.getParameter("deleteUsr");
 			
+			System.out.println("IN confirm edit method 2");
 			
 			vehicle.setCarId(vehicle.getCarId());
-			vehicle.setLicensePlate(vehicle.getLicensePlate());
-			vehicle.setModel(vehicle.getModel());
 			
-			vehicle.setYear(vehicle.getYear());
-			vehicle.setRentStartDate(vehicle.getRentStartDate());
-			vehicle.setRentEndDate(vehicle.getRentEndDate());
-			vehicle.setRentReturnDate(vehicle.getRentReturnDate());
-			vehicle.setPickupReady(vehicle.getPickupReady());
+			System.out.println("IN confirm edit method 3");
+			
+			vehicle.setModel(model);
+			
+
+			vehicle.setYear(castedYear);
+			
+			
+			
+//			vehicle.setRentStartDate(vehicle.getRentStartDate());
+//			vehicle.setRentEndDate(vehicle.getRentEndDate());
+			System.out.println("IN confirm edit method 5");
+//			vehicle.setRentReturnDate(vehicle.getRentReturnDate());
+//			vehicle.setPickupReady(vehicle.getPickupReady());
 			
 		
 			
@@ -177,40 +198,43 @@ public class ManagerController {
 				vehicle.setReservedByUser(null);
 				vehicle.setRentStartDate(null);
 				vehicle.setRentEndDate(null);
+				System.out.println("IN confirm edit method 4");
 				vehicle.setRentReturnDate(null);
 			}
-			else {
-				vehicle.setReservedByUser(vehicle.getReservedByUser());
-				vehicle.setRentStartDate(vehicle.getRentStartDate());
-				vehicle.setRentEndDate(vehicle.getRentEndDate());
-				vehicle.setRentReturnDate(vehicle.getRentReturnDate());
-
-				
-			}
+//			else {
+//				vehicle.setReservedByUser(vehicle.getReservedByUser());
+//				vehicle.setRentStartDate(vehicle.getRentStartDate());
+//				vehicle.setRentEndDate(vehicle.getRentEndDate());
+//				vehicle.setRentReturnDate(vehicle.getRentReturnDate());
+//
+//				
+//			}
 			
 			if(deleteUsr !=null) {
+				System.out.println("IN confirm edit metho 5");
 				vehicle.setxUser(null);
 				vehicle.setRentStartDate(null);
 				vehicle.setRentEndDate(null);
 				vehicle.setRentReturnDate(null);
 			}
-			else {
-				
-				vehicle.setxUser(vehicle.getxUser());
-				vehicle.setRentStartDate(vehicle.getRentStartDate());
-				vehicle.setRentEndDate(vehicle.getRentEndDate());
-				vehicle.setRentReturnDate(vehicle.getRentReturnDate());
-			}
+//			else {
+//				System.out.println("IN confirm edit method 6");
+//				vehicle.setxUser(vehicle.getxUser());
+//				vehicle.setRentStartDate(vehicle.getRentStartDate());
+//				vehicle.setRentEndDate(vehicle.getRentEndDate());
+//				vehicle.setRentReturnDate(vehicle.getRentReturnDate());
+//			}
 			
 //			SET IMAGE PATH
 			
-			vehicle.setImagePath(vehicle.getImagePath());
+//			vehicle.setImagePath(vehicle.getImagePath());
 			
 			vehicleDAO.updateVehicle(vehicle);
 			
 			status.setComplete();
+			System.out.println("IN confirm edit method 7 ");
 			
-			return "Manager/edited";
+			return "Manager/Edited";
 		}
 
 	// delete all
@@ -221,45 +245,55 @@ public class ManagerController {
 			throws Exception {
 
 		HttpSession session = request.getSession();
-//		String carid3 = request.getParameter("carId");
+
 
 		System.out.println("IN delete method");
 
-//		int carId = Integer.parseInt(carid3);
+		String cid = request.getParameter("carId");
 		
-		String carid = request.getParameter("carId");
 
-		int cId = Integer.parseInt(carid);
 
-		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
+		int carId = Integer.parseInt(cid);
+		
+
+		
+////		String carid = request.getParameter("carId");
+//		int carId = Integer.parseInt(request.getParameter("c1"));
+//		
+//
+////		int carId = Integer.parseInt(carid);
+
+		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+		System.out.println("IN delete method" +carId);
 
 		model.addAttribute(vehicle);
+		System.out.println("IN delete method success" +carId);
 
 		return "Manager/DeleteAll";
 	}
 
-	@PostMapping("/deleteall.htm.")
+	@PostMapping("/deleteall.htm")
 	public String postDeleteall(SessionStatus status, VehicleDAO vehicleDAO, HttpServletRequest request,
 			UserDAO userdao) throws Exception {
 
 		System.out.println("############### EMPLOYEE: Confirm EDIT Post Mapping ###############");
 		HttpSession session = request.getSession();
 
-//		String cid = request.getParameter("carId");
-//
-//		int carId = Integer.parseInt(cid);
 		
-		String carid = request.getParameter("carId");
 
-		int cId = Integer.parseInt(carid);
+		
+		
+		int carId = Integer.parseInt(request.getParameter("c1"));
+		
 
-		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
+		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 
 		vehicleDAO.deleteVehicle(vehicle);
 
 		status.setComplete();
 
 		return "Manager/Deleted";
+		
 	}
 
 // user reservations
@@ -287,15 +321,13 @@ public class ManagerController {
 
 		HttpSession session = request.getSession();
 		String usrEmail = request.getParameter("usrEmail");
-//		String cid2 = request.getParameter("carId");
-//
-//		int carId = Integer.parseInt(cid2);
+
 		String carid = request.getParameter("carId");
 
-		int cId = Integer.parseInt(carid);
+		int carId = Integer.parseInt(carid);
 		
 
-		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
+		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 
 		User user = userdao.fetchUserByusrEmail(usrEmail);
 
@@ -319,18 +351,13 @@ public class ManagerController {
 		System.out.println("Post usrEmail:" + usrEmail);
 		User user = userdao.fetchUserByusrEmail(usrEmail);
 
-//		String cid = request.getParameter("carId");
-//
-//		int carId = Integer.parseInt(cid);
-//
-//		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 		
-		String carid = request.getParameter("carId");
+		String c1 = request.getParameter("carId");
 
-		int cId = Integer.parseInt(carid);
+		int carId = Integer.parseInt(c1);
 		
 
-		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
+		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 
 		System.out.println(vehicle.getCarId());
 
@@ -388,19 +415,14 @@ public class ManagerController {
 				HttpSession session = request.getSession();
 				String usrEmail = request.getParameter("usrEmail");
 				
-//				String id = request.getParameter("carId");
-//
-//				int carId = Integer.parseInt(id);
-//				
-//				
-//				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+
 				
 				String carid = request.getParameter("carId");
 
-				int cId = Integer.parseInt(carid);
+				int carId = Integer.parseInt(carid);
 				
 
-				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
+				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 				
 				
 				User user = userdao.fetchUserByusrEmail(usrEmail);
@@ -426,22 +448,15 @@ public class ManagerController {
 				System.out.println("Post username:" + usrEmail);
 				User user = userdao.fetchUserByusrEmail(usrEmail);
 
-//				String cid1 = request.getParameter("carId");
-//
-//				int carId = Integer.parseInt(cid1);
-//				
-//				
-//
-//				
-//				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
-				
-//				
-				String carid = request.getParameter("carId");
 
-				int cId = Integer.parseInt(carid);
+				String c1 = request.getParameter("carId");
+
+				int carId = Integer.parseInt(c1);
 				
 
-				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
+				
+
+				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 				
 				
 				vehicle.setCarId(vehicle.getCarId());

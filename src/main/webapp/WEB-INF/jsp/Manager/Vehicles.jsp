@@ -33,7 +33,7 @@
 	<th>Reserved By</th>
 	<th>In Use By</th>
 	<th>Action</th>
-	
+	 
 
 	<c:forEach items="${vehicle}" var="v1">
 	<tr>
@@ -45,7 +45,8 @@
 		<td>${v1.rentEndDate}</td>
 		<td>${v1.rentReturnDate}</td>
 		<td>${v1.getReservedByUser().getUsrEmail()}</td>
-		<td>${v1.getxUser.getUsrEmail()}</td>
+		
+		
 	<td><a href="editvehicle.htm?carId=${v1.carId}">Edit</a> |
 		
 		<a href="deleteall.htm?carId=${v1.carId}">Delete</a>

@@ -43,7 +43,7 @@ public class ManagerController {
 
 		List<Vehicle> vehicle = vehicleDAO.fetchAllVehicles();
 		
-//		System.out.println("getModel in fetch vehicle" +vehicle.get(0).getModel());
+
 		model.addAttribute("vehicle", vehicle);
 
 		
@@ -124,7 +124,7 @@ public class ManagerController {
 
 			int carId = Integer.parseInt(cid);
 			
-//     	int carId = Integer.parseInt(request.getParameter("c1"));
+
 			
 			System.out.println("IN confirm edit method1");
 			
@@ -201,14 +201,14 @@ public class ManagerController {
 				System.out.println("IN confirm edit method 4");
 				vehicle.setRentReturnDate(null);
 			}
-//			else {
-//				vehicle.setReservedByUser(vehicle.getReservedByUser());
-//				vehicle.setRentStartDate(vehicle.getRentStartDate());
-//				vehicle.setRentEndDate(vehicle.getRentEndDate());
-//				vehicle.setRentReturnDate(vehicle.getRentReturnDate());
-//
-//				
-//			}
+			else {
+				vehicle.setReservedByUser(vehicle.getReservedByUser());
+				vehicle.setRentStartDate(vehicle.getRentStartDate());
+				vehicle.setRentEndDate(vehicle.getRentEndDate());
+				vehicle.setRentReturnDate(vehicle.getRentReturnDate());
+
+				
+			}
 			
 			if(deleteUsr !=null) {
 				System.out.println("IN confirm edit metho 5");
@@ -217,13 +217,13 @@ public class ManagerController {
 				vehicle.setRentEndDate(null);
 				vehicle.setRentReturnDate(null);
 			}
-//			else {
-//				System.out.println("IN confirm edit method 6");
-//				vehicle.setxUser(vehicle.getxUser());
-//				vehicle.setRentStartDate(vehicle.getRentStartDate());
-//				vehicle.setRentEndDate(vehicle.getRentEndDate());
-//				vehicle.setRentReturnDate(vehicle.getRentReturnDate());
-//			}
+			else {
+				System.out.println("IN confirm edit method 6");
+				vehicle.setxUser(vehicle.getxUser());
+				vehicle.setRentStartDate(vehicle.getRentStartDate());
+				vehicle.setRentEndDate(vehicle.getRentEndDate());
+				vehicle.setRentReturnDate(vehicle.getRentReturnDate());
+			}
 			
 //			SET IMAGE PATH
 			

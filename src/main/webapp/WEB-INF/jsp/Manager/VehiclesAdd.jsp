@@ -18,9 +18,9 @@
 
 <table id="tablestyle" align="center" cellpadding="1" cellspacing="1">
 	<tr><td>
-	licensePlate(4): 
+	licensePlate(4-8): 
 	</td><td>
-	<form:input pattern="[0-9]{3}[0-9]{3}[0-9]{4}" path="licensePlate" required="required" minlength="4" maxlength="8"/>
+	<form:input path="licensePlate" required="required" minlength="4" maxlength="8"/>
 	</td></tr>
 	<tr><td>
 	model: 

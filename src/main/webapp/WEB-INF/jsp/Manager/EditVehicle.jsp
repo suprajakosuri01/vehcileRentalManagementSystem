@@ -11,7 +11,7 @@
 </head>
 <body>
 <jsp:include page="ManagerNav.jsp"/>
-<h2 align="center">Edit Book Details</h2>
+<h2 align="center">Edit vehicle Details</h2>
 
 
 <form style="text-align:left" action="editvehicle.htm" method="POST">
@@ -47,7 +47,7 @@
 	</tr>
 	<tr><td>Current User:</td><td>${vehicle.getxUser().getUsrEmail()}</td>
 	
-	<td><input type="checkbox" id="deletecrntUser" name="deletecrntUser" value="deletecrntUser"> Remove Current User</td>
+	<td><input type="checkbox" id="deletecrntUser" name="deleteUsr" value="deleteUsr"> Remove Current User</td>
 	</tr>
 	<tr>
 	<td>

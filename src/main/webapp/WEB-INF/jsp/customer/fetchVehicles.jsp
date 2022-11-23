@@ -43,9 +43,9 @@
 		</c:when>
 		<c:otherwise>
 		
-		//tags
 		
-		<a href="reservationConfirm.htm?bookId=${vehicle.carId}&usrEmail=${sessionScope.usrEmail}">Select</a>
+		
+		<a href="reservationConfirm.htm?carId=${vehicle.carId}&usrEmail=${sessionScope.usrEmail}">Select</a>
 		</c:otherwise>
 		</c:choose>
 		</td>

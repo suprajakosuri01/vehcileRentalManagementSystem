@@ -35,13 +35,15 @@ public class ManagerController {
 
 	// vehciles list
 
+
 	@GetMapping("/vehicles.htm")
 	public String fetchVehicles(Model model, VehicleDAO vehicleDAO, HttpServletRequest request) throws Exception {
 
 		HttpSession session = request.getSession();
 
-		List<Vehicle> vehicles = vehicleDAO.fetchAllVehicles();
-		model.addAttribute("vehicles", vehicles);
+		List<Vehicle> vehicle = vehicleDAO.fetchAllVehicles();
+		
+		model.addAttribute("vehicle", vehicle);
 		return "Manager/Vehicles";
 	}
 
@@ -53,7 +55,7 @@ public class ManagerController {
 		HttpSession session = request.getSession();
 		model.addAttribute("vehicle", vehicle);
 
-		// return form view
+		
 
 		return "Manager/VehiclesAdd";
 	}
@@ -98,8 +100,103 @@ public class ManagerController {
 
 		status.setComplete(); // mark it complete
 
-		return "Manager/vehiclesAdded";
+		return "Manager/vehicleAdded";
 	}
+	
+	
+	//CONFIRM EDIT 
+		
+		@GetMapping("/editvehicle.htm")
+		public String getConfirmEdit(Model model, HttpServletRequest request, VehicleDAO vehicleDAO, UserDAO userdao)
+				throws Exception {
+		
+			HttpSession session = request.getSession();
+			
+			String carid = request.getParameter("carId");
+			int carId = Integer.parseInt(carid);
+			
+			System.out.println("IN confirm edit method");
+			
+			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+			
+
+			model.addAttribute(vehicle);
+			
+			return "Manager/EditVehicle";
+		}
+		
+		
+		@PostMapping("/editvehicle.htm")
+		public String postConfirmEdit(SessionStatus status,
+				VehicleDAO vehicleDAO, HttpServletRequest request, UserDAO userdao) throws Exception {
+			
+			System.out.println("############### EMPLOYEE: Confirm EDIT Post Mapping ###############");
+			HttpSession session = request.getSession();
+
+			String carid = request.getParameter("carId");
+			int carId = Integer.parseInt(carid);
+			
+			
+			
+			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+			
+			String model=request.getParameter("model");
+			String year=request.getParameter("year");
+			String deleteRsvrtn=request.getParameter("deleteRsvrtn");
+			String deleteUsr=request.getParameter("deleteUsr");
+			
+			
+			vehicle.setCarId(vehicle.getCarId());
+			vehicle.setLicensePlate(vehicle.getLicensePlate());
+			vehicle.setModel(vehicle.getModel());
+			vehicle.setYear(vehicle.getYear());
+			vehicle.setRentStartDate(vehicle.getRentStartDate());
+			vehicle.setRentEndDate(vehicle.getRentEndDate());
+			vehicle.setRentReturnDate(vehicle.getRentReturnDate());
+			vehicle.setPickupReady(vehicle.getPickupReady());
+			
+		
+			
+			if(deleteRsvrtn !=null) {
+				vehicle.setReservedByUser(null);
+				vehicle.setRentStartDate(null);
+				vehicle.setRentEndDate(null);
+				vehicle.setRentReturnDate(null);
+			}
+			else {
+				vehicle.setReservedByUser(vehicle.getReservedByUser());
+				vehicle.setRentStartDate(vehicle.getRentStartDate());
+				vehicle.setRentEndDate(vehicle.getRentEndDate());
+				vehicle.setRentReturnDate(vehicle.getRentReturnDate());
+
+				
+			}
+			
+			if(deleteUsr !=null) {
+				vehicle.setxUser(null);
+				vehicle.setRentStartDate(null);
+				vehicle.setRentEndDate(null);
+				vehicle.setRentReturnDate(null);
+			}
+			else {
+				
+				vehicle.setxUser(vehicle.getxUser());
+				vehicle.setRentStartDate(vehicle.getRentStartDate());
+				vehicle.setRentEndDate(vehicle.getRentEndDate());
+				vehicle.setRentReturnDate(vehicle.getRentReturnDate());
+			}
+			
+//			SET IMAGE PATH
+			
+			vehicle.setImagePath(vehicle.getImagePath());
+			
+			vehicleDAO.updateVehicle(vehicle);
+			
+			status.setComplete();
+			
+			return "Manager/edited";
+		}
+
 	// delete all
 
 	@GetMapping("/deleteall.htm")
@@ -203,6 +300,7 @@ public class ManagerController {
 		vehicle.setCarId(vehicle.getCarId());
 		vehicle.setLicensePlate(vehicle.getLicensePlate());
 		vehicle.setModel(vehicle.getModel());
+		vehicle.setYear(vehicle.getYear());
 		vehicle.setRentStartDate(vehicle.getRentStartDate());
 		vehicle.setRentEndDate(vehicle.getRentEndDate());
 		vehicle.setRentReturnDate(vehicle.getRentReturnDate());
@@ -298,6 +396,7 @@ public class ManagerController {
 				vehicle.setCarId(vehicle.getCarId());
 				vehicle.setLicensePlate(vehicle.getLicensePlate());
 				vehicle.setModel(vehicle.getModel());
+				vehicle.setYear(vehicle.getYear());
 				vehicle.setRentStartDate(null);
 				vehicle.setRentEndDate(null);
 				vehicle.setRentReturnDate(null);

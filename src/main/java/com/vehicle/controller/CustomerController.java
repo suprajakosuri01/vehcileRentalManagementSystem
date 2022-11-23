@@ -101,7 +101,7 @@ public class CustomerController {
 	}
 	
 	//  CONFIRM RESERVATION
-
+	
 		@GetMapping("/reservationConfirm.htm")
 		public String fetchConfirmReservation(Model model, HttpServletRequest request,VehicleDAO vehicleDAO, UserDAO userdao,SessionStatus status)
 				throws Exception {
@@ -111,7 +111,9 @@ public class CustomerController {
 			String carId = request.getParameter("carId");
 
 			int cId = Integer.parseInt(carId);
+			
 			Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId);
+			
 			User user = userdao.fetchUserByusrEmail(usrEmail);
 			model.addAttribute("vehicle", vehicle);
 
@@ -132,7 +134,7 @@ public class CustomerController {
 
 		}
 
-		@PostMapping("/reservationConfirm.htm.htm")
+		@PostMapping("/reservationConfirm.htm")
 		public String setConfirmReservation(@ModelAttribute("vehicle") Vehicle vehicle, BindingResult result, SessionStatus status,
 				VehicleDAO vehicleDAO, HttpServletRequest request, UserDAO userdao) throws Exception {
 
@@ -192,7 +194,7 @@ public class CustomerController {
 
 
 			status.setComplete(); // mark it complete
-			return "customer/successreserv.";
+			return "customer/successreserv";
 		}
 		
 	

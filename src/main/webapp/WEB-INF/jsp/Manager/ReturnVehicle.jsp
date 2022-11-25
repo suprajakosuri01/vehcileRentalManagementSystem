@@ -28,7 +28,7 @@
 	
 	<c:forEach items="${vehicles}" var="vehicle">
 	<tr>
-		<td><img width="100" height="100" src="/vehicle/images/${vehicle.imagePath}"/></td>
+		<td><img width="100" height="100" src="/vehicle/images/${vehicle.key.imagePath}"/></td>
 		
 		<td>${vehicle.key.licensePlate}</td>
 		<td>${vehicle.key.model}</td>
@@ -39,7 +39,7 @@
 		<td>${vehicle.value}</td>
 		
 		<td>	
- 		<a href="returnvehicle.htm?carId=${vehicle.key.carId}&usrEmail=${vehicle.value}">Returned By Customer</a>
+ 		<a href="return.htm?carId=${vehicle.key.carId}&usrEmail=${vehicle.value}">Returned By Customer</a>
 		</td>
 	</tr>
 	</c:forEach>

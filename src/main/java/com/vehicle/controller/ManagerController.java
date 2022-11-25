@@ -393,6 +393,7 @@ public class ManagerController {
 	    public String getBookReturns(Model model,VehicleDAO vehicleDAO,HttpServletRequest request) throws Exception {
 			
 			HttpSession session=request.getSession();
+			
 			String usrEmail = request.getParameter("usrEmail");
 			model.addAttribute("usrEmail", usrEmail);
 			
@@ -400,6 +401,7 @@ public class ManagerController {
 
 			
 			if(vehiclespickedup !=null) {
+				
 				System.out.println("Got all vehicles in use");
 			}
 
@@ -418,15 +420,18 @@ public class ManagerController {
 				
 				HttpSession session = request.getSession();
 				String usrEmail = request.getParameter("usrEmail");
+					
+
+				String id2 = request.getParameter("carId");
+
+				System.out.println(id2 +"in get confrim return id2");
+				int cId1 = Integer.parseInt(id2);
 				
 
+				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId1);
 				
-				String carid = request.getParameter("carId");
-
-				int carId = Integer.parseInt(carid);
 				
 
-				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 				
 				
 				User user = userdao.fetchUserByusrEmail(usrEmail);
@@ -434,14 +439,14 @@ public class ManagerController {
 				request.setAttribute("vehicle", vehicle);
 				request.setAttribute("usrEmail", usrEmail);
 
-				System.out.println("usrId:" + usrEmail);
+				
 
 
 				return "Manager/Return";
 				
 			}
 			
-			@PostMapping("/confirm-return.htm")
+			@PostMapping("/return.htm")
 			public String postConfirmReturn(SessionStatus status,
 					VehicleDAO vehicleDAO, HttpServletRequest request, UserDAO userdao) throws Exception {
 				
@@ -453,14 +458,14 @@ public class ManagerController {
 				User user = userdao.fetchUserByusrEmail(usrEmail);
 
 
-				String c1 = request.getParameter("carId");
-
-				int carId = Integer.parseInt(c1);
+				int cId1 = Integer.parseInt(request.getParameter("c5"));
 				
 
 				
 
-				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
+				
+
+				Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId1);
 				
 				
 				vehicle.setCarId(vehicle.getCarId());

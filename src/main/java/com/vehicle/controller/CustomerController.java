@@ -168,7 +168,9 @@ public class CustomerController {
 
 			System.out.println("############### CUSTOMER: Confirm Reservation Post Mapping ###############");
 			HttpSession session = request.getSession();
+			
 			String usrEmail = request.getParameter("usrEmail");
+			
 			System.out.println("Post usrEmail:" + usrEmail);
 
 
@@ -187,6 +189,7 @@ public class CustomerController {
 			System.out.println(rentReturnDate);
 
 			String usrId = request.getParameter("usrEmail");
+			
 			System.out.println(usrEmail);
 
 			User user = userdao.fetchUserByusrEmail(usrEmail);		

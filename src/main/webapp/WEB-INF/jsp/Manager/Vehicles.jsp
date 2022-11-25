@@ -30,8 +30,9 @@
 	<th>Reserved From</th>
 	<th>Reserved Until</th>
 	<th>Return By</th>
+	
 	<th>Reserved By</th>
-	<th>In Use By</th>
+<th>In Use By</th>
 	<th>Action</th>
 	 
 
@@ -45,6 +46,7 @@
 		<td>${v1.rentEndDate}</td>
 		<td>${v1.rentReturnDate}</td>
 		<td>${v1.getReservedByUser().getUsrEmail()}</td>
+		<td>${v1.getxUser().getUsrEmail()}</td>
 		
 		
 	<td><a href="editvehicle.htm?carId=${v1.carId}">Edit</a> |

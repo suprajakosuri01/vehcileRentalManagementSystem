@@ -29,6 +29,8 @@ public class User {
  String userAddress;
 	 String userPhonenum;
 	 String title;
+	 
+	 
 	 @OneToMany(mappedBy="reservedByUser")
 	 private List<Vehicle> vehilclesReserved;
 	 

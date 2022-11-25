@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <style><%@include file="/WEB-INF/css/layout.css"%></style>
-<title>Book Reservations</title>
+<title>vehicle Reservation</title>
 </head>
 <body>
 <jsp:include page="ManagerNav.jsp"/>
@@ -27,7 +27,7 @@
 	
 	<c:forEach items="${vehicles}" var="vehicle">
 	<tr>
-		<td><img width="100" height="100" src="/vehicle/images/${vehicle.imagePath}"/></td>
+		<td><img width="100" height="100" src="/vehicle/images/${vehicle.key.imagePath}"/></td>
 		<td>${vehicle.key.licensePlate}</td>
 		<td>${vehicle.key.model}</td>
 		<td>${vehicle.key.year}</td>

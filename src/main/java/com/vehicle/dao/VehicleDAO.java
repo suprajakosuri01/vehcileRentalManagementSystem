@@ -107,6 +107,7 @@ public class VehicleDAO extends DAO {
 		LinkedHashMap<Vehicle, String> vehicles = new LinkedHashMap<Vehicle, String>();
 
 		for (Vehicle vehicle : this.fetchAllVehicles()) {
+			
 			if (vehicle.getReservedByUser() != null && vehicle.getxUser() == null) {
 				String UsrEmail = vehicle.getReservedByUser().getUsrEmail();
 				vehicles.put(vehicle, UsrEmail);

@@ -47,7 +47,7 @@
 </table>
 <form action="pickup.htm" method="POST">
 
-<input type="hidden" name="c1" value="${vehicle.getCarId())}"/>
+<input type="hidden" name="c4" value="${vehicle.getCarId()}"/>
     <input type="hidden" name="licensePlate" value="${vehicle.getLicensePlate()}"/>
 	<input type="hidden" name="Model" value="${vehicle.getModel()}"/>
 	
@@ -59,6 +59,7 @@
 	<input type="hidden" name="rentReturnDate" value="${vehicle.getRentReturnDate()}"/>
 	
 	<input type="hidden" name="usrEmail" value="${vehicle.getReservedByUser().getUsrEmail()}"/>
+	
 <p align="center"><input type="submit" value="Confirm"></p>
 </form>
 

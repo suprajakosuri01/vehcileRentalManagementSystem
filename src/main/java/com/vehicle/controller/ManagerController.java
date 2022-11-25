@@ -40,9 +40,10 @@ public class ManagerController {
 	public String fetchVehicles(Model model, VehicleDAO vehicleDAO, HttpServletRequest request) throws Exception {
 
 		HttpSession session = request.getSession();
-
-		List<Vehicle> vehicle = vehicleDAO.fetchAllVehicles();
+		System.out.println("in manager conteoller fetchall");
 		
+		
+		List<Vehicle> vehicle = vehicleDAO.fetchAllVehicles();
 
 		model.addAttribute("vehicle", vehicle);
 
@@ -257,11 +258,7 @@ public class ManagerController {
 		
 
 		
-////		String carid = request.getParameter("carId");
-//		int carId = Integer.parseInt(request.getParameter("c1"));
-//		
-//
-////		int carId = Integer.parseInt(carid);
+
 
 		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 		System.out.println("IN delete method" +carId);
@@ -315,11 +312,13 @@ public class ManagerController {
 
 	// confirm pickup
 
+
 	@GetMapping("/pickup.htm")
 	public String getPickup(Model model, HttpServletRequest request, VehicleDAO vehicleDAO, UserDAO userdao)
 			throws Exception {
 
 		HttpSession session = request.getSession();
+		
 		String usrEmail = request.getParameter("usrEmail");
 
 		String carid = request.getParameter("carId");
@@ -346,20 +345,24 @@ public class ManagerController {
 			UserDAO userdao) throws Exception {
 
 		System.out.println("############### EMPLOYEE: Confirm Pickup Post Mapping ###############");
+		
+		
 		HttpSession session = request.getSession();
 		String usrEmail = request.getParameter("usrEmail");
+		
 		System.out.println("Post usrEmail:" + usrEmail);
 		User user = userdao.fetchUserByusrEmail(usrEmail);
 
 		
-		String c1 = request.getParameter("carId");
 
-		int carId = Integer.parseInt(c1);
+		
+		int carId = Integer.parseInt(request.getParameter("c4"));
 		
 
 		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 
-		System.out.println(vehicle.getCarId());
+	
+		
 
 		vehicle.setCarId(vehicle.getCarId());
 		vehicle.setLicensePlate(vehicle.getLicensePlate());
@@ -379,6 +382,7 @@ public class ManagerController {
 		vehicleDAO.updateVehicle(vehicle);
 
 		status.setComplete();
+		System.out.println("pickup successfull");
 		return "Manager/PickedUp";
 	}
 	

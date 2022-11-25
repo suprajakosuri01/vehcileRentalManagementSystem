@@ -2,12 +2,10 @@ package com.vehicle.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.springframework.stereotype.Component;
-
 import com.vehicle.exception.VehicleException;
 import com.vehicle.pojo.User;
 import com.vehicle.pojo.Vehicle;
@@ -18,7 +16,6 @@ public class UserDAO extends DAO {
 	
 	public UserDAO() {
 	}
-	
 	//USER CRUD
 	public void saveUser(User user) throws VehicleException {
 		try {
@@ -69,6 +66,7 @@ public class UserDAO extends DAO {
 					.createQuery("from User where usrEmail=:usrEmail and usrPassword=:usrPassword and title='customer'");
 			q.setString("usrEmail", userEmail);
 			q.setString("usrPassword", usrPassword);
+			
 			Object obj = q.uniqueResult();
 			if (obj == null) {
 				return false;
@@ -76,7 +74,9 @@ public class UserDAO extends DAO {
 
 		} catch (HibernateException e) {
 
-			e.printStackTrace();
+			throw new VehicleException("customer validation Error: ", e);
+
+//			e.printStackTrace();
 		} finally {
 			close();
 		}
@@ -98,8 +98,9 @@ public class UserDAO extends DAO {
 			}
 
 		} catch (Exception e) {
+			throw new VehicleException("admin validation Error: ", e);
 
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 			close();
 		}
@@ -154,6 +155,7 @@ public class UserDAO extends DAO {
 		try {
 
 			Query q = getSession().createQuery("from User where usrEmail = :usrEmail");
+			
 			q.setString("usrEmail", usrEmail);
 			User user = (User) q.uniqueResult();
 

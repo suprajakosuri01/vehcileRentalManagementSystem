@@ -41,13 +41,13 @@ public class LoginController {
 		
 	
 		boolean flagCustomer = false;
-		boolean flagAdmin = false;
+//		boolean flagAdmin = false;
 		boolean flagEmp = false;
 		try {
 
 			flagCustomer = userdao.Customervalid(usrEmail, usrPassword);
 			System.out.println("in user validation 1");
-			flagAdmin = userdao.Adminvalid(usrEmail, usrPassword);
+//			flagAdmin = userdao.Adminvalid(usrEmail, usrPassword);
 			
 			System.out.println("in user validation 2");
 			flagEmp = userdao.Employeevalid(usrEmail, usrPassword);
@@ -63,16 +63,17 @@ public class LoginController {
 			session.setAttribute("usrEmail", usrEmail);
 			
 			return "customer/cusHome";
-		} else if (flagAdmin) {
-			System.out.println("user is a admin");
-			session.setAttribute("usrEmail", usrEmail);
-			return "admin/admin-dashboard";
-		} else if (flagEmp) {
+			
+		}
+		
+		
+		else if (flagEmp) {
 			System.out.println("user is a employee");
 			session.setAttribute("usrEmail", usrEmail);
 			model.addAttribute(usrEmail);
 			return "Manager/ManagerHome";
 		}
+		
 		String error="Incorrect Username/password";
 		model.addAttribute("error",error);
 		return "login";
@@ -99,29 +100,42 @@ public class LoginController {
 		}
 
 		@PostMapping("/register.htm")
-		public String addUserPost(@ModelAttribute("user") User user,HttpServletRequest request, BindingResult result, SessionStatus status,
+		public String addUserPost(@ModelAttribute("user") User newUser,HttpServletRequest request, BindingResult result, SessionStatus status,
 				UserDAO userdao,Model model) throws Exception {
 
 			System.out.println("check 0");
 
-			System.out.println(user.getUsrEmail());
-			System.out.println(user.getName());
-			System.out.println(user.getUsrPassword());
-			System.out.println(user.getTitle());
+			System.out.println(newUser.getUsrEmail());
+			System.out.println(newUser.getName());
+			System.out.println(newUser.getUsrPassword());
+			System.out.println(newUser.getUserAddress());
+//			System.out.println(user.getUserAddress());
+//			System.out.println(user.getUserAddress());
+//			
+			
+			
+			System.out.println(newUser.getTitle());
 			System.out.println("check 1");
 			
 			HttpSession session=request.getSession();
 			System.out.println("check 2");
 
-			String UsrEmail=request.getParameter("UsrEmail");
+//			String UsrEmail=request.getParameter("UsrEmail");
+//			
+//			System.out.println("UsrEmail from request == " + UsrEmail);
+			
 			System.out.println("check 3");
 
-			User User=userdao.fetchUserByusrEmail(UsrEmail);
+			System.out.println("UsrEmail from user object == " + newUser.getUsrEmail());
+
+			
+			User existingUser = userdao.fetchUserByusrEmail(newUser.getUsrEmail());
+			
 			
 			System.out.println("check 4");
 
 			
-			if(User !=null)
+			if(existingUser != null)
 			{
 				System.out.println("check 5");
 
@@ -132,7 +146,7 @@ public class LoginController {
 
 			System.out.println("check 6");
 
-			userdao.saveUser(user);
+			userdao.saveUser(newUser);
 
 			System.out.println("check 7");
 

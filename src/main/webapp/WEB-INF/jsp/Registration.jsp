@@ -9,7 +9,7 @@
 <body>
 <style><%@include file="/WEB-INF/css/layout.css"%></style>
 <div style="background-color: teal;color:white;font-family: Helvetica, sans-serif;height:40px;line-height:2.5em">
-<h1 align="center">Library Management System</h1>
+<h1 align="center">vehicle Management System</h1>
 </div>
 <h2 align="center">Register a New User</h2>
 <p align="center" style="color:red">${error}</p>

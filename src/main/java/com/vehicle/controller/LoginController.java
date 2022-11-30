@@ -1,7 +1,6 @@
 package com.vehicle.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import com.vehicle.dao.LoginDAO;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,157 +11,110 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.vehicle.dao.UserDAO;
 import com.vehicle.pojo.User;
 
 @Controller
 public class LoginController {
+    
+     //signin
+    @RequestMapping("/")
+    public String initializeForm() {
+        return "redirect:/login.htm";
+    }
+    
+    
+//user validation check
+    
+     @GetMapping("/login.htm")
+    public String fetchSignIn(Model model, User user) {
+        return "login";
+    }
+    
+    @PostMapping("/login.htm")
+    public String userValidation(@ModelAttribute("user") User user, BindingResult result, SessionStatus status,
+            HttpServletRequest req, LoginDAO logindao, Model model) {
+        HttpSession session = req.getSession();
+        String usrEmail = req.getParameter("usrEmail");
+        String usrPassword = req.getParameter("usrPassword");
 
-	@RequestMapping("/")
-	public String home() {
-		return "redirect:/login.htm";
-	}
-	
-	// ##################################### LOGIN ######################################	
+        boolean checkCustomer = false;
+	boolean checkAdmin = false;
+        boolean checkEmp = false;
+        try {
 
-	@GetMapping("/login.htm")
-	public String loginGet(Model model, User user) {
+            checkCustomer = logindao.checkCustmer(usrEmail, usrPassword);
+            System.out.println("customer validation check completed");
+	     checkAdmin = logindao.checkAdmin(usrEmail, usrPassword);
+            System.out.println("admin validation completed");
+            checkEmp = logindao.checkEmployee(usrEmail, usrPassword);
+            System.out.println("emp validation check completed");
+        } catch (Exception e) {
+            System.out.println("exception in customer/manager validation DAO ");
+        }
 
-		return "login";
-	}
-	@PostMapping("/login.htm")
-	public String userValidation(@ModelAttribute("user") User user, BindingResult result, SessionStatus status,
-			HttpServletRequest req, UserDAO userdao, Model model) {
+        if (checkCustomer) {
+            System.out.println(" customer-User");
+            session.setAttribute("usrEmail", usrEmail);
+            return "customer/cusHome";
 
-		HttpSession session = req.getSession();
-		String usrEmail = req.getParameter("usrEmail");
-		String usrPassword = req.getParameter("usrPassword");
-		
-	
-		boolean flagCustomer = false;
-//		boolean flagAdmin = false;
-		boolean flagEmp = false;
-		try {
+        } else if (checkEmp) {
+            System.out.println("Manager-User");
+            session.setAttribute("usrEmail", usrEmail);
+            model.addAttribute(usrEmail);
+            return "Manager/ManagerHome";
+        }
+        
+        else if (checkAdmin) {
+            System.out.println("admin-user");
+            session.setAttribute("usrEmail", usrEmail);
+            model.addAttribute(usrEmail);
+            return "admin/adminHome";
+        }
+        
+        
 
-			flagCustomer = userdao.Customervalid(usrEmail, usrPassword);
-			System.out.println("in user validation 1");
-//			flagAdmin = userdao.Adminvalid(usrEmail, usrPassword);
-			
-			System.out.println("in user validation 2");
-			flagEmp = userdao.Employeevalid(usrEmail, usrPassword);
-			System.out.println("in user validation 3");
-		} 
-		catch (Exception e) {
-			
-			System.out.println("Error in validate customer method///userValidation");
-		}
+        String excep = "enter valid userEmail/user Pwd";
+        model.addAttribute("error", excep);
+        return "login";
+    }
+//signout
 
-		if (flagCustomer) {
-			System.out.println("user is a customer");
-			session.setAttribute("usrEmail", usrEmail);
-			
-			return "customer/cusHome";
-			
-		}
-		
-		
-		else if (flagEmp) {
-			System.out.println("user is a employee");
-			session.setAttribute("usrEmail", usrEmail);
-			model.addAttribute(usrEmail);
-			return "Manager/ManagerHome";
-		}
-		
-		String error="Incorrect Username/password";
-		model.addAttribute("error",error);
-		return "login";
-	}
-	
-	// ##################################### LOGOUT ######################################
+    @GetMapping("/signout.htm")
+    public String signout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login.htm";
+    }
+//new user signup?
 
-		@GetMapping("/signout.htm")
-		public String signout(HttpSession session) {
+    @GetMapping("/register.htm")
+    public String fetchNewUser(ModelMap model, User user) {
+        model.addAttribute("user", user);
+        return "Registration";
+    }
 
-			session.invalidate();
-			return "redirect:/login.htm";
-		}
-		
-		// ##################################### REGISTRATION ######################################
-		
-		@GetMapping("/register.htm")
-		public String addUserGet(ModelMap model, User user) {
-			// command object
-			model.addAttribute("user", user);
+    @PostMapping("/register.htm")
+    public String addNewUser(@ModelAttribute("user") User newUser, HttpServletRequest request, BindingResult result, SessionStatus status,
+            UserDAO userdao, Model model) throws Exception {
+        HttpSession session = request.getSession();
+        User existingUser = userdao.fetchUsrByusrEmail(newUser.getUsrEmail());
+        if (existingUser != null) {
+            String excep = "user email already exits!!";
+            model.addAttribute("error", excep);
+            return "Registration";
+        }
+        userdao.saveUser(newUser);
+        if (result.hasErrors()) {
+            System.out.println("faced error during registartion");
+            return "Registration";
+        }
+        System.out.println("before login success is returned");
+        status.setComplete();
+        System.out.println("new user registered");
+        return "loginSuccess";
+    }
 
-			// return form view
-			return "Registration";
-		}
-
-		@PostMapping("/register.htm")
-		public String addUserPost(@ModelAttribute("user") User newUser,HttpServletRequest request, BindingResult result, SessionStatus status,
-				UserDAO userdao,Model model) throws Exception {
-
-			System.out.println("check 0");
-
-			System.out.println(newUser.getUsrEmail());
-			System.out.println(newUser.getName());
-			System.out.println(newUser.getUsrPassword());
-			System.out.println(newUser.getUserAddress());
-//			System.out.println(user.getUserAddress());
-//			System.out.println(user.getUserAddress());
-//			
-			
-			
-			System.out.println(newUser.getTitle());
-			System.out.println("check 1");
-			
-			HttpSession session=request.getSession();
-			System.out.println("check 2");
-
-//			String UsrEmail=request.getParameter("UsrEmail");
-//			
-//			System.out.println("UsrEmail from request == " + UsrEmail);
-			
-			System.out.println("check 3");
-
-			System.out.println("UsrEmail from user object == " + newUser.getUsrEmail());
-
-			
-			User existingUser = userdao.fetchUserByusrEmail(newUser.getUsrEmail());
-			
-			
-			System.out.println("check 4");
-
-			
-			if(existingUser != null)
-			{
-				System.out.println("check 5");
-
-				String error="User already exists";
-				model.addAttribute("error",error);
-				return "Registration";
-			}
-
-			System.out.println("check 6");
-
-			userdao.saveUser(newUser);
-
-			System.out.println("check 7");
-
-			
-			if (result.hasErrors()) {
-				System.out.println("faced error");
-
-				return "Registration";
-			}
-			System.out.println("before login success is returned");
-			
-			status.setComplete(); // mark it complete
-			System.out.println("status is set");
-
-			return "loginSuccess";
-		}
-
-	
 }

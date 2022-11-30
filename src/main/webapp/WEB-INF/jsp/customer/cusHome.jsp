@@ -3,15 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
 <meta charset="UTF-8">
-<title>Customer Home</title>
+<title>Cstmr Dashboard</title>
 </head>
 <body>
-<body>
 <jsp:include page="cusNavbar.jsp"/>
-<h2 align="center">Customer Homepage</h2>
-<p align="center">Browse books in the Browse Tab</p>
-</body>
+<h3 align="center">Customer Dashboard</h3>
+<p align="center">choose tabs of choice from nav bar</p>
+
 </body>
 </html>

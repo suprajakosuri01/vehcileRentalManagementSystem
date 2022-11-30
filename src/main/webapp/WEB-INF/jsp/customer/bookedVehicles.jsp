@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
 <meta charset="UTF-8">
-<title>My Reservations</title>
+<title>Booked vehicles</title>
 </head>
 <body>
 <jsp:include page="cusNavbar.jsp"/>
-<h2 align="center">My Reservations</h2>
+<h3 align="center">Reservations</h3>
 <c:choose>
 <c:when test="${vehicles.size() gt 0}">
 <table id="tablestyle" align="center" border="1" cellpadding="1" cellspacing="1">
@@ -37,7 +37,7 @@
 
 </table>
 	</c:when>
-	<c:otherwise><p align="center">You have no reservations.</p></c:otherwise>
+	<c:otherwise><p align="center">No reservations available at this moment</p></c:otherwise>
 </c:choose>
 </body>
 </html>

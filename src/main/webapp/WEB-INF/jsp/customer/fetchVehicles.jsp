@@ -5,16 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
 <meta charset="UTF-8">
-<title>Browse Books</title>
+<title>fetch vehicles</title>
 </head>
 <body>
 <jsp:include page="cusNavbar.jsp"/>
-<h2 align="center">Browse Cars</h2>
+<h3 align="center">Browse Cars</h3>
+
 <c:if test="${usrvehicles.size() eq 3}">
 
-<p style="color:red" align="center">Cannot reserve more vechiles since you already have 3 vechiles reserved/in use.</p>
+<p style="color:red" align="center"user can reserve only three cars</p>
 </c:if>
 <c:choose>
 <c:when test="${vehicles.size() gt 0}">
@@ -45,8 +46,6 @@
 		<c:when test="${usrvehicles.size() eq 3}">
 		</c:when>
 		<c:otherwise>
-		
-		
 		
 		<a href="reservationconfirm.htm?carId=${vehicle.carId} & usrEmail=${sessionScope.usrEmail}">Select</a>
 		

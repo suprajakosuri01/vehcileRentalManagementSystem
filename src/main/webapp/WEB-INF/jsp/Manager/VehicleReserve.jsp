@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
 <title>vehicle Reservation</title>
 </head>
 <body>

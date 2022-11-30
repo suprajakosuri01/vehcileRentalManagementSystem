@@ -6,13 +6,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
 <meta charset="UTF-8">
 <title>Confirm Reservation</title>
 </head>
 <body>
 <jsp:include page="cusNavbar.jsp"/>
-<h2 align="center">Confirm Reservation</h2>
+<h2 align="center">Reservation Confirm</h2>
 
 <table id="tablestyle" cellpadding="1" cellspacing="1" align="center">
 	<tr>
@@ -21,7 +21,7 @@
 	
 	</tr>
 	<tr>
-	<td>model: </td>
+	<td>Model: </td>
 	<td>${vehicle.model}</td>
 	</tr>
 	<tr>

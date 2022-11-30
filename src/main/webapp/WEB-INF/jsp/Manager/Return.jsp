@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
-<title>Confirm Pickup</title>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
+<title>Return vehicle</title>
 </head>
 <body>
 <jsp:include page="ManagerNav.jsp"/>
 
-<h2 align="center">Confirm Return</h2>
+<h2 align="center">Return vehicle</h2>
 
 <table id="tablestyle" align="center" cellpadding="1" cellspacing="1">
 	<tr>

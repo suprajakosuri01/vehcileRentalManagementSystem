@@ -1,7 +1,6 @@
 package com.vehicle.pojo;
 
 import java.time.LocalDate;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

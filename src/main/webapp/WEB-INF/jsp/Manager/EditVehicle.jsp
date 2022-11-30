@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
-<title>Confirm Edit</title>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
+<title>Edit Vehicle</title>
 </head>
 <body>
 <jsp:include page="ManagerNav.jsp"/>
@@ -15,8 +15,6 @@
 
 
 <form style="text-align:left" action="editvehicle.htm" method="POST">
-
-
 
 <input type="hidden" name="c1" value="${vehicle.getCarId()}"/>
 
@@ -28,7 +26,6 @@
 	<tr><td>Model:</td><td>
 	<input type="text" name="model" 
 	value="${vehicle.getModel()}"
-	s
 	 style="font-weight: bold" required="required"/></td></tr>
 	
 	

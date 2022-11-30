@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
-<title>Add Book</title>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
+<title>add Vehicles</title>
 </head>
 <body>
 <jsp:include page="ManagerNav.jsp"/>
@@ -33,7 +33,7 @@
 	<form:input path="year" required="required"/>
 	</td></tr>
 	<tr><td>
-    Select Item Photo:
+    choose Image of vehicle:
     </td><td>
     <input type="file" name="imgFile" accept="image/*" required="required"/>
     </td></tr>

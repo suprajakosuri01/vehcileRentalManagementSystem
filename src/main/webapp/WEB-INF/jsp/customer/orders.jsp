@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
 <meta charset="UTF-8">
 <title>My Vehicles</title>
 </head>

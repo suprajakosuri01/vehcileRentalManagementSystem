@@ -9,104 +9,97 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import com.vehicle.pojo.Vehicle;
 
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name="USERS")
+@Table(name = "USERS")
 public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int usrId;
-	
-	@Column(unique = true)
-	 String usrEmail;
-     String usrPassword;
+ @OneToMany(mappedBy = "reservedByUser")
+    private List<Vehicle> vehilclesReserved;
 
-    String name;
- String userAddress;
-	 String userPhonenum;
-	 String title;
-	 
-	 
-	 @OneToMany(mappedBy="reservedByUser")
-	 private List<Vehicle> vehilclesReserved;
-	 
-	 @OneToMany(mappedBy="xUser")
-	 private List<Vehicle> vehicles;
-	 
-	 public User() {
-		 
-	 }
-	 
- public User(String usrEmail,String usrPassword,String name,String userAddress, String userPhonenum,String title) {
-		 this.usrEmail=usrEmail;
-		 this.usrPassword=usrPassword;
-		 this.userAddress = userAddress;
-			this.userPhonenum = userPhonenum;
-			this.title = title;
-	 
-	 
-	 }
+    @OneToMany(mappedBy = "xUser")
+    private List<Vehicle> vehicles;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private int usrId;
 
-public int getUsrId() {
-	return usrId;
-}
+    @Column(unique = true)
+   private String usrEmail;
+    private String usrPassword;
+   private String name;
+   private String userAddress;
+   private String userPhonenum;
+   private String title;
+    public User() {
 
-public void setUsrId(int usrId) {
-	this.usrId = usrId;
-}
+    }
 
-public String getUsrEmail() {
-	return usrEmail;
-}
+    public User(String usrEmail, String usrPassword, String name, String userAddress, String userPhonenum, String title) {
+        this.usrEmail = usrEmail;
+        this.usrPassword = usrPassword;
+        this.userAddress = userAddress;
+        this.userPhonenum = userPhonenum;
+        this.title = title;
 
-public void setUsrEmail(String usrEmail) {
-	this.usrEmail = usrEmail;
-}
+    }
 
-public String getUsrPassword() {
-	return usrPassword;
-}
+    public int getUsrId() {
+        return usrId;
+    }
 
-public void setUsrPassword(String usrPassword) {
-	this.usrPassword = usrPassword;
-}
+    public void setUsrId(int usrId) {
+        this.usrId = usrId;
+    }
 
-public String getName() {
-	return name;
-}
+    public String getUsrEmail() {
+        return usrEmail;
+    }
 
-public void setName(String name) {
-	this.name = name;
-}
+    public void setUsrEmail(String usrEmail) {
+        this.usrEmail = usrEmail;
+    }
 
-public String getUserAddress() {
-	return userAddress;
-}
+    public String getUsrPassword() {
+        return usrPassword;
+    }
 
-public void setUserAddress(String userAddress) {
-	this.userAddress = userAddress;
-}
+    public void setUsrPassword(String usrPassword) {
+        this.usrPassword = usrPassword;
+    }
 
-public String getUserPhonenum() {
-	return userPhonenum;
-}
+    public String getName() {
+        return name;
+    }
 
-public void setUserPhonenum(String userPhonenum) {
-	this.userPhonenum = userPhonenum;
-}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-public String getTitle() {
-	return title;
-}
+    public String getUserAddress() {
+        return userAddress;
+    }
 
-public void setTitle(String title) {
-	this.title = title;
-}
- 
- 
-	 
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    public String getUserPhonenum() {
+        return userPhonenum;
+    }
+
+    public void setUserPhonenum(String userPhonenum) {
+        this.userPhonenum = userPhonenum;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
 }

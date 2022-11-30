@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
 <title>Delete Success</title>
 </head>
 <body>
-<div style="background-color: teal;color:white;font-family: Helvetica, sans-serif;height:40px;line-height:2.5em"> 
-    <a style="color:white;text-decoration:none" href="admin-dashboard.htm?usrEmail=${sessionScope.usrEmail}">Home</a> |
-   	<a style="color:white;text-decoration:none" href="users.htm?usrEmail=${sessionScope.usrEmail}">Manage Users</a>
-     <a style="color:white;text-decoration:none;float:right" href="logout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a> 
-       <label style="float:right">Hi ${sessionScope.usrEmail} |</label>
+<div style="background-color: #FFDD33;color:black;font-family: Times New Roman", Times, serif>   
+   <a style="color:black;text-decoration:none" href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a> |
+ <a style="color:black;text-decoration:none" href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Manage Users</a>
+    <a style="color:black;text-decoration:none;float:right" href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a> 
+     <label style="float:right">Hi ${sessionScope.usrEmail} |</label>
      
 </div>
 <h3 align="center">User Deleted Successfully</h3>

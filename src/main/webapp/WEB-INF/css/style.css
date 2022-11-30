@@ -4,15 +4,8 @@
 	font-family: Helvetica, sans-serif;
 }
 
-/* #navbar {
-
-	background-color: teal;
-	color:white;
-	font-family: Helvetica, sans-serif;
-	height:40px;
-} */
 input[type=submit] {
-	background-color: teal;
+	background-color: grey;
 	/* background-color:navy; */ color : white;
 	/*   margin-top: 8px; */
 	border: none;
@@ -42,7 +35,7 @@ td {
 
 tablestyle tr:nth-child(even){background-color: #94ffe6;}
 
-/*  #tablestyle tr:nth-child(even){background-color: #6FA2FD;} */ */
+
 
 tablestyle tr:hover {
 	background-color: #ddd;
@@ -51,27 +44,13 @@ tablestyle tr:hover {
 #tablestyle th {
 	padding-top: 12px;
 	padding-bottom: 12px;
-	text-align: left;
-	/*   background-color:#5D5A5E;
-   */
-	background-color: teal;
+	text-align: left;   
+	background-color: #544810;
 	color: white;
 }
-
-/* input[type=submit].table {
-	background-color: navy;
-	color: white;
-	padding: 5px;
-	width: 150px;
-	margin-top: 8px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	float: left;
-} */
 
 .button {
 	height: 30px;
 	padding: 0px;
-	line-height: 1px;
-}
+	line-heigh:1px;
+	}

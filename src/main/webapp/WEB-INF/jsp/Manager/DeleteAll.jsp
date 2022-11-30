@@ -6,13 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
 <title>Confirm Delete</title>
 </head>
 <body>
 <jsp:include page="ManagerNav.jsp"/>
 <h2 align="center">Confirm Delete</h2>
-
 <table id="tablestyle" cellpadding="1" cellspacing="1" align="center">
 	<tr>
 	<td>licensePlate: </td>
@@ -47,9 +46,7 @@
 	<td>${vehicle.getxUser().getUsrEmail()}</td>
 	</tr>
 </table>
-
 <form action="deleteall.htm" method="POST">
-
 	<input type="hidden" name="c1" value="${vehicle.getCarId()}"/>
     <input type="hidden" name="licensePlate" value="${vehicle.getLicensePlate()}"/>
 	<input type="hidden" name="Model" value="${vehicle.getModel()}"/>
@@ -65,7 +62,5 @@
 	
 <p align="center"><input type="submit" value="delete"></p>  
 </form>
-
-
 </body>
 </html>

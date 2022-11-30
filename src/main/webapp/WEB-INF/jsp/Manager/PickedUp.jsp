@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
-<title>Pickup Success</title>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
+<title>Vehicle Picked up</title>
 </head>
 <body>
 <jsp:include page="ManagerNav.jsp"/>
-<h3 align="center">Pickup Successful</h3>
+<p align="center">vehicle Picked up Successfully</p>
 </body>
 </html>

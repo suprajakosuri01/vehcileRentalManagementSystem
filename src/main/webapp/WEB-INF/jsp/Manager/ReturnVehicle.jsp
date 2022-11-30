@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style><%@include file="/WEB-INF/css/layout.css"%></style>
-<title>Returns</title>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
+<title>Vehicle Returns</title>
 </head>
 <body>
 <jsp:include page="ManagerNav.jsp"/>
@@ -46,7 +46,7 @@
 
 </table>
 </c:when>
-<c:otherwise><p align="center">There are no Vehicles currently in use.</p></c:otherwise>
+<c:otherwise><p align="center"> No Vehicles in use as of now!.</p></c:otherwise>
 </c:choose>
 </body>
 </html>

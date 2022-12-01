@@ -29,7 +29,7 @@ color:black
 <body>
 <div style="background-color:#FFDD33"> 
     
-   *<a href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a> *
+   <a href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a> 
  <a  href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Get listof Users</a>
     <a style="float:right" href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a> 
      <label style="float:right;color:#ff0000;font-size:23px;">Welcome ${sessionScope.usrEmail} |</label>

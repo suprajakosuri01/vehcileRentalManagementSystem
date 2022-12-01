@@ -11,15 +11,16 @@
 </head>
 <body>
 <jsp:include page="cusNavbar.jsp"/>
-<h3 align="center">Browse Cars</h3>
+
 
 <c:if test="${usrvehicles.size() eq 3}">
-
 <p style="color:red" align="center"user can reserve only three cars</p>
 </c:if>
 <c:choose>
 <c:when test="${vehicles.size() gt 0}">
-<table id="tablestyle" border="1" cellpadding="1" cellspacing="1" align="center">
+
+<table id="table" border="1">
+<h3>Browse Cars</h3>
 	<th></th>
 	<th>licensePlate</th>
 	<th>model</th>
@@ -31,7 +32,7 @@
 	
 	<c:forEach items="${vehicles}" var="vehicle">
 	<tr>
-		<td><img width="100" height="100" src="/vehicle/images/${vehicle.imagePath}"/></td>
+		<td><img width="150" height="150"src="/vehicle/images/${vehicle.imagePath}"/></td>
 		<td>${vehicle.licensePlate}</td>
 		<td>${vehicle.model}</td>
 		<td>${vehicle.year}</td>
@@ -47,7 +48,7 @@
 		</c:when>
 		<c:otherwise>
 		
-		<a href="reservationconfirm.htm?carId=${vehicle.carId} & usrEmail=${sessionScope.usrEmail}">Select</a>
+		<a href="reservationconfirm.htm?carId=${vehicle.carId} & usrEmail=${sessionScope.usrEmail}">Reserve</a>
 		
 		</c:otherwise>
 		</c:choose>

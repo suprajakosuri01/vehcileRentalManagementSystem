@@ -5,10 +5,10 @@
 <head>
 <style><%@include file="/WEB-INF/css/style.css"%></style>
 <meta charset="UTF-8">
-<title>Reservation Success</title>
+<title>Reserved</title>
 </head>
 <body>
 <jsp:include page="cusNavbar.jsp"/>
-<h3 align="center">Successfully Reserved </h3>
+<h2 align="center">Vehicles Reserved successfully</h2>
 </body>
 </html>

@@ -6,17 +6,18 @@
 <head>
 <style><%@include file="/WEB-INF/css/style.css"%></style>
 <meta charset="UTF-8">
-<title>My Vehicles</title>
+<title>Vehicles in use</title>
 </head>
 <body>
 <jsp:include page="cusNavbar.jsp"/>
-<h2 align="center">vehicles in use</h2>
+
 <c:choose>
 <c:when test="${vehicles.size() gt 0}"> 
-<table id="tablestyle" border="1" cellpadding="1" cellspacing="1" align="center">
+<table id="tablestyle" border="1">
+<h2 align="center">vehicles in use</h2>
 	<th></th>
 	<th>licensePlate</th>
-	<th>model</th>
+	<th>Model</th>
 	<th>Year</th>
 	<th>Reserved Date</th>
 	<th>Reserved Until</th>
@@ -24,7 +25,7 @@
 	
 	<c:forEach items="${vehicles}" var="vehicle">
 	<tr>
-		<td><img width="100" height="100" src="/vehicle/images/${vehicle.imagePath}"/></td>
+		<td><img width="150" height="150"  src="/vehicle/images/${vehicle.imagePath}"/></td>
 		<td>${vehicle.licensePlate}</td>
 		<td>${vehicle.model}</td>
 		<td>${vehicle.year}</td>
@@ -35,7 +36,9 @@
 	</c:forEach>
 </table>
 </c:when>
-<c:otherwise><p align="center">You have no vehciles in use.</p></c:otherwise>
+<c:otherwise>
+<h3 align="center">You have no vehciles in use.</h3>
+</c:otherwise>
 </c:choose>
 </body>
 </html>

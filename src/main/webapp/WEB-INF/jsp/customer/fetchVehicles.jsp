@@ -14,13 +14,14 @@
 
 
 <c:if test="${usrvehicles.size() eq 3}">
-<p style="color:red" align="center"user can reserve only three cars</p>
+
 </c:if>
 <c:choose>
 <c:when test="${vehicles.size() gt 0}">
 
-<table id="table" border="1">
+<table id="table">
 <h3>Browse Cars</h3>
+<p style="color:red" align="center"user can reserve only three cars</p>
 	<th></th>
 	<th>licensePlate</th>
 	<th>model</th>
@@ -58,7 +59,7 @@
 </table>
 </c:when>
 	<c:otherwise>
-	<p align="center">There are no vehciles available.</p>
+	<h1 align="center">There are no vehciles available.</h1>
 	</c:otherwise>
 </c:choose>
 </body>

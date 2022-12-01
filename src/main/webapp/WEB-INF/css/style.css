@@ -11,13 +11,13 @@ input[type=submit] {
 	cursor: pointer;
 	color: white;
 	height: 25px;
-	width: 70px;
+	width: 100px;
 	font-size:17px
 }
 
 /* ------------------- TABLE STYLE ------------------*/
 td {
-	font-size: 17px;
+	font-size: 16px;
 }
 
 #table {
@@ -28,7 +28,7 @@ td {
 #table td, #table th {
 	border: 1px solid #ddd;
 	padding: 8px;
-	font-size:17px
+	font-size:16px
 }
 
 #table th {

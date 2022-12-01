@@ -41,7 +41,7 @@
 </table>
 	</c:when>
 	<c:otherwise>
-	<h3 align="center">No reservations available at this moment</h3>
+	<h1 align="center">No reservations available at this moment</h1>
 	</c:otherwise>
 </c:choose>
 </body>

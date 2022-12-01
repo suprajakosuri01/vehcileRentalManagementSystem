@@ -13,9 +13,9 @@
 
 <c:choose>
 <c:when test="${vehicles.size() gt 0}"> 
-<table id="tablestyle" border="1">
-<h2 align="center">vehicles in use</h2>
-	<th></th>
+<table id="table">
+<h2>vehicles in use</h2>
+	<th>Vehicle</th>
 	<th>licensePlate</th>
 	<th>Model</th>
 	<th>Year</th>
@@ -25,7 +25,7 @@
 	
 	<c:forEach items="${vehicles}" var="vehicle">
 	<tr>
-		<td><img width="150" height="150"  src="/vehicle/images/${vehicle.imagePath}"/></td>
+		<td><img width="100" height="100"  src="/vehicle/images/${vehicle.imagePath}"/></td>
 		<td>${vehicle.licensePlate}</td>
 		<td>${vehicle.model}</td>
 		<td>${vehicle.year}</td>
@@ -37,7 +37,7 @@
 </table>
 </c:when>
 <c:otherwise>
-<h3 align="center">You have no vehciles in use.</h3>
+<h2 align="center">You have no vehciles in use.</h2>
 </c:otherwise>
 </c:choose>
 </body>

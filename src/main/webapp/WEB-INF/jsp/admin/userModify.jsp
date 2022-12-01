@@ -5,56 +5,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style><%@include file="/WEB-INF/css/style.css"%></style>
+<style>
+<%@include file="/WEB-INF/css/style.css"%>
+a{
+font-size:23px;
+color: #ff0000;
+text-decoration:none;
+}
+
+.Umform{
+
+    padding-left: 400px;
+    padding-right: 200px;
+    padding-top: ‒50;
+    padding-top: 50px;
+
+color:black
+}
+</style>
 <meta charset="UTF-8">
 <title>User Modify Page</title>
 </head>
 <body>
-<div style="background-color: #FFDD33;color:black;font-family: Times New Roman", Times, serif>   
-   <a style="color:black;text-decoration:none" href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a> |
- <a style="color:black;text-decoration:none" href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Manage Users</a>
-    <a style="color:black;text-decoration:none;float:right" href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a> 
-     <label style="float:right">Hi ${sessionScope.usrEmail} |</label>
+<div style="background-color:#FFDD33"> 
+    
+   *<a href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a> *
+ <a  href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Get listof Users</a>
+    <a style="float:right" href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a> 
+     <label style="float:right;color:#ff0000;font-size:23px;">Welcome ${sessionScope.usrEmail} |</label>
      
 </div>
-
-<h3 align="center">Modify User </h3>
 
 <form action="usermodify.htm"" method="POST">
 
 <input type="hidden" name="uid2" value="${user.getUsrId()}"/>
+<div class="Umform">
 
-<table id="tablestyle" cellpadding="1" cellspacing="1" align="center">
-	<tr>
-	<td>Email:</td>
+<h2>Modify User </h2>
+
+<label>User Email:</label><br>
 	<td>${user.getUsrEmail()}</td>
-	</tr>
-	<tr>
-	<td>Name:</td>
+
+<br><br>
+	<label> User Name:</label><br>
 	<td>${user.getName()}</td>
-	</tr>
-	<tr>
-	<td>Address:</td>	
-	<td><input type="text" name="userAddress" value="${user.getUserAddress()}" 
-                   style="font-weight: bold" required="required"/>
-	<p style="color:red">${addressErr}</p>
-	</td>
-	</tr>
-	<tr>
-	<td>Contact: (10 digits)</td>
-	<td><input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10"
+
+<br><br>
+
+	<label>User Address:</label><br>
+	<input type="text" name="userAddress" size="40"value="${user.getUserAddress()}" 
+     required="required"/>
+<br><br>
+
+	<label>Mobile Number(10):</label><br>
+	<input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10"
 	 name="userPhonenum" value="${user.getUserPhonenum()}" 
-         style="font-weight: bold" required="required"/>
-	<p style="color:red">${contactErr}</p>
-	</td>
-	</tr>
-	<tr>
-	<td>Title:</td>
+          required="required"/>
+	
+	<br><br>
+	
+		<label>Title:</label><br>
 	<td>${user.getTitle()}</td>
-	</tr>
-</table>
-<br>
-	<p align="center"><input style="width:100px"  type="submit" value="Edit"></p>
+	
+<br><br>
+	<p><input  type="submit" value="Edit"></p>
 </form>
 </body>
 </html>

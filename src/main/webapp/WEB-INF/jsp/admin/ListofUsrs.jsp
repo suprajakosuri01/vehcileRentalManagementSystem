@@ -6,19 +6,30 @@
 <head>
 <meta charset="UTF-8">
 <title>All Users</title>
-<style><%@include file="/WEB-INF/css/style.css"%></style>
+<style>
+<%@include file="/WEB-INF/css/style.css"%>
+
+a{
+font-size:23px;
+color: #ff0000;
+text-decoration:none;
+}
+
+</style>
 </head>
 <body>
-    <div style="background-color: #FFDD33;color:black;font-family: Times New Roman", Times, serif>   
-   <a style="color:black;text-decoration:none" href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a> |
- <a style="color:black;text-decoration:none" href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Manage-Users</a>
-    <a style="color:black;text-decoration:none;float:right" href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a> 
-     <label style="float:right">Hi ${sessionScope.usrEmail} |</label>
+  <div style="background-color:#FFDD33"> 
+    
+   *<a href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a> *
+ <a  href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Get listof Users</a>
+    <a style="float:right" href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a> 
+     <label style="float:right;color:#ff0000;font-size:23px;">Welcome ${sessionScope.usrEmail} |</label>
      
 </div>
-<h2 align="center">All Users</h2>
+
+<table id="table" border="1">
+<h2>List of Registered Users</h2>
 <br>
-<table id="tablestyle" border="1" cellpadding="1" cellspacing="1" align="center">
 	<th>User ID</th>
 	<th>User Email</th>
 	<th>User Name</th>
@@ -36,7 +47,7 @@
 		<td>${user.userAddress}</td>
 		<td>${user.userPhonenum}</td>
 		<td>${user.title}</td>
-		<td><a href="usermodify.htm?usrId=${user.usrId}">Edit</a> | 
+		<td><a style="color: #00b33c"href="usermodify.htm?usrId=${user.usrId}">Edit</a> | 
 		<a href="userdelete.htm?usrId=${user.usrId}">Delete</a>
 		</td>
 	</tr>

@@ -6,39 +6,67 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style><%@include file="/WEB-INF/css/style.css"%></style>
-<title>User Delete page</title>
+<style>
+<%@include file="/WEB-INF/css/style.css"%>
+
+a{
+font-size:23px;
+color: #ff0000;
+text-decoration:none;
+}
+.Udform{
+
+    padding-left: 300px;
+    padding-right: 200px;
+    padding-top: ‒50;
+    padding-top: 50px;
+
+color:black
+}
+</style>
+<title> Delete User</title>
 </head>
 <body>
-<div style="background-color: #FFDD33;color:black;font-family: Times New Roman", Times, serif>   
-   <a style="color:black;text-decoration:none" href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a> |
- <a style="color:black;text-decoration:none" href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Manage Users</a>
-    <a style="color:black;text-decoration:none;float:right" href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a> 
-     <label style="float:right">Hi ${sessionScope.usrEmail} |</label>
+<div style="background-color:#FFDD33"> 
+    
+   *<a href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a> *
+ <a  href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Get listof Users</a>
+    <a style="float:right" href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a> 
+     <label style="float:right;color:#ff0000;font-size:23px;">Welcome ${sessionScope.usrEmail} |</label>
      
 </div>
-<h2 align="center">Delete User Details</h2>
-<br>
 <form style="text-align:center" action="userdelete.htm" method="POST">
+
 
 <input type="hidden" name="usrdel" value="${user.usrId}"/>
 
-<table id="tablestyle" align="center">
+<div class="Udform">
+<h3>Delete User </h3>
 
-	<tr><td>Email:</td><td>${user.usrEmail}</td></tr>
-	<tr><td>Name:</td><td>${user.name}</td></tr>
-	<tr><td>Address:</td><td>${user.userAddress}</td></tr>
-	<tr><td>Contact:</td><td>${user.userPhonenum}</td></tr>
-	<tr><td>Role:</td><td>${user.title}</td></tr>
-</table>
+	
+	<label>User Email:</label><br>
+	<td>${user.usrEmail}</td>
+	<br><br>
+		<label>User Name:</label><br>
+	<td>${user.name}</td>
+		<br><br>	
+	<label>User Address:</label><br>
+	<td>${user.userAddress}</td>
+	<br><br>
+	<label>User Contact:</label><br>
+	<td>${user.userPhonenum}</td>
+<br><br>
+<label>Title:<label>
+	<td>${user.title}</td>
+	
 <input type="hidden" name="usrEmail" value="${user.usrEmail}"/>
 <input type="hidden" name="name" value="${user.name}"/>
 <input type="hidden" name="usrPassword" value="${user.usrPassword}"/>
 <input type="hidden" name="userAddress" value="${user.userAddress}"/>
 <input type="hidden" name="userPhonenum" value="${user.userPhonenum}"/>
 <input type="hidden" name="title" value="${user.title}"/>
-<br>
-<input style="width:100px"  type="submit" value="Delete"> 
+<br><br>
+<input type="submit" value="Delete"> 
 </form>
 </body>
 </html>

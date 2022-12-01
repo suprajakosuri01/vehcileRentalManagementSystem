@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style><%@include file="/WEB-INF/css/style.css"%></style>
+<style>
+<%@include file="/WEB-INF/css/style.css"%>
+</style>
 <meta charset="UTF-8">
 <title>Cstmr Dashboard</title>
 </head>

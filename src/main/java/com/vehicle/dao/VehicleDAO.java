@@ -46,23 +46,6 @@ public class VehicleDAO extends DAO {
         }
         return vehicles;
     }
-// Fetch reserved vehicles
-
-//	public List<Vehicle> fetchReservedVehicles() throws VehicleException {
-//
-//		List<Vehicle> reservedVehicles = new ArrayList<Vehicle>();
-//
-//		for (Vehicle vehicle : this.fetchAllVehicles()) {
-//
-//			if (vehicle.getPickupReady() == true) {
-//				reservedVehicles.add(vehicle);
-//			}
-//		}
-//
-//		return reservedVehicles;
-//
-//	}
-    
 // fetch vehicles currently using
     public LinkedHashMap<Vehicle, String> fetchVechilesInUse() throws VehicleException {
         LinkedHashMap<Vehicle, String> vehicles = new LinkedHashMap<Vehicle, String>();

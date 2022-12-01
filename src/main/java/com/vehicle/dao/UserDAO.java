@@ -104,19 +104,4 @@ public class UserDAO extends DAO {
         }
 
     }
-
-//    public List<Vehicle> fetchAllReservedVehicles() throws VehicleException {
-//        List<Vehicle> vehicles = new ArrayList<Vehicle>();
-//        try {
-//            Criteria criteria = getSession().createCriteria(Vehicle.class);
-//            vehicles = criteria.list();
-//
-//            return vehicles;
-//        } catch (Exception e) {
-//            throw new VehicleException("Could not fetch all books: ", e);
-//        } finally {
-//            close();
-//        }
-//
-//    }
 }

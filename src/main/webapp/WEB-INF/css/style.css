@@ -1,47 +1,37 @@
 @charset "UTF-8";
 
 * {
-	font-family: Helvetica, sans-serif;
+font-family: Times New Roman,Times,serif;
 }
 
 input[type=submit] {
 	background-color: grey;
-	/* background-color:navy; */ color : white;
-	/*   margin-top: 8px; */
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
 	color: white;
-	/*   float: right; */
-	height: 20px;
+	height: 25px;
 	width: 70px;
+	font-size:17px
 }
 
 /* ------------------- TABLE STYLE ------------------*/
 td {
-	font-size: 16px;
+	font-size: 17px;
 }
 
-#tablestyle {
+#table {
 	border-collapse: collapse;
-	width: 70%;
+	width: 60%;
 }
 
-#tablestyle td, #tablestyle th {
+#table td, #table th {
 	border: 1px solid #ddd;
 	padding: 8px;
-	font-size: 12px
+	font-size:17px
 }
 
-tablestyle tr:nth-child(even){background-color: #94ffe6;}
-
-
-
-tablestyle tr:hover {
-	background-color: #ddd;
-}
-
-#tablestyle th {
+#table th {
 	padding-top: 12px;
 	padding-bottom: 12px;
 	text-align: left;   
@@ -50,7 +40,7 @@ tablestyle tr:hover {
 }
 
 .button {
-	height: 30px;
+	height: 40px;
 	padding: 0px;
-	line-heigh:1px;
-	}
+	line-heigh:3px;
+	} 

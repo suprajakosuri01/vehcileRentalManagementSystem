@@ -1,5 +1,5 @@
 <style><%@include file="/WEB-INF/css/style.css"%></style>
-<div style="background-color: #FFDD33;color:black;font-family: Times New Roman", Times, serif>   
+<div style="background-color: #FFDD33;color:black;font-family: Times New Roman, Times, serif;font-size: 18px";>   
 
     <a style="color:black;text-decoration:none" href="managerhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a> |
      

@@ -1,32 +1,56 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
-<style><%@include file="/WEB-INF/css/style.css"%></style>
-<title>SignIn</title>
+<style>
+<%@include file="/WEB-INF/css/style.css"%>
+</style>
+<title>Sign In</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-<div style="background-color: #FFDD33;color:black;font-family: Times New Roman", Times, serif">   
+<style>
+        body{
+            background-color: white;
+            font-family: Times New Roman, Times, serif;
+        }
+         .lform{
 
-<h2 align="center">Vehicle Rental Management System</h2>
-<img src="https://cdn-icons-png.flaticon.com/512/632/632682.png" alt="logo" width="50" height="50">
+    padding-left: 400px;
+    padding-right: 200px;
+    padding-top: ‒50;
+    padding-top: 50px;
+
+color:black
+}
+        
+    </style>
+<body>
+    
+<div style="background-color:#FFDD33">   
+
+<h2 align="center">Vehicle Rental Management System
+<img src="https://cdn-icons-png.flaticon.com/512/632/632682.png" alt="logo" width="28" height="28">
+</h2>
 </div>
 
-<h2 align="center">Sign In</h2>
+
 
 <form:form modelAttribute="user" method="post">
-<p style="color:red" align="center">${error}</p>
-<div align="center">
+    
 
-    <label>User Email:</label>
-    <td><form:input path="usrEmail" size="30" required="required" /></td>
+<div class="lform">
+
+<h3>Sign In</h3>
+<p style="color:red">${error}</p>
+    <label>Enter Email:</label><br>
+    <form:input path="usrEmail" size="30" required="required"/>
     <br><br>
-    <label>User Password:</label>
-    <td><form:password path="usrPassword" size="30" required="required" /></td>
+    <label>Enter Password:</label><br>
+    <form:password path="usrPassword" size="30" required="required" />
      <br><br>
-	<a href="register.htm">New user?</a>
-	<p align="center"><input type="submit" value="Login" /></p>
-	 <br>   <br>
-	
+	<a href="register.htm">New user?Sign Up</a>
+	<p><input type="submit" value="Sign In" /></p>
+	 <br><br>
+</div>
 </form:form>
 </body>
 </html>

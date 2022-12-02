@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -17,14 +16,13 @@
 <c:when test="${vehicles.size() gt 0}">
 <table id="table">
 <h3>Reservations</h3>
-	<th></th>
-	<th>licensePlate</th>
+	<th>Vehicle</th>
+	<th>license Plate</th>
 	<th>model</th>
 	<th>Year</th>
 	<th>Reserved Date</th>
 	<th>Reserved Until</th>
 	<th>Return Date</th>		
-	
 	
 	<c:forEach items="${vehicles}" var="vehicle">
 	<tr>

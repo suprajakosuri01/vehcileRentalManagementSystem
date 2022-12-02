@@ -18,7 +18,7 @@ import com.vehicle.dao.UserDAO;
 import com.vehicle.pojo.User;
 
 @Controller
-public class LoginController {
+public class LoginCntrllr {
     
      //signin
     @RequestMapping("/")

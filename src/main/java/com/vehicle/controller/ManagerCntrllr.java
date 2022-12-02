@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class ManagerController {
+public class ManagerCntrllr {
 
 //manager view page
     @GetMapping("/managerhome.htm")

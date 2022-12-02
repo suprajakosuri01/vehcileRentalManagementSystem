@@ -1,12 +1,11 @@
 package com.vehicle.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import java.time.LocalDate;
 import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.support.SessionStatus;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.support.SessionStatus;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +13,11 @@ import org.springframework.validation.BindingResult;
 import com.vehicle.dao.UserDAO;
 import com.vehicle.dao.VehicleDAO;
 import com.vehicle.pojo.User;
+import org.springframework.web.bind.annotation.PostMapping;
 import com.vehicle.pojo.Vehicle;
 
 @Controller
-public class CustomerController {
+public class CustomerCntrllr {
 
 //home page
     @GetMapping("/cusHome.htm")
@@ -34,12 +34,11 @@ public class CustomerController {
         HttpSession session = request.getSession();
         String usrEmail = request.getParameter("usrEmail");
         model.addAttribute("usrEmail", usrEmail);
-        
+
         List<Vehicle> vehicles = vehicleDAO.fetchAllVehicles();
         model.addAttribute("vehicles", vehicles);
         User user = userdao.fetchUsrByusrEmail(usrEmail);
         List<Vehicle> usrVehicles = vehicleDAO.fetchReservedVehicleofUsr(user);
-        System.out.println(usrVehicles.size()+"vehicles size");
         usrVehicles.addAll(vehicleDAO.fetchVechUsingbyUsr(user));
 
         request.setAttribute("usrVehicles", usrVehicles);
@@ -74,7 +73,6 @@ public class CustomerController {
         List<Vehicle> vehicles = vehicleDAO.fetchReservedVehicleofUsr(user);
 
         if (vehicles != null) {
-            System.out.println("already have reserv");
         }
         model.addAttribute("vehicles", vehicles);
 
@@ -98,18 +96,16 @@ public class CustomerController {
         Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(castid);
 
         User user = userdao.fetchUsrByusrEmail(usrEmail);
+        model.addAttribute("usrEmail", usrEmail);
 
         model.addAttribute("vehicle", vehicle);
 
-        model.addAttribute("usrEmail", usrEmail);
-
-        LocalDate rentStartDate = LocalDate.now();
         LocalDate rentEndDate = LocalDate.now().plusDays(2);
+        LocalDate rentStartDate = LocalDate.now();
         LocalDate rentReturnDate = LocalDate.now().plusDays(3);
-
+        model.addAttribute("rentReturnDate", rentReturnDate);
         model.addAttribute("rentStartDate", rentStartDate);
         model.addAttribute("rentEndDate", rentEndDate);
-        model.addAttribute("rentReturnDate", rentReturnDate);
 
         return "customer/reservationConfirm";
 
@@ -122,22 +118,20 @@ public class CustomerController {
 
         String usrEmail = request.getParameter("usrEmail");
         int carId = Integer.parseInt(request.getParameter("c1"));
+         String rentEndDate = request.getParameter("rentEndDate");
         String rentStartDate = request.getParameter("rentStartDate");
-        System.out.println(rentStartDate);
 
-        String rentEndDate = request.getParameter("rentEndDate");
-      
+     
 
         String rentReturnDate = request.getParameter("rentReturnDate");
-     
 
         String usrId = request.getParameter("usrEmail");
 
         User user = userdao.fetchUsrByusrEmail(usrEmail);
-
+       LocalDate rrd = LocalDate.parse(rentReturnDate);
         LocalDate rsd = LocalDate.parse(rentStartDate);
         LocalDate red = LocalDate.parse(rentEndDate);
-        LocalDate rrd = LocalDate.parse(rentReturnDate);
+    
         vehicle.setRentEndDate(red);
         vehicle.setRentReturnDate(rrd);
         vehicle.setPickupReady(true);

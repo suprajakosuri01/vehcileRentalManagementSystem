@@ -15,9 +15,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.stereotype.Controller;
 
-
 @Controller
-public class AdminController {
+public class AdminCntrllr {
 
     // admin home page
     @GetMapping("/adminhome.htm")
@@ -30,13 +29,13 @@ public class AdminController {
     @GetMapping("/listofusrs.htm")
     public String fetchUsers(Model model, VehicleDAO vehicleDAO, UserDAO userdao, HttpServletRequest request)
             throws Exception {
-    	
-    	System.out.println("Before users are fetched");
-    	
-        List<User> availableUsers = userdao.fetchEveryUsr();
-    	System.out.println("After users are fetched size == " + availableUsers.size());
 
-        model.addAttribute("user",availableUsers);
+        System.out.println("Before users are fetched");
+
+        List<User> availableUsers = userdao.fetchEveryUsr();
+        System.out.println("After users are fetched size == " + availableUsers.size());
+
+        model.addAttribute("user", availableUsers);
         return "admin/ListofUsrs";
 
     }
@@ -71,13 +70,12 @@ public class AdminController {
 
         String homeAddr = request.getParameter("userAddress");
         String phonenum = request.getParameter("userPhonenum");
-
+        user2.setTitle(user2.getTitle());
         user2.setUsrId(user2.getUsrId());
+        user2.setUserPhonenum(phonenum);
         user2.setName(user2.getName());
         user2.setUsrPassword(user2.getUsrPassword());
-        user2.setTitle(user2.getTitle());
         user2.setUserAddress(homeAddr);
-        user2.setUserPhonenum(phonenum);
 
         userdao.updateUser(user2);
         return "admin/userModified";
@@ -123,10 +121,11 @@ public class AdminController {
 
         List<Vehicle> vehiclesrsvd = vehicleDAO.fetchReservedVehicleofUsr(userdel);
         for (Vehicle vehicle : vehiclesrsvd) {
+             vehicle.setRentStartDate(null);
+             vehicle.setRentReturnDate(null);
             vehicle.setReservedByUser(null);
-            vehicle.setRentStartDate(null);
             vehicle.setRentEndDate(null);
-            vehicle.setRentReturnDate(null);
+            
             vehicleDAO.updateVehicle(vehicle);
 
         }
@@ -139,7 +138,7 @@ public class AdminController {
             return "admin/ListofUsrs";
         }
         status.setComplete();
-
+  System.out.println("user deleted");
         return "admin/userDeleted";
     }
 

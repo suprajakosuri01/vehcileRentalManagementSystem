@@ -1,34 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-<%@include file="/WEB-INF/css/style.css"%>
-a{
-font-size:23px;
-color: #ff0000;
-text-decoration:none;
-}
+    <head>
+        <style>
+            <%@include file="/WEB-INF/css/style.css"%>
+        </style>
+    </head>
+    <body>
+        <div style="background-color:#FFDD33"> 
 
-</style>
-</head>
-<body>
-<div style="background-color: #FFDD33">   
-    <a  href="cusHome.htm?usrEmail=${sessionScope.usrEmail}">Home
-    </a> |
-   	<a href="fetchVehicles.htm?usrEmail=${sessionScope.usrEmail}">Browse Vehicles
-   	</a> | 
-    <a  href="orders.htm?usrEmail=${sessionScope.usrEmail}">Vehicles In Use
-    </a> | 
-    <a  href="bookedVehicles.htm?usrEmail=${sessionScope.usrEmail}">My Reservations
-    </a>
-     <a style="float:right" href="signout.htm?usrEmail=${sessionScope.usrEmail}">SignOut
-   </a> 
-     <label style="float:right;font-size:23px;">
-     Welcome${sessionScope.usrEmail} |
-     </label>
-   
-</div>
-</body>
+            <ul>
+                <li>
+                    <a  href="cusHome.htm?usrEmail=${sessionScope.usrEmail}">Home
+                    </a>
+                </li>
+                <li>
+                    <a href="fetchVehicles.htm?usrEmail=${sessionScope.usrEmail}">Browse Vehicles
+                    </a>
+                </li>
+                <li style="float:right">
+                    <a  href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a>
+                </li>
+                <label style="float:right;color:#ff0000;font-size:23px;">Welcome ${sessionScope.usrEmail} 
+                </label>
+            </ul>
+
+        </div>
+
+    </body>
 </html>
-  

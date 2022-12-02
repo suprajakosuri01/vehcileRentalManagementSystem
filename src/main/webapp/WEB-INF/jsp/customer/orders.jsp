@@ -37,7 +37,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <h2 align="center">You have no vehciles in use.</h2>
+                <h2 align="center">You have no vehicles in use.</h2>
             </c:otherwise>
         </c:choose>
     </body>

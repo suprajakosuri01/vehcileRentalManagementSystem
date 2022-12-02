@@ -63,7 +63,7 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <h1 align="center">There are no vehciles available.</h1>
+                <h1 align="center">There are no vehicles available.</h1>
             </c:otherwise>
         </c:choose>
     </body>

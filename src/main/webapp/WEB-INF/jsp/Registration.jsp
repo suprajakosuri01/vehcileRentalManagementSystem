@@ -13,7 +13,7 @@
 
     padding-left: 400px;
     padding-right: 200px;
-    padding-top: ‒50;
+    padding-top: 50px;
     padding-top: 50px;
 
 color:black

@@ -9,8 +9,9 @@ font-size:23px;
 color: #ff0000;
 text-decoration:none;
 }
-</head>
+
 </style>
+</head>
 <body>
 <div style="background-color: #FFDD33">   
     <a  href="cusHome.htm?usrEmail=${sessionScope.usrEmail}">Home

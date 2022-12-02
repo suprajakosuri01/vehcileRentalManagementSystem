@@ -1,20 +1,20 @@
 package com.vehicle.controller;
 
+import org.springframework.ui.Model;
 import com.vehicle.dao.UserDAO;
+import org.springframework.web.bind.annotation.GetMapping;
 import com.vehicle.dao.VehicleDAO;
 import com.vehicle.pojo.User;
+import org.springframework.validation.BindingResult;
 import com.vehicle.pojo.Vehicle;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.stereotype.Controller;
+
 
 @Controller
 public class AdminController {
@@ -135,7 +135,6 @@ public class AdminController {
         if (result.hasErrors()) {
             List<FieldError> errors = result.getFieldErrors();
             for (FieldError error : errors) {
-                System.out.println(error.getObjectName() + " - " + error.getDefaultMessage());
             }
             return "admin/ListofUsrs";
         }

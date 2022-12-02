@@ -34,10 +34,12 @@ public class CustomerController {
         HttpSession session = request.getSession();
         String usrEmail = request.getParameter("usrEmail");
         model.addAttribute("usrEmail", usrEmail);
+        
         List<Vehicle> vehicles = vehicleDAO.fetchAllVehicles();
         model.addAttribute("vehicles", vehicles);
         User user = userdao.fetchUsrByusrEmail(usrEmail);
         List<Vehicle> usrVehicles = vehicleDAO.fetchReservedVehicleofUsr(user);
+        System.out.println(usrVehicles.size()+"vehicles size");
         usrVehicles.addAll(vehicleDAO.fetchVechUsingbyUsr(user));
 
         request.setAttribute("usrVehicles", usrVehicles);
@@ -124,10 +126,10 @@ public class CustomerController {
         System.out.println(rentStartDate);
 
         String rentEndDate = request.getParameter("rentEndDate");
-        System.out.println(rentEndDate);
+      
 
         String rentReturnDate = request.getParameter("rentReturnDate");
-        System.out.println(rentReturnDate);
+     
 
         String usrId = request.getParameter("usrEmail");
 
@@ -146,7 +148,6 @@ public class CustomerController {
         vehicle.setYear(vehicle.getYear());
         vehicle.setRentStartDate(rsd);
         String imagePath = request.getParameter("imagePath");
-        System.out.println("IMGWGE PTAH" + vehicle.getImagePath());
         vehicle.setImagePath(imagePath);
         vehicleDAO.updateVehicle(vehicle);
         status.setComplete();

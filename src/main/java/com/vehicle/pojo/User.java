@@ -16,23 +16,25 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "USERS")
 public class User {
- @OneToMany(mappedBy = "reservedByUser")
+
+    @OneToMany(mappedBy = "reservedByUser")
     private List<Vehicle> vehilclesReserved;
 
     @OneToMany(mappedBy = "xUser")
     private List<Vehicle> vehicles;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int usrId;
+    private int usrId;
 
     @Column(unique = true)
-   private String usrEmail;
+    private String usrEmail;
     private String usrPassword;
-   private String name;
-   private String userAddress;
-   private String userPhonenum;
-   private String title;
+    private String name;
+    private String userAddress;
+    private String userPhonenum;
+    private String title;
+
     public User() {
 
     }

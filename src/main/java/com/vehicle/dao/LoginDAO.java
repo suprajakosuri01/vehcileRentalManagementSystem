@@ -13,6 +13,7 @@ public class LoginDAO extends DAO {
     //validate users
     public boolean checkCustmer(String userEmail, String usrPassword) throws VehicleException {
         try {
+           
             Query qry = getSession().createQuery("from User where usrEmail=:usrEmail and usrPassword=:usrPassword and title='customer'");
             qry.setString("usrEmail", userEmail);
             qry.setString("usrPassword", usrPassword);

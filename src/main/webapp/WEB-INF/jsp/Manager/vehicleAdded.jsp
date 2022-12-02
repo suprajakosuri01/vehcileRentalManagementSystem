@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <style>
-<%@include file="/WEB-INF/css/style.css"%><
-/style>
+<%@include file="/WEB-INF/css/style.css"%>
+</style>
 <title> vehicles Added Successfully</title>
 </head>
 <body>

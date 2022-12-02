@@ -15,13 +15,12 @@
 <body>
 <jsp:include page="ManagerNav.jsp"/>
 <c:choose>
-<c:when test="${vehicle.size() gt 0}">
+<c:when test="${vehicle.size() >= 0}">
 <table id="table">
 <h2>Vehicles</h2>
-<h3>
-<a align="center" href="vehiclesadd.htm">Add Vehicles
-</a>
-</h3>
+
+<a href="vehiclesadd.htm">Add Vehicles</a>
+<br><br>
 
 	<th>Vehicle</th>
 	<th>licensePlate</th>

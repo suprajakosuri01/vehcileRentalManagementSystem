@@ -1,9 +1,9 @@
 package com.vehicle.controller;
 
 import org.springframework.ui.Model;
-import com.vehicle.dao.UserDAO;
+import com.vehicle.dao.UserDataAccessObject;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.vehicle.dao.VehicleDAO;
+import com.vehicle.dao.VehicleDataAccessObject;
 import com.vehicle.pojo.User;
 import org.springframework.validation.BindingResult;
 import com.vehicle.pojo.Vehicle;
@@ -18,31 +18,26 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class AdminCntrllr {
 
-    // admin home page
     @GetMapping("/adminhome.htm")
     public String fetchAdminHomeView(Model model, HttpServletRequest req) {
         return "admin/adminHome";
 
     }
-//list all available users
 
     @GetMapping("/listofusrs.htm")
-    public String fetchUsers(Model model, VehicleDAO vehicleDAO, UserDAO userdao, HttpServletRequest request)
+    public String fetchUsers(Model model, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao, HttpServletRequest request)
             throws Exception {
 
-        System.out.println("Before users are fetched");
-
         List<User> availableUsers = userdao.fetchEveryUsr();
-        System.out.println("After users are fetched size == " + availableUsers.size());
 
         model.addAttribute("user", availableUsers);
         return "admin/ListofUsrs";
 
     }
 
-    //modify user details
+
     @GetMapping("/usermodify.htm")
-    public String fetchModifyUsers(Model model, HttpServletRequest request, VehicleDAO vehicleDAO, UserDAO userdao)
+    public String fetchModifyUsers(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
             throws Exception {
 
         HttpSession session = request.getSession();
@@ -59,7 +54,7 @@ public class AdminCntrllr {
 
     @PostMapping("/usermodify.htm")
 
-    public String ModifyUsersPost(SessionStatus status, VehicleDAO vehicleDAO, HttpServletRequest request, UserDAO userdao, Model model)
+    public String ModifyUsersPost(SessionStatus status, VehicleDataAccessObject vehicleDAO, HttpServletRequest request, UserDataAccessObject userdao, Model model)
             throws Exception {
 
         HttpSession session = request.getSession();
@@ -77,14 +72,13 @@ public class AdminCntrllr {
         user2.setUsrPassword(user2.getUsrPassword());
         user2.setUserAddress(homeAddr);
 
-        userdao.updateUser(user2);
+        userdao.modifyUser(user2);
         return "admin/userModified";
 
     }
-//delete list of users
 
     @GetMapping("/userdelete.htm")
-    public String fetchDeleteUsers(Model model, HttpServletRequest request, VehicleDAO vehicleDAO, UserDAO userdao)
+    public String fetchDeleteUsers(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
             throws Exception {
 
         HttpSession session = request.getSession();
@@ -100,7 +94,7 @@ public class AdminCntrllr {
 
     @PostMapping("/userdelete.htm")
 
-    public String postDeleteUsers(SessionStatus status, VehicleDAO vehicleDAO, HttpServletRequest request, UserDAO userdao, BindingResult result)
+    public String postDeleteUsers(SessionStatus status, VehicleDataAccessObject vehicleDAO, HttpServletRequest request, UserDataAccessObject userdao, BindingResult result)
             throws Exception {
         HttpSession session = request.getSession();
 
@@ -116,20 +110,20 @@ public class AdminCntrllr {
             vehicle.setRentStartDate(null);
             vehicle.setRentEndDate(null);
             vehicle.setRentReturnDate(null);
-            vehicleDAO.updateVehicle(vehicle);
+            vehicleDAO.modifyVehicle(vehicle);
         }
 
-        List<Vehicle> vehiclesrsvd = vehicleDAO.fetchReservedVehicleofUsr(userdel);
+        List<Vehicle> vehiclesrsvd = vehicleDAO.fetchReservedVehicleOfUser(userdel);
         for (Vehicle vehicle : vehiclesrsvd) {
              vehicle.setRentStartDate(null);
              vehicle.setRentReturnDate(null);
             vehicle.setReservedByUser(null);
             vehicle.setRentEndDate(null);
             
-            vehicleDAO.updateVehicle(vehicle);
+            vehicleDAO.modifyVehicle(vehicle);
 
         }
-        userdao.deleteUser(userdel);
+        userdao.removeUser(userdel);
 
         if (result.hasErrors()) {
             List<FieldError> errors = result.getFieldErrors();

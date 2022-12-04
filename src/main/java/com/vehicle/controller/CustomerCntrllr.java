@@ -10,8 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import com.vehicle.dao.UserDAO;
-import com.vehicle.dao.VehicleDAO;
+import com.vehicle.dao.UserDataAccessObject;
+import com.vehicle.dao.VehicleDataAccessObject;
 import com.vehicle.pojo.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.vehicle.pojo.Vehicle;
@@ -28,7 +28,7 @@ public class CustomerCntrllr {
 //fetch vehicles
     // cars in use for the user
     @GetMapping("/fetchVehicles.htm")
-    public String fetchvehicles(Model model, VehicleDAO vehicleDAO, UserDAO userdao, HttpServletRequest request)
+    public String fetchvehicles(Model model, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao, HttpServletRequest request)
             throws Exception {
 
         HttpSession session = request.getSession();
@@ -38,7 +38,7 @@ public class CustomerCntrllr {
         List<Vehicle> vehicles = vehicleDAO.fetchAllVehicles();
         model.addAttribute("vehicles", vehicles);
         User user = userdao.fetchUsrByusrEmail(usrEmail);
-        List<Vehicle> usrVehicles = vehicleDAO.fetchReservedVehicleofUsr(user);
+        List<Vehicle> usrVehicles = vehicleDAO.fetchReservedVehicleOfUser(user);
         usrVehicles.addAll(vehicleDAO.fetchVechUsingbyUsr(user));
 
         request.setAttribute("usrVehicles", usrVehicles);
@@ -48,7 +48,7 @@ public class CustomerCntrllr {
 
     //(orders)
     @GetMapping("/orders.htm")
-    public String fetchVehicleOrders(Model model, HttpServletRequest request, VehicleDAO vehicleDAO, UserDAO userdao)
+    public String fetchVehicleOrders(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
             throws Exception {
 
         HttpSession session = request.getSession();
@@ -65,12 +65,12 @@ public class CustomerCntrllr {
 
     //booked vehicles
     @GetMapping("/bookedVehicles.htm")
-    public String getMyReservations(Model model, HttpServletRequest request, VehicleDAO vehicleDAO, UserDAO userdao)
+    public String getMyReservations(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
             throws Exception {
         HttpSession session = request.getSession();
         String usrEmail = request.getParameter("usrEmail");
         User user = userdao.fetchUsrByusrEmail(usrEmail);
-        List<Vehicle> vehicles = vehicleDAO.fetchReservedVehicleofUsr(user);
+        List<Vehicle> vehicles = vehicleDAO.fetchReservedVehicleOfUser(user);
 
         if (vehicles != null) {
         }
@@ -81,7 +81,7 @@ public class CustomerCntrllr {
 
     //cfrm reserv
     @GetMapping("/reservationconfirm.htm")
-    public String fetchRsvnCfrm(Model model, HttpServletRequest request, VehicleDAO vehicleDAO, UserDAO userdao, SessionStatus status)
+    public String fetchRsvnCfrm(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao, SessionStatus status)
             throws Exception {
 
         HttpSession session = request.getSession();
@@ -113,7 +113,7 @@ public class CustomerCntrllr {
 
     @PostMapping("/reservationconfirm.htm")
     public String postRsvnCfrm(@ModelAttribute("vehicle") Vehicle vehicle, BindingResult result, SessionStatus status,
-            VehicleDAO vehicleDAO, HttpServletRequest request, UserDAO userdao) throws Exception {
+            VehicleDataAccessObject vehicleDAO, HttpServletRequest request, UserDataAccessObject userdao) throws Exception {
         HttpSession session = request.getSession();
 
         String usrEmail = request.getParameter("usrEmail");
@@ -143,7 +143,7 @@ public class CustomerCntrllr {
         vehicle.setRentStartDate(rsd);
         String imagePath = request.getParameter("imagePath");
         vehicle.setImagePath(imagePath);
-        vehicleDAO.updateVehicle(vehicle);
+        vehicleDAO.modifyVehicle(vehicle);
         status.setComplete();
         System.out.println("reserv success");
         return "customer/successreserv";

@@ -17,7 +17,7 @@
 <h2>Delete Vehicle</h2>
 	<tr>
 	<td>
-	licensePlate: 
+	license Plate: 
 	</td>
 	<td>
 	${vehicle.getLicensePlate()}

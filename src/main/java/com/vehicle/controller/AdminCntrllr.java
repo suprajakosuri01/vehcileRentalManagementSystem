@@ -1,5 +1,6 @@
 package com.vehicle.controller;
 
+import static com.vehicle.dao.ProjectConstants.*;
 import org.springframework.ui.Model;
 import com.vehicle.dao.UserDataAccessObject;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,11 +8,9 @@ import com.vehicle.dao.VehicleDataAccessObject;
 import com.vehicle.pojo.User;
 import org.springframework.validation.BindingResult;
 import com.vehicle.pojo.Vehicle;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.stereotype.Controller;
 
@@ -19,121 +18,143 @@ import org.springframework.stereotype.Controller;
 public class AdminCntrllr {
 
     @GetMapping("/adminhome.htm")
-    public String fetchAdminHomeView(Model model, HttpServletRequest req) {
-        return "admin/adminHome";
+    public String fetchAdminHomeView(Model md, HttpServletRequest req) {
+        return ADMIN_HOME;
 
     }
 
     @GetMapping("/listofusrs.htm")
-    public String fetchUsers(Model model, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao, HttpServletRequest request)
+    public String fetchAllUsrs(Model md, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userDataAccessObj, HttpServletRequest req)
             throws Exception {
+        try {
+            List<User> availableUsers = userDataAccessObj.fetchEveryUsr();
+            md.addAttribute(USER, availableUsers);
+        } catch (Exception e) {
 
-        List<User> availableUsers = userdao.fetchEveryUsr();
+            throw new Exception("Failed to fetch list of users");
+        }
 
-        model.addAttribute("user", availableUsers);
-        return "admin/ListofUsrs";
+        return ADMIN_LIST_OF_USERS;
 
     }
 
-
     @GetMapping("/usermodify.htm")
-    public String fetchModifyUsers(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
+    public String fetchModifyUsers(Model md, HttpServletRequest req,
+            VehicleDataAccessObject vehicleDAO, UserDataAccessObject userDataAccessObj)
             throws Exception {
+        try {
+            int castUserId = Integer.parseInt(req.getParameter(USER_ID));
+            md.addAttribute(USER,
+                    userDataAccessObj.fetchUsrById(castUserId));
 
-        HttpSession session = request.getSession();
+        } catch (Exception e) {
 
-        String usrid = request.getParameter("usrId");
-        int castusrid = Integer.parseInt(usrid);
+            throw new Exception("Failed to modify user");
+        }
 
-        User user1 = userdao.fetchUsrById(castusrid);
-
-        model.addAttribute("user", user1);
-        return "admin/userModify";
+        return ADMIN_USER_MODIFY;
 
     }
 
     @PostMapping("/usermodify.htm")
-
-    public String ModifyUsersPost(SessionStatus status, VehicleDataAccessObject vehicleDAO, HttpServletRequest request, UserDataAccessObject userdao, Model model)
+    public String ModifyUserInfo(SessionStatus s,
+            VehicleDataAccessObject vehicleDAO, HttpServletRequest req,
+            UserDataAccessObject userDataAccessObj, Model md)
             throws Exception {
 
-        HttpSession session = request.getSession();
+        try {
+            int cid = Integer.parseInt(req.getParameter(ADMIN_UID2));
 
-        int cid = Integer.parseInt(request.getParameter("uid2"));
+            User modifyUser = userDataAccessObj.fetchUsrById(cid);
 
-        User user2 = userdao.fetchUsrById(cid);
+            String homeAddr = req.getParameter(USER_ADDR);
+            String phonenum = req.getParameter(USER_PHNNUM);
+//        modifyUser.setTitle(modifyUser.getTitle());
+//        modifyUser.setUsrId(modifyUser.getUsrId());
+            modifyUser.setUserPhonenum(phonenum);
+//        modifyUser.setName(modifyUser.getName());
+//        modifyUser.setUsrPassword(modifyUser.getUsrPassword());
+            modifyUser.setUserAddress(homeAddr);
 
-        String homeAddr = request.getParameter("userAddress");
-        String phonenum = request.getParameter("userPhonenum");
-        user2.setTitle(user2.getTitle());
-        user2.setUsrId(user2.getUsrId());
-        user2.setUserPhonenum(phonenum);
-        user2.setName(user2.getName());
-        user2.setUsrPassword(user2.getUsrPassword());
-        user2.setUserAddress(homeAddr);
+            userDataAccessObj.modifyUser(modifyUser);
+        } catch (Exception e) {
+            throw new Exception("Failed to update user information");
+        }
 
-        userdao.modifyUser(user2);
-        return "admin/userModified";
+        return ADMIN_USER_MODIFIED;
 
     }
 
     @GetMapping("/userdelete.htm")
-    public String fetchDeleteUsers(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
+    public String fetchDeleteUserObj(Model md, HttpServletRequest req,
+            VehicleDataAccessObject vehicleDAO,
+            UserDataAccessObject userDataAccessObj)
             throws Exception {
 
-        HttpSession session = request.getSession();
+        try {
+            int castedUserId = Integer.parseInt(req.getParameter(USER_ID));
+            md.addAttribute(USER,
+                    userDataAccessObj.fetchUsrById(castedUserId));
+        } catch (Exception e) {
+            throw new Exception("Encountered exception "
+                    + "in fetchDeleteUsers method in Admin Controller");
+        }
 
-        String usrid1 = request.getParameter("usrId");
-        int castusrid1 = Integer.parseInt(usrid1);
-
-        User userDelete = userdao.fetchUsrById(castusrid1);
-        model.addAttribute("user", userDelete);
-        return "admin/userDelete";
+        return ADMIN_USER_DELETE;
 
     }
 
     @PostMapping("/userdelete.htm")
-
-    public String postDeleteUsers(SessionStatus status, VehicleDataAccessObject vehicleDAO, HttpServletRequest request, UserDataAccessObject userdao, BindingResult result)
+    public String DeleteUserObj(SessionStatus s,
+            VehicleDataAccessObject vehicleDAO, HttpServletRequest req,
+            UserDataAccessObject userDataAccessObj, BindingResult bindErr)
             throws Exception {
-        HttpSession session = request.getSession();
 
-        int cid1 = Integer.parseInt(request.getParameter("usrdel"));
-        User userdel = userdao.fetchUsrById(cid1);
-        if (userdel != null) {
-            System.out.println("got user");
+        User usrDelete = userDataAccessObj.fetchUsrById(Integer.parseInt(req.getParameter(USER_DELETE)));
+        if (null != usrDelete) {
+            System.out.println("Encountered VALID - USER value, HURRY !! ");
         }
 
-        List<Vehicle> vehiclesCurrentlyInUse = vehicleDAO.fetchVechUsingbyUsr(userdel);
+        List<Vehicle> vehiclesCurrentlyInUse = vehicleDAO
+                .fetchVechUsingbyUsr(usrDelete);
+
+        resetVehicleInUseByUser(vehiclesCurrentlyInUse, vehicleDAO);
+
+        List<Vehicle> vehiclesrsvd = vehicleDAO.fetchReservedVehicleOfUser(usrDelete);
+        for (Vehicle vehicle : vehiclesrsvd) {
+            vehicle.setRentStartDate(null);
+            vehicle.setRentReturnDate(null);
+            vehicle.setReservedByUser(null);
+            vehicle.setRentEndDate(null);
+
+            vehicleDAO.modifyVehicle(vehicle);
+
+        }
+        userDataAccessObj.removeUser(usrDelete);
+
+        if (bindErr.hasErrors()) {
+            return ADMIN_LIST_OF_USERS;
+        }
+        s.setComplete();
+        System.out.println("User deleted successfully");
+        return ADMIN_USER_DELETED;
+    }
+
+    public void resetVehicleInUseByUser(List<Vehicle> vehiclesCurrentlyInUse,
+            VehicleDataAccessObject vehicleDAO) throws Exception {
         for (Vehicle vehicle : vehiclesCurrentlyInUse) {
             vehicle.setxUser(null);
             vehicle.setRentStartDate(null);
             vehicle.setRentEndDate(null);
             vehicle.setRentReturnDate(null);
-            vehicleDAO.modifyVehicle(vehicle);
-        }
-
-        List<Vehicle> vehiclesrsvd = vehicleDAO.fetchReservedVehicleOfUser(userdel);
-        for (Vehicle vehicle : vehiclesrsvd) {
-             vehicle.setRentStartDate(null);
-             vehicle.setRentReturnDate(null);
-            vehicle.setReservedByUser(null);
-            vehicle.setRentEndDate(null);
-            
-            vehicleDAO.modifyVehicle(vehicle);
-
-        }
-        userdao.removeUser(userdel);
-
-        if (result.hasErrors()) {
-            List<FieldError> errors = result.getFieldErrors();
-            for (FieldError error : errors) {
+            try {
+                vehicleDAO.modifyVehicle(vehicle);
+            } catch (Exception ex) {
+                throw new Exception("Encountered exception "
+                        + "in resetVehicleInUseByUser method in Admin Controller");
             }
-            return "admin/ListofUsrs";
         }
-        status.setComplete();
-  System.out.println("user deleted");
-        return "admin/userDeleted";
+
     }
 
 }

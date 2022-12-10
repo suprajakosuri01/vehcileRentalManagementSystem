@@ -48,7 +48,7 @@ color:black
     <form:password path="usrPassword" size="30" required="required" />
      <br><br>
 	<a href="register.htm">New user?Sign Up</a>
-	<p><input type="submit" value="Sign In" /></p>
+	<input type="submit" value="Sign In" />
 	 <br><br>
 </div>
 </form:form>

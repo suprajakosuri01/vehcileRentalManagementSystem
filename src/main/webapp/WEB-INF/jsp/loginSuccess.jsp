@@ -13,6 +13,6 @@
 <br>
    <h2 align="center">Registration Success: ${user.usrEmail}</h2>
    <br><br>
-        <h2 align="center"><a href="login.htm">SignIn</a></h2>
+        <h2 align="center"><a href="signin.htm">SignIn</a></h2>
     </body>
 </html>

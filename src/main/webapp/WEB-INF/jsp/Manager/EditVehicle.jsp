@@ -23,7 +23,7 @@
 
 	<tr>
 	<td>
-	licensePlate:
+	license Plate:
 	</td>
 	<td>
 	${vehicle.getLicensePlate()}

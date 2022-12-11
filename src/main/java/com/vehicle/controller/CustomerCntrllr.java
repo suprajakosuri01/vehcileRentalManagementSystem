@@ -41,11 +41,11 @@ public class CustomerCntrllr {
 
             List<Vehicle> usrVehicles = vehicleDAO.fetchReservedVehicleOfUser(usrObj);
 
-            usrVehicles.addAll(vehicleDAO.fetchVechUsingbyUsr(usrObj));
+            usrVehicles.addAll(vehicleDAO.fetchVehcUsingbyUsr(usrObj));
 
             req.setAttribute(USER_VEHICLES, usrVehicles);
         } catch (Exception ex) {
-            throw new Exception("Encountered exception in fetchvehicles method in Customer Controller");
+            throw new Exception("Encountered exception in fetchvehicles method in Customer Controller", ex);
         }
 
         return CUSTOMER_FETCH_VEHICLES;
@@ -59,10 +59,10 @@ public class CustomerCntrllr {
         try {
             User userOrderObj = userDataAccessObject
                     .fetchUsrByusrEmail(req.getParameter(USR_EMAIL));
-            List<Vehicle> vehicles = vehicleDAO.fetchVechUsingbyUsr(userOrderObj);
+            List<Vehicle> vehicles = vehicleDAO.fetchVehcUsingbyUsr(userOrderObj);
             md.addAttribute(VEHICLES, vehicles);
         } catch (Exception ex) {
-            throw new Exception("Encountered exception in fetchVehicleOrders method in Customer Controller");
+            throw new Exception("Encountered exception in fetchVehicleOrders method in Customer Controller", ex);
 
         }
 
@@ -79,7 +79,7 @@ public class CustomerCntrllr {
             List<Vehicle> vehicles = vehicleDAO.fetchReservedVehicleOfUser(userReservationObj);
             md.addAttribute(VEHICLES, vehicles);
         } catch (Exception ex) {
-            throw new Exception("Encountered exception in getMyReservations method in Customer Controller");
+            throw new Exception("Encountered exception in getMyReservations method in Customer Controller", ex);
         }
         return CUSTOMER_BOOKED_VEHICLES;
     }
@@ -136,7 +136,7 @@ public class CustomerCntrllr {
             s.setComplete();
         } catch (Exception ex) {
 
-            throw new Exception("Encountered exception in fetchRsvn method in Customer Controller");
+            throw new Exception("Encountered exception in fetchRsvn method in Customer Controller", ex);
         }
 
         return CUSTOMER_SUCCESSFUL_RSVN;

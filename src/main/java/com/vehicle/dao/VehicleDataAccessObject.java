@@ -37,7 +37,7 @@ public class VehicleDataAccessObject extends DataAccessObject {
 
 	}
 
-	public LinkedHashMap<Vehicle, String> fetchAllReservedVechiles() throws VehicleException {
+	public LinkedHashMap<Vehicle, String> fetchAllReservedVehicles() throws VehicleException {
 		LinkedHashMap<Vehicle, String> vehicles = new LinkedHashMap<Vehicle, String>();
 		for (Vehicle vehicle : this.fetchAllVehicles()) {
 			if (vehicle.getReservedByUser() != null && vehicle.getxUser() == null) {
@@ -48,7 +48,7 @@ public class VehicleDataAccessObject extends DataAccessObject {
 		return vehicles;
 	}
 
-	public LinkedHashMap<Vehicle, String> fetchVechilesInUse() throws VehicleException {
+	public LinkedHashMap<Vehicle, String> fetchVehiclesCurrentlyUsedByUser() throws VehicleException {
 		LinkedHashMap<Vehicle, String> vehicles = new LinkedHashMap<Vehicle, String>();
 		for (Vehicle vehicle : this.fetchAllVehicles()) {
 			if (vehicle.getxUser() != null && vehicle.getReservedByUser() == null) {
@@ -77,7 +77,7 @@ public class VehicleDataAccessObject extends DataAccessObject {
 		return vehicles;
 	}
 
-	public List<Vehicle> fetchVechUsingbyUsr(User user) throws VehicleException {
+	public List<Vehicle> fetchVehcUsingbyUsr(User user) throws VehicleException {
 		List<Vehicle> vehicles = new ArrayList<Vehicle>();
 		try {
 			startConn();

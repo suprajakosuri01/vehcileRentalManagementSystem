@@ -47,6 +47,10 @@ public class ProjectConstants {
     public static final int THREE = 3;
     public static final int TWO = 2;
     public static final String IMG_SRC = "imagePath";
+    public static final String MODEL = "model";
+    public static final String YEAR = "year";
+    public static final String DELETE_RSVN = "deleteRsvrtn";
+    public static final String DELETE_USER = "deleteUsr";
 
     //SIGIN CONSTANTS
     public static final String REDIR_TO_SIGN_IN = "redirect:/signin.htm";
@@ -71,16 +75,17 @@ public class ProjectConstants {
     public static final String REG_USR = "Registration";
 
     public static final String ERR = "error";
-
     public static final String ERR_WHEN_USER_ENTERS_WRONG_INFO = "Please enter valid user-email & user-password.";
-
     public static final String ERR_WHEN_USER_ALREADY_EXISTS = "Email already exits, try with another email!!";
-
     public static final String NEW_USER_REG_SUCCESS = "New user registered successfully, hurry";
-
     public static final String LOGIN_SUCCESS = "loginSuccess";
 
     //manager controller constants
     public static final String LISCENSE_PLATE_ERROR = "licencsePlateError";
+    
+    //PATH
+    public static final String STORED_IMG_PATH = "src/main/webapp/images/";
+    
+
 
 }

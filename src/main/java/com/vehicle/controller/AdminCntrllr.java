@@ -31,7 +31,7 @@ public class AdminCntrllr {
             md.addAttribute(USER, availableUsers);
         } catch (Exception e) {
 
-            throw new Exception("Failed to fetch list of users");
+            throw new Exception("Failed to fetch list of users", e);
         }
 
         return ADMIN_LIST_OF_USERS;
@@ -49,7 +49,7 @@ public class AdminCntrllr {
 
         } catch (Exception e) {
 
-            throw new Exception("Failed to modify user");
+            throw new Exception("Failed to modify user", e);
         }
 
         return ADMIN_USER_MODIFY;
@@ -76,7 +76,7 @@ public class AdminCntrllr {
 
             userDataAccessObj.modifyUser(modifyUser);
         } catch (Exception e) {
-            throw new Exception("Failed to update user information");
+            throw new Exception("Failed to update user information", e);
         }
 
         return ADMIN_USER_MODIFIED;
@@ -93,9 +93,9 @@ public class AdminCntrllr {
             int castedUserId = Integer.parseInt(req.getParameter(USER_ID));
             md.addAttribute(USER,
                     userDataAccessObj.fetchUsrById(castedUserId));
-        } catch (Exception e) {
+        } catch (Exception exe) {
             throw new Exception("Encountered exception "
-                    + "in fetchDeleteUsers method in Admin Controller");
+                    + "in fetchDeleteUsers method in Admin Controller", exe);
         }
 
         return ADMIN_USER_DELETE;
@@ -114,7 +114,7 @@ public class AdminCntrllr {
         }
 
         List<Vehicle> vehiclesCurrentlyInUse = vehicleDAO
-                .fetchVechUsingbyUsr(usrDelete);
+                .fetchVehcUsingbyUsr(usrDelete);
 
         resetVehicleInUseByUser(vehiclesCurrentlyInUse, vehicleDAO);
 
@@ -149,7 +149,7 @@ public class AdminCntrllr {
                 vehicleDAO.modifyVehicle(vehicle);
             } catch (Exception ex) {
                 throw new Exception("Encountered exception "
-                        + "in resetVehicleInUseByUser method in Admin Controller");
+                        + "in resetVehicleInUseByUser method in Admin Controller", ex);
             }
         }
 

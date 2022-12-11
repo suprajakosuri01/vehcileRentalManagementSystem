@@ -47,5 +47,24 @@ public class ProjectConstants {
     public static final int THREE = 3;
     public static final int TWO = 2;
     public static final String IMG_SRC = "imagePath";
+    
+    
+    //SIGIN CONSTANTS
+    public static final String REDIR_TO_SIGN_IN = "redirect:/signin.htm";
+    public static final String SIGN_IN = "Signin";
+    
+    //MANAGER CONSTANTS
+    public static final String MANAGER_HOME = "Manager/ManagerHome";
+    public static final String REG_USR = "Registration";
+    
+    public static final String ERR = "error";
+    
+    public static final String ERR_WHEN_USER_ENTERS_WRONG_INFO = "Please enter valid user-email & user-password.";
+    
+    public static final String ERR_WHEN_USER_ALREADY_EXISTS = "Email already exits, try with another email!!";
+    
+    public static final String NEW_USER_REG_SUCCESS = "New user registered successfully, hurry";
+    
+    public static final String LOGIN_SUCCESS = "loginSuccess";
 
 }

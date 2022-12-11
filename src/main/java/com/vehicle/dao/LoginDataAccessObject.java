@@ -52,7 +52,7 @@ public class LoginDataAccessObject extends DataAccessObject {
 		return true;
 	}
 
-	public boolean checkEmployee(String userEmail, String usrPassword) throws VehicleException {
+	public boolean checkManager(String userEmail, String usrPassword) throws VehicleException {
 		try {
 			Query createQueryToCheckIfEmployeeAlreadyExists;
 			createQueryToCheckIfEmployeeAlreadyExists = fetchSession().createQuery(

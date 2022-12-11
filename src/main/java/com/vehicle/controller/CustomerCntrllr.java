@@ -88,15 +88,12 @@ public class CustomerCntrllr {
     public String fetchRsvnCfrm(Model md, HttpServletRequest req, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userDataAccessObject, SessionStatus s)
             throws Exception {
 
-
         String cid = req.getParameter("carId");
-        System.out.println("carId obtained from session scope -- " + cid);
 
-            int castid = Integer.parseInt(cid.trim());
+        int castid = Integer.parseInt(cid.trim());
 
-            Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(castid);
+        Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(castid);
 
-        
         md.addAttribute(USR_EMAIL, req.getParameter(USR_EMAIL));
 
         md.addAttribute(VEHICLE, vehicle);
@@ -107,9 +104,8 @@ public class CustomerCntrllr {
 
         return CUSTOMER_RESERVATION_CONFIRMATION;
 
-        }
+    }
 
-    
     public LocalDate getRentDate(long noOfDays) {
         return LocalDate.now().plusDays(noOfDays);
     }
@@ -124,25 +120,25 @@ public class CustomerCntrllr {
             throws Exception {
 
         try {
-         int carId = Integer.parseInt(req.getParameter("c1"));
-        User user = userDataAccessObject.fetchUsrByusrEmail(req.getParameter(USR_EMAIL));
-        vehicle.setRentEndDate(getDate(req.getParameter(VEHICLE_RENT_END_DATE)));
-        vehicle.setRentReturnDate(getDate(req.getParameter(VEHICLE_RENT_RETURN_DATE)));
-        vehicle.setPickupReady(true);
-        vehicle.setReservedByUser(user);
-        vehicle.setCarId(carId);
-        vehicle.setLicensePlate(vehicle.getLicensePlate());
-        vehicle.setModel(vehicle.getModel());
-        vehicle.setYear(vehicle.getYear());
-        vehicle.setRentStartDate(getDate(req.getParameter(VEHICLE_RENT_START_DATE)));
-        vehicle.setImagePath(req.getParameter(IMG_SRC));
-        vehicleDAO.modifyVehicle(vehicle);
-        s.setComplete();
+            int carId = Integer.parseInt(req.getParameter("c1"));
+            User user = userDataAccessObject.fetchUsrByusrEmail(req.getParameter(USR_EMAIL));
+            vehicle.setRentEndDate(getDate(req.getParameter(VEHICLE_RENT_END_DATE)));
+            vehicle.setRentReturnDate(getDate(req.getParameter(VEHICLE_RENT_RETURN_DATE)));
+            vehicle.setPickupReady(true);
+            vehicle.setReservedByUser(user);
+            vehicle.setCarId(carId);
+            vehicle.setLicensePlate(vehicle.getLicensePlate());
+            vehicle.setModel(vehicle.getModel());
+            vehicle.setYear(vehicle.getYear());
+            vehicle.setRentStartDate(getDate(req.getParameter(VEHICLE_RENT_START_DATE)));
+            vehicle.setImagePath(req.getParameter(IMG_SRC));
+            vehicleDAO.modifyVehicle(vehicle);
+            s.setComplete();
         } catch (Exception ex) {
 
             throw new Exception("Encountered exception in fetchRsvn method in Customer Controller");
         }
-       
+
         return CUSTOMER_SUCCESSFUL_RSVN;
     }
 

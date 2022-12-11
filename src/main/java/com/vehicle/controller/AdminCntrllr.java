@@ -69,11 +69,9 @@ public class AdminCntrllr {
 
             String homeAddr = req.getParameter(USER_ADDR);
             String phonenum = req.getParameter(USER_PHNNUM);
-//        modifyUser.setTitle(modifyUser.getTitle());
-//        modifyUser.setUsrId(modifyUser.getUsrId());
+
             modifyUser.setUserPhonenum(phonenum);
-//        modifyUser.setName(modifyUser.getName());
-//        modifyUser.setUsrPassword(modifyUser.getUsrPassword());
+
             modifyUser.setUserAddress(homeAddr);
 
             userDataAccessObj.modifyUser(modifyUser);

@@ -1,5 +1,6 @@
 package com.vehicle.controller;
 
+import static com.vehicle.dao.ProjectConstants.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.time.LocalDate;
 import java.util.List;
@@ -19,134 +20,135 @@ import com.vehicle.pojo.Vehicle;
 @Controller
 public class CustomerCntrllr {
 
-//home page
     @GetMapping("/cusHome.htm")
-    public String customerHomePage(Model model, HttpServletRequest request) {
-        return "customer/cusHome";
+    public String customerHomePage(Model md, HttpServletRequest req) {
+        return CUSTOMER_HOME;
     }
 
-//fetch vehicles
-    // cars in use for the user
     @GetMapping("/fetchVehicles.htm")
-    public String fetchvehicles(Model model, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao, HttpServletRequest request)
+    public String fetchvehicles(Model md, VehicleDataAccessObject vehicleDAO,
+            UserDataAccessObject userDataAccessObject, HttpServletRequest req)
             throws Exception {
 
-        HttpSession session = request.getSession();
-        String usrEmail = request.getParameter("usrEmail");
-        model.addAttribute("usrEmail", usrEmail);
+        try {
 
-        List<Vehicle> vehicles = vehicleDAO.fetchAllVehicles();
-        model.addAttribute("vehicles", vehicles);
-        User user = userdao.fetchUsrByusrEmail(usrEmail);
-        List<Vehicle> usrVehicles = vehicleDAO.fetchReservedVehicleOfUser(user);
-        usrVehicles.addAll(vehicleDAO.fetchVechUsingbyUsr(user));
+            md.addAttribute(USR_EMAIL, req.getParameter(USR_EMAIL));
+            List<Vehicle> vehicles = vehicleDAO.fetchAllVehicles();
+            md.addAttribute(VEHICLES, vehicles);
 
-        request.setAttribute("usrVehicles", usrVehicles);
+            User usrObj = userDataAccessObject.fetchUsrByusrEmail(
+                    req.getParameter(USR_EMAIL));
 
-        return "customer/fetchVehicles";
+            List<Vehicle> usrVehicles = vehicleDAO.fetchReservedVehicleOfUser(usrObj);
+
+            usrVehicles.addAll(vehicleDAO.fetchVechUsingbyUsr(usrObj));
+
+            req.setAttribute(USER_VEHICLES, usrVehicles);
+        } catch (Exception ex) {
+            throw new Exception("Encountered exception in fetchvehicles method in Customer Controller");
+        }
+
+        return CUSTOMER_FETCH_VEHICLES;
     }
 
-    //(orders)
     @GetMapping("/orders.htm")
-    public String fetchVehicleOrders(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
+    public String fetchVehicleOrders(Model md, HttpServletRequest req,
+            VehicleDataAccessObject vehicleDAO,
+            UserDataAccessObject userDataAccessObject)
             throws Exception {
-
-        HttpSession session = request.getSession();
-        String usrEmail = request.getParameter("usrEmail");
-
-        User user = userdao.fetchUsrByusrEmail(usrEmail);
-        List<Vehicle> vehicles = vehicleDAO.fetchVechUsingbyUsr(user);
-        if (vehicles != null) {
+        try {
+            User userOrderObj = userDataAccessObject
+                    .fetchUsrByusrEmail(req.getParameter(USR_EMAIL));
+            List<Vehicle> vehicles = vehicleDAO.fetchVechUsingbyUsr(userOrderObj);
+            md.addAttribute(VEHICLES, vehicles);
+        } catch (Exception ex) {
+            throw new Exception("Encountered exception in fetchVehicleOrders method in Customer Controller");
 
         }
-        model.addAttribute("vehicles", vehicles);
-        return "customer/orders";
+
+        return CUSTOMER_ORDERS;
     }
 
-    //booked vehicles
     @GetMapping("/bookedVehicles.htm")
-    public String getMyReservations(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
+    public String getMyReservations(Model md, HttpServletRequest req,
+            VehicleDataAccessObject vehicleDAO,
+            UserDataAccessObject userDataAccessObject)
             throws Exception {
-        HttpSession session = request.getSession();
-        String usrEmail = request.getParameter("usrEmail");
-        User user = userdao.fetchUsrByusrEmail(usrEmail);
-        List<Vehicle> vehicles = vehicleDAO.fetchReservedVehicleOfUser(user);
-
-        if (vehicles != null) {
+        try {
+            User userReservationObj = userDataAccessObject.fetchUsrByusrEmail(req.getParameter(USR_EMAIL));
+            List<Vehicle> vehicles = vehicleDAO.fetchReservedVehicleOfUser(userReservationObj);
+            md.addAttribute(VEHICLES, vehicles);
+        } catch (Exception ex) {
+            throw new Exception("Encountered exception in getMyReservations method in Customer Controller");
         }
-        model.addAttribute("vehicles", vehicles);
-
-        return "customer/bookedVehicles";
+        return CUSTOMER_BOOKED_VEHICLES;
     }
 
-    //cfrm reserv
     @GetMapping("/reservationconfirm.htm")
-    public String fetchRsvnCfrm(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao, SessionStatus status)
+    public String fetchRsvnCfrm(Model md, HttpServletRequest req, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userDataAccessObject, SessionStatus s)
             throws Exception {
 
-        HttpSession session = request.getSession();
-        String usrEmail = request.getParameter("usrEmail");
-        System.out.println("email id obtained from session scope -- " + usrEmail);
 
-        String cid = request.getParameter("carId");
+        String cid = req.getParameter("carId");
         System.out.println("carId obtained from session scope -- " + cid);
 
-        int castid = Integer.parseInt(cid.trim());
+            int castid = Integer.parseInt(cid.trim());
 
-        Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(castid);
+            Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(castid);
 
-        User user = userdao.fetchUsrByusrEmail(usrEmail);
-        model.addAttribute("usrEmail", usrEmail);
+        
+        md.addAttribute(USR_EMAIL, req.getParameter(USR_EMAIL));
 
-        model.addAttribute("vehicle", vehicle);
+        md.addAttribute(VEHICLE, vehicle);
 
-        LocalDate rentEndDate = LocalDate.now().plusDays(2);
-        LocalDate rentStartDate = LocalDate.now();
-        LocalDate rentReturnDate = LocalDate.now().plusDays(3);
-        model.addAttribute("rentReturnDate", rentReturnDate);
-        model.addAttribute("rentStartDate", rentStartDate);
-        model.addAttribute("rentEndDate", rentEndDate);
+        md.addAttribute(VEHICLE_RENT_RETURN_DATE, getRentDate(3));
+        md.addAttribute(VEHICLE_RENT_START_DATE, getCurrentDate());
+        md.addAttribute(VEHICLE_RENT_END_DATE, getRentDate(2));
 
-        return "customer/reservationConfirm";
+        return CUSTOMER_RESERVATION_CONFIRMATION;
 
+        }
+
+    
+    public LocalDate getRentDate(long noOfDays) {
+        return LocalDate.now().plusDays(noOfDays);
+    }
+
+    public LocalDate getCurrentDate() {
+        return LocalDate.now();
     }
 
     @PostMapping("/reservationconfirm.htm")
-    public String postRsvnCfrm(@ModelAttribute("vehicle") Vehicle vehicle, BindingResult result, SessionStatus status,
-            VehicleDataAccessObject vehicleDAO, HttpServletRequest request, UserDataAccessObject userdao) throws Exception {
-        HttpSession session = request.getSession();
+    public String SaveRsvn(@ModelAttribute("vehicle") Vehicle vehicle, BindingResult bindErr, SessionStatus s,
+            VehicleDataAccessObject vehicleDAO, HttpServletRequest req, UserDataAccessObject userDataAccessObject)
+            throws Exception {
 
-        String usrEmail = request.getParameter("usrEmail");
-        int carId = Integer.parseInt(request.getParameter("c1"));
-         String rentEndDate = request.getParameter("rentEndDate");
-        String rentStartDate = request.getParameter("rentStartDate");
-
-     
-
-        String rentReturnDate = request.getParameter("rentReturnDate");
-
-        String usrId = request.getParameter("usrEmail");
-
-        User user = userdao.fetchUsrByusrEmail(usrEmail);
-       LocalDate rrd = LocalDate.parse(rentReturnDate);
-        LocalDate rsd = LocalDate.parse(rentStartDate);
-        LocalDate red = LocalDate.parse(rentEndDate);
-    
-        vehicle.setRentEndDate(red);
-        vehicle.setRentReturnDate(rrd);
+        try {
+         int carId = Integer.parseInt(req.getParameter("c1"));
+        User user = userDataAccessObject.fetchUsrByusrEmail(req.getParameter(USR_EMAIL));
+        vehicle.setRentEndDate(getDate(req.getParameter(VEHICLE_RENT_END_DATE)));
+        vehicle.setRentReturnDate(getDate(req.getParameter(VEHICLE_RENT_RETURN_DATE)));
         vehicle.setPickupReady(true);
         vehicle.setReservedByUser(user);
         vehicle.setCarId(carId);
         vehicle.setLicensePlate(vehicle.getLicensePlate());
         vehicle.setModel(vehicle.getModel());
         vehicle.setYear(vehicle.getYear());
-        vehicle.setRentStartDate(rsd);
-        String imagePath = request.getParameter("imagePath");
-        vehicle.setImagePath(imagePath);
+        vehicle.setRentStartDate(getDate(req.getParameter(VEHICLE_RENT_START_DATE)));
+        vehicle.setImagePath(req.getParameter(IMG_SRC));
         vehicleDAO.modifyVehicle(vehicle);
-        status.setComplete();
-        System.out.println("reserv success");
-        return "customer/successreserv";
+        s.setComplete();
+        } catch (Exception ex) {
+
+            throw new Exception("Encountered exception in fetchRsvn method in Customer Controller");
+        }
+       
+        return CUSTOMER_SUCCESSFUL_RSVN;
+    }
+
+    public LocalDate getDate(String rentDate) {
+        return LocalDate.parse(rentDate);
+
     }
 
 }

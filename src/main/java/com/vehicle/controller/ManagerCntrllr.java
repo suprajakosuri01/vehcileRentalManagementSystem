@@ -1,10 +1,10 @@
 package com.vehicle.controller;
 
+import static com.vehicle.dao.ProjectConstants.*;
 import com.vehicle.dao.UserDataAccessObject;
 import com.vehicle.dao.VehicleDataAccessObject;
 import com.vehicle.pojo.User;
 import com.vehicle.pojo.Vehicle;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -19,36 +19,34 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class ManagerCntrllr {
 
-//manager view page
-    @GetMapping("/managerhome.htm")
-    public String fetchManagerview(Model model) {
 
-        return "Manager/ManagerHome";
+    @GetMapping("/managerhome.htm")
+    public String fetchManagerHome(Model md) {
+        return MANAGER_HOME;
     }
 
-    // vehicles add
     @GetMapping("/vehiclesadd.htm")
-    public String vehiclesAdd(ModelMap model, Vehicle vehicle, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        model.addAttribute("vehicle", vehicle);
-        return "Manager/VehiclesAdd";
+    public String vehiclesAdd(ModelMap md, Vehicle vehicle, HttpServletRequest req)
+    {
+        md.addAttribute(VEHICLE, vehicle);
+        return MANAGER_VEHICLE_ADD;
     }
 
     @PostMapping("/vehiclesadd.htm")
-    public String vehicleSave(@ModelAttribute("vehicle") Vehicle vehicle, BindingResult result, SessionStatus status,
-            VehicleDataAccessObject vehicleDAO, Model model) throws Exception {
+    public String vehicleSave(@ModelAttribute(VEHICLE) Vehicle vehicle, BindingResult bindErr, SessionStatus s,
+            VehicleDataAccessObject vehicleDAO, Model md) throws Exception 
+    {
         vehicle.setPickupReady(false);
         if (vehicleDAO.isValidLicense(vehicle.getLicensePlate())) {
             String licencsePlateError = "licencsePlate number already exists!";
-            System.out.println(licencsePlateError);
-            model.addAttribute("licencsePlateError", licencsePlateError);
-            return "Manager/VehiclesAdd";
+            md.addAttribute(LISCENSE_PLATE_ERROR, licencsePlateError);
+            return MANAGER_VEHICLE_ADD;
         }
+        
         String imgp = "img_" + System.currentTimeMillis() + "" + new Random().nextInt(100000000) + ""
                 + new Random().nextInt(100000000) + ".jpg";
 
@@ -63,39 +61,34 @@ public class ManagerCntrllr {
         }
 
         vehicleDAO.registerVehicle(vehicle);
-        if (result.hasErrors()) {
-            return "Manager/VehiclesAdd";
+        if (bindErr.hasErrors()) {
+            return MANAGER_VEHICLE_ADD;
         }
-        status.setComplete();
-        return "Manager/vehicleAdded";
+        s.setComplete();
+        return MANAGER_VEHICLE_ADDED_SUCCESS;
     }
 
     //edit vehicle
     @GetMapping("/editvehicle.htm")
     public String fetchEditVehicle(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
             throws Exception {
-
-        HttpSession session = request.getSession();
         String cid = request.getParameter("carId");
         int carId = Integer.parseInt(cid);
         Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
-        System.out.println("succesfully fetched - model in edit vehicle" + vehicle.getModel());
-        System.out.println("year in edit vehicle" + vehicle.getYear());
         model.addAttribute(vehicle);
 
-        return "Manager/EditVehicle";
+        return MANAGER_VEHICLE_EDIT;
     }
 
     @PostMapping("/editvehicle.htm")
     public String EditVehiclePost(SessionStatus status,
             VehicleDataAccessObject vehicleDAO, HttpServletRequest request, UserDataAccessObject userdao) throws Exception {
-        HttpSession session = request.getSession();
+      
         int carId = Integer.parseInt(request.getParameter("c1"));
         Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
         String model = request.getParameter("model");
         String year1 = request.getParameter("year");
         int castedYear = Integer.parseInt(year1);
-        System.out.println("Casted year value - " + castedYear);
 
         String deleteRsvrtn = request.getParameter("deleteRsvrtn");
 
@@ -140,7 +133,7 @@ public class ManagerCntrllr {
 
         status.setComplete();
 
-        return "Manager/Edited";
+        return MANAGER_EDITED;
     }
 
     // delete all
@@ -148,7 +141,6 @@ public class ManagerCntrllr {
 	public String fetchDeleteall(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
 			throws Exception {
 
-		HttpSession session = request.getSession();
 
 
 		System.out.println("IN delete method");
@@ -164,20 +156,16 @@ public class ManagerCntrllr {
 
 
 		Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
-		System.out.println("IN delete method" +carId);
 
 		model.addAttribute(vehicle);
-		System.out.println("IN delete method success" +carId);
+	
 
-		return "Manager/DeleteAll";
+		return MANAGER_DELETE_ALL;
 	}
 
 	@PostMapping("/deleteall.htm")
 	public String postDeleteall(SessionStatus status, VehicleDataAccessObject vehicleDAO, HttpServletRequest request,
 			UserDataAccessObject userdao) throws Exception {
-
-		System.out.println("post delete controller");
-		HttpSession session = request.getSession();
 
 		
 		int carId = Integer.parseInt(request.getParameter("c1"));
@@ -189,7 +177,7 @@ public class ManagerCntrllr {
 
 		status.setComplete();
 
-		return "Manager/Deleted";
+		return MANAGER_DELETE_SUCCESS;
 		
 	}
     
@@ -199,7 +187,6 @@ public class ManagerCntrllr {
     public String fetchPickupdetails(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
             throws Exception {
 
-        HttpSession session = request.getSession();
 
         String usrEmail = request.getParameter("usrEmail");
 
@@ -209,19 +196,16 @@ public class ManagerCntrllr {
 
         Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(carId);
 
-        User user = userdao.fetchUsrByusrEmail(usrEmail);
-
         model.addAttribute("vehicle", vehicle);
 
         model.addAttribute("usrEmail", usrEmail);
-        return "Manager/Pickup";
+        return MANAGER_PICKUP;
 
     }
 
     @PostMapping("/pickup.htm")
     public String postPickupdetails(SessionStatus status, VehicleDataAccessObject vehicleDAO, HttpServletRequest request,
             UserDataAccessObject userdao) throws Exception {
-        HttpSession session = request.getSession();
         String usrEmail = request.getParameter("usrEmail");
         User user = userdao.fetchUsrByusrEmail(usrEmail);
 
@@ -241,15 +225,13 @@ public class ManagerCntrllr {
         vehicle.setYear(vehicle.getYear());
         vehicleDAO.modifyVehicle(vehicle);
         status.setComplete();
-        System.out.println("pickup successfull");
-        return "Manager/PickedUp";
+        return MANAGER_PICKUP_SUCCESS;
     }
 
     //retrun vehicle
     @GetMapping("/returnvehicle.htm")
     public String fetchvehRtn(Model model, VehicleDataAccessObject vehicleDAO, HttpServletRequest request) throws Exception {
 
-        HttpSession session = request.getSession();
         String usrEmail = request.getParameter("usrEmail");
         model.addAttribute("usrEmail", usrEmail);
 
@@ -259,7 +241,7 @@ public class ManagerCntrllr {
         }
 
         model.addAttribute("vehicles", vehiclespickedup);
-        return "Manager/ReturnVehicle";
+        return MANAGER_RETURN_VEHICLE;
 
     }
 
@@ -267,27 +249,20 @@ public class ManagerCntrllr {
     @GetMapping("/return.htm")
     public String fetchAcceptRtn(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
             throws Exception {
-        HttpSession session = request.getSession();
         String usrEmail = request.getParameter("usrEmail");
         String id2 = request.getParameter("carId");
-        System.out.println(id2 + "in get confrim return id2");
         int cId1 = Integer.parseInt(id2);
         Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId1);
-        User user = userdao.fetchUsrByusrEmail(usrEmail);
         request.setAttribute("vehicle", vehicle);
         request.setAttribute("usrEmail", usrEmail);
 
-        return "Manager/Return";
+        return MANAGER_RETURN;
 
     }
 
     @PostMapping("/return.htm")
     public String postAcceptRtn(SessionStatus status,
             VehicleDataAccessObject vehicleDAO, HttpServletRequest request, UserDataAccessObject userdao) throws Exception {
-
-        HttpSession session = request.getSession();
-        String usrEmail = request.getParameter("usrEmail");
-        User user = userdao.fetchUsrByusrEmail(usrEmail);
 
         int cId1 = Integer.parseInt(request.getParameter("c5"));
 
@@ -309,18 +284,17 @@ public class ManagerCntrllr {
         vehicleDAO.modifyVehicle(vehicle);
 
         status.setComplete();
-        return "Manager/ReturnComplete";
+        return MANAGER_RETURN_SUCCESS;
     }
 
     // vehciles list
     @GetMapping("/vehicles.htm")
     public String fetchVehicles(Model model, VehicleDataAccessObject vehicleDAO, HttpServletRequest request) throws Exception {
 
-        HttpSession session = request.getSession();
         System.out.println("in manager controller fetchall");
         List<Vehicle> vehicle = vehicleDAO.fetchAllVehicles();
         model.addAttribute("vehicle", vehicle);
-        return "Manager/Vehicles";
+        return MANAGER_VEHICLES;
 
     }
 
@@ -334,7 +308,7 @@ public class ManagerCntrllr {
         if (vehcilesRsvd != null) {
         }
         model.addAttribute("vehicles", vehcilesRsvd);
-        return "Manager/VehicleReserve";
+        return MANAGER_RESERVE_VEHICLE;
 
     }
 }

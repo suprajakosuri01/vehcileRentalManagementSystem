@@ -96,11 +96,16 @@ public class CustomerCntrllr {
 
         md.addAttribute(USR_EMAIL, req.getParameter(USR_EMAIL));
 
+       
         md.addAttribute(VEHICLE, vehicle);
-
+        
         md.addAttribute(VEHICLE_RENT_RETURN_DATE, getRentDate(3));
         md.addAttribute(VEHICLE_RENT_START_DATE, getCurrentDate());
         md.addAttribute(VEHICLE_RENT_END_DATE, getRentDate(2));
+        
+        System.out.println("RENT END DATE FROM fetchRsvnCfrm method - " + getRentDate(2).toString());
+        
+         
 
         return CUSTOMER_RESERVATION_CONFIRMATION;
 

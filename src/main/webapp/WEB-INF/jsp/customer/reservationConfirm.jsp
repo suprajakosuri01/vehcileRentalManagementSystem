@@ -41,13 +41,13 @@
 	<td>Reserved Until: 
 	</td>
 	<td>
-	${vehicle.rentEndDate}
+	${rentEndDate}
 	</td>
 	</tr>
 	<tr>
 	<td>Return Date: 
 	</td>
-	<td>${vehicle.rentReturnDate}</td>
+	<td>${rentReturnDate}</td>
 	</tr>
 </table>
 

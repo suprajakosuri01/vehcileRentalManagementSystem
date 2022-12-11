@@ -203,14 +203,14 @@ public class ManagerCntrllr {
 
     // accept return
     @GetMapping("/return.htm")
-    public String fetchAcceptRtn(Model model, HttpServletRequest request, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userdao)
+    public String fetchAcceptRtn(Model md, HttpServletRequest req, VehicleDataAccessObject vehicleDAO)
             throws Exception {
-        String usrEmail = request.getParameter("usrEmail");
-        String id2 = request.getParameter("carId");
+        String usrEmail = req.getParameter("usrEmail");
+        String id2 = req.getParameter("carId");
         int cId1 = Integer.parseInt(id2);
         Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId1);
-        request.setAttribute("vehicle", vehicle);
-        request.setAttribute("usrEmail", usrEmail);
+        req.setAttribute("vehicle", vehicle);
+        req.setAttribute("usrEmail", usrEmail);
 
         return MANAGER_RETURN;
 
@@ -218,9 +218,9 @@ public class ManagerCntrllr {
 
     @PostMapping("/return.htm")
     public String postAcceptRtn(SessionStatus status,
-            VehicleDataAccessObject vehicleDAO, HttpServletRequest request, UserDataAccessObject userdao) throws Exception {
+            VehicleDataAccessObject vehicleDAO, HttpServletRequest req) throws Exception {
 
-        int cId1 = Integer.parseInt(request.getParameter("c5"));
+        int cId1 = Integer.parseInt(req.getParameter("c5"));
 
         Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId1);
 
@@ -245,7 +245,7 @@ public class ManagerCntrllr {
 
     // vehciles list
     @GetMapping("/vehicles.htm")
-    public String fetchVehicles(Model model, VehicleDataAccessObject vehicleDAO, HttpServletRequest request) throws Exception {
+    public String fetchVehicles(Model model, VehicleDataAccessObject vehicleDAO) throws Exception {
 
         System.out.println("in manager controller fetchall");
         List<Vehicle> vehicle = vehicleDAO.fetchAllVehicles();

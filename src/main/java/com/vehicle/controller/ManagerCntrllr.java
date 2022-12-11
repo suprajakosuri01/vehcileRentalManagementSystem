@@ -160,8 +160,8 @@ public class ManagerCntrllr {
     }
 
     @GetMapping("/pickup.htm")
-    public String fetchPickupDetailsOfUser(Model md, HttpServletRequest req, 
-            VehicleDataAccessObject vehicleDAO, 
+    public String fetchPickupDetailsOfUser(Model md, HttpServletRequest req,
+            VehicleDataAccessObject vehicleDAO,
             UserDataAccessObject userDataAccessObject)
             throws Exception {
 
@@ -174,10 +174,10 @@ public class ManagerCntrllr {
     }
 
     @PostMapping("/pickup.htm")
-    public String savePickupDetails(SessionStatus s, 
+    public String savePickupDetails(SessionStatus s,
             VehicleDataAccessObject vehicleDAO, HttpServletRequest req,
-            UserDataAccessObject userDataAccessObject) throws Exception {  
-        
+            UserDataAccessObject userDataAccessObject) throws Exception {
+
         User fetchUserByEmailObj = userDataAccessObject.fetchUsrByusrEmail(req.getParameter(USR_EMAIL));
         Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(Integer.parseInt(req.getParameter("c4")));
         vehicle.setPickupReady(false);
@@ -201,23 +201,19 @@ public class ManagerCntrllr {
 
     }
 
-    // accept return
     @GetMapping("/return.htm")
     public String fetchAcceptRtn(Model md, HttpServletRequest req, VehicleDataAccessObject vehicleDAO)
             throws Exception {
-        String usrEmail = req.getParameter("usrEmail");
-        String id2 = req.getParameter("carId");
-        int cId1 = Integer.parseInt(id2);
+        int cId1 = Integer.parseInt(req.getParameter("carId"));
         Vehicle vehicle = vehicleDAO.fetchVehiclesbyId(cId1);
-        req.setAttribute("vehicle", vehicle);
-        req.setAttribute("usrEmail", usrEmail);
+        req.setAttribute(VEHICLE, vehicle);
+        req.setAttribute(USR_EMAIL, req.getParameter(USR_EMAIL));
 
         return MANAGER_RETURN;
-
     }
 
     @PostMapping("/return.htm")
-    public String postAcceptRtn(SessionStatus status,
+    public String resetVehicleRsvnInfo(SessionStatus s,
             VehicleDataAccessObject vehicleDAO, HttpServletRequest req) throws Exception {
 
         int cId1 = Integer.parseInt(req.getParameter("c5"));
@@ -230,40 +226,27 @@ public class ManagerCntrllr {
         vehicle.setPickupReady(false);
         vehicle.setReservedByUser(null);
         vehicle.setxUser(null);
-        vehicle.setCarId(vehicle.getCarId());
-        vehicle.setLicensePlate(vehicle.getLicensePlate());
-        vehicle.setModel(vehicle.getModel());
-        vehicle.setYear(vehicle.getYear());
-
-        vehicle.setImagePath(vehicle.getImagePath());
 
         vehicleDAO.modifyVehicle(vehicle);
 
-        status.setComplete();
+        s.setComplete();
         return MANAGER_RETURN_SUCCESS;
     }
 
-    // vehciles list
     @GetMapping("/vehicles.htm")
-    public String fetchVehicles(Model model, VehicleDataAccessObject vehicleDAO) throws Exception {
-
-        System.out.println("in manager controller fetchall");
-        List<Vehicle> vehicle = vehicleDAO.fetchAllVehicles();
-        model.addAttribute("vehicle", vehicle);
+    public String fetchVehicles(Model md, VehicleDataAccessObject vehicleDAO) throws Exception {
+        md.addAttribute(VEHICLE, vehicleDAO.fetchAllVehicles());
         return MANAGER_VEHICLES;
 
     }
 
-    // customer reservations
     @GetMapping("/vehiclereserve.htm")
-    public String fetchVehicleResrvtns(Model model, VehicleDataAccessObject vehicleDAO, HttpServletRequest request, SessionStatus status)
+    public String fetchVehicleResrvtns(Model md,
+            VehicleDataAccessObject vehicleDAO,
+            HttpServletRequest req, SessionStatus s)
             throws Exception {
 
-        LinkedHashMap<Vehicle, String> vehcilesRsvd = vehicleDAO.fetchAllReservedVehicles();
-
-        if (vehcilesRsvd != null) {
-        }
-        model.addAttribute("vehicles", vehcilesRsvd);
+        md.addAttribute(VEHICLES, vehicleDAO.fetchAllReservedVehicles());
         return MANAGER_RESERVE_VEHICLE;
     }
 }

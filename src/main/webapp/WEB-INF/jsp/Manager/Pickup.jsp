@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
 <%@include file="/WEB-INF/css/style.css"%>
 </style>
@@ -13,10 +12,10 @@
 <body>
 <jsp:include page="ManagerNav.jsp"/>
 <table id="table">
-<h2 align="center">Pickup Vehicle</h2>
+<h2>Pickup Vehicle</h2>
 	<tr>
 	<td>
-	licensePlate: 
+	license Plate: 
 	</td>
 	<td>
 	${vehicle.getLicensePlate()}
@@ -48,7 +47,7 @@
 	</tr>
 	<tr>
 	<td>
-	RentEndDate: 
+	Rent End Date: 
 	</td>
 	<td>
 	${vehicle.getRentEndDate()}
@@ -56,7 +55,7 @@
 	</tr>
 	<tr>
 	<td>
-	Vehicle ReturnDate:
+	Vehicle Rent Return Date:
 	 </td>
 	<td>
 	${vehicle.getRentReturnDate()}
@@ -64,7 +63,7 @@
 	</tr>
 	<tr>
 	<td>
-	Reserved By:
+	Booked By:
 	 </td>
 	<td>
 	${vehicle.getReservedByUser().getUsrEmail()}
@@ -80,7 +79,9 @@
 	<input type="hidden" name="rentReturnDate" value="${vehicle.getRentReturnDate()}"/>
 	<input type="hidden" name="Year" value="${vehicle.getYear()}"/>
 	<input type="hidden" name="usrEmail" value="${vehicle.getReservedByUser().getUsrEmail()}"/>
-<input type="submit" value="Confirm">
+        <br>
+        <br>
+<input type="submit" value="Accept">
 </form>
 </body>
 </html>

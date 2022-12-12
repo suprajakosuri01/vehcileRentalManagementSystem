@@ -28,7 +28,7 @@
                     <th>license Plate</th>
                     <th>model</th>
                     <th>year</th>
-                    <th> Rent Return Date</th>
+                    <th>Rent Return Date</th>
                     <th>Rent End Date</th>
                    <th>Action</th>
 
@@ -54,7 +54,7 @@
                                     </c:when>
                                     <c:otherwise>
 
-                                        <a href="reservationconfirm.htm?carId=${vehicle.carId} & usrEmail=${sessionScope.usrEmail}">Reserve Vehicle</a>
+                                        <a href="reservationconfirm.htm?carId=${vehicle.carId} & usrEmail=${sessionScope.usrEmail}">Book Vehicle</a>
 
                                     </c:otherwise>
                                 </c:choose>

@@ -9,11 +9,11 @@ text-decoration:none;
 <div style="background-color: #FFDD33"> 
     <a href="managerhome.htm?usrEmail=${sessionScope.usrEmail}">Home
     </a> |   
-    <a href = "vehicles.htm?usrEmail=${sessionScope.usrEmail}">Vehicles
+    <a href = "vehicles.htm?usrEmail=${sessionScope.usrEmail}">List Of Vehicles
     </a> |
-       <a href = "vehiclereserve.htm?usrEmail=${sessionScope.usrEmail}">Customer Reservations
+       <a href = "vehiclereserve.htm?usrEmail=${sessionScope.usrEmail}">Customer Vehicle Bookings
        </a> |
-      <a  href = "returnvehicle.htm?usrEmail=${sessionScope.usrEmail}">Customer Returns
+      <a  href = "returnvehicle.htm?usrEmail=${sessionScope.usrEmail}">Customer Vehicle Returns
       </a>   
     <a style="float:right;" href="signout.htm?usrEmail=${sessionScope.usrEmail}">SignOut
     </a>

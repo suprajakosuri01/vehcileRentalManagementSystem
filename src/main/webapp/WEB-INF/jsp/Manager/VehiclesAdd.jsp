@@ -1,57 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<style>
-<%@include file="/WEB-INF/css/style.css"%>
-</style>
-<title>add Vehicles</title>
-</head>
-<body>
-<jsp:include page="ManagerNav.jsp"/>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            <%@include file="/WEB-INF/css/style.css"%>
+        </style>
+        <title>Add Vehicle</title>
+    </head>
+    <body>
+        <jsp:include page="ManagerNav.jsp"/>
 
-<form:form modelAttribute="vehicle" method="post" enctype="multipart/form-data">
-
-<table id="table">
-<h2>Add Vehicles</h2>
-<h4 style="color:red">${licencsePlateError}</h4>
-
-	<tr>
-	<td>
-	LicensePlate(4-8): 
-	</td>
-	<td>
-	<form:input path="licensePlate" required="required" minlength="4" maxlength="6"/>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	Model: 
-	</td>
-	<td>
-	<form:input path="model" required="required"/>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	Year: 
-	</td>
-	<td>
-	<form:input path="year" required="required"/>
-	</td>
-	</tr>
-	<tr>
-	<td>
-    choose Image of vehicle:
-    </td>
-    <td>
-    <input type="file" name="imgFile" accept="image/*" required="required"/>
-    </td>
-    </tr>
-</table>	
-<input type="submit" value="Add"/>
-</form:form>
-</body>
+        <form modelAttribute="vehicle" method="post" enctype="multipart/form-data">
+            <div>
+                <h2>Add Vehicles</h2>
+                <h3 style="color:red">${licencsePlateError}</h3>
+                <label> License Plate(4-8): </label>
+                <br>
+                <input path="licensePlate" required="required" minlength="4" maxlength="6"/>
+                <br>
+                <br>	
+                <label> Model: </label>
+                <br>
+                <input path="model" required="required"/>
+                <br>
+                <br>
+                <label>Year: </label>
+                <br>
+                <input path="year" required="required"/>
+                <br><!-- comment -->
+                <br>
+                <label>Vehicle Picture: </label>
+                <br>
+                <input type="file" name="imgFile" accept="image/*" required="required"/>  
+            </div>
+            <br>
+            <br>
+            <input type="submit" value="Add"/>
+        </form>
+    </body>
 </html>

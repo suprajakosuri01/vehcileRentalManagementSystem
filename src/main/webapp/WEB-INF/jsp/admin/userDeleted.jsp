@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
 <%@include file="/WEB-INF/css/style.css"%>
 
@@ -21,6 +20,6 @@
             </ul>
           
         </div>
-<h2 align="center">Deleted User Success</h2>
+<h2 align="center">Deleted User </h2>
 </body>
 </html>

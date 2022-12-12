@@ -18,20 +18,20 @@ import org.springframework.stereotype.Controller;
 public class AdminCntrllr {
 
     @GetMapping("/adminhome.htm")
-    public String fetchAdminHomeView(Model md, HttpServletRequest req) {
+    public String fetchAdminHomeView(Model md) {
         return ADMIN_HOME;
 
     }
 
     @GetMapping("/listofusrs.htm")
-    public String fetchAllUsrs(Model md, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userDataAccessObj, HttpServletRequest req)
+    public String fetchAllUsrs(Model md, VehicleDataAccessObject vehicleDAO, UserDataAccessObject userDataAccessObj)
             throws Exception {
         try {
             List<User> availableUsers = userDataAccessObj.fetchEveryUsr();
             md.addAttribute(USER, availableUsers);
-        } catch (Exception e) {
+        } catch (Exception exe) {
 
-            throw new Exception("Failed to fetch list of users", e);
+            throw new Exception("Failed to fetch list of users", exe);
         }
 
         return ADMIN_LIST_OF_USERS;
@@ -47,9 +47,9 @@ public class AdminCntrllr {
             md.addAttribute(USER,
                     userDataAccessObj.fetchUsrById(castUserId));
 
-        } catch (Exception e) {
+        } catch (Exception exe) {
 
-            throw new Exception("Failed to modify user", e);
+            throw new Exception("Failed to modify user", exe);
         }
 
         return ADMIN_USER_MODIFY;
@@ -58,8 +58,8 @@ public class AdminCntrllr {
 
     @PostMapping("/usermodify.htm")
     public String ModifyUserInfo(SessionStatus s,
-            VehicleDataAccessObject vehicleDAO, HttpServletRequest req,
-            UserDataAccessObject userDataAccessObj, Model md)
+            HttpServletRequest req,
+            UserDataAccessObject userDataAccessObj)
             throws Exception {
 
         try {
@@ -75,8 +75,8 @@ public class AdminCntrllr {
             modifyUser.setUserAddress(homeAddr);
 
             userDataAccessObj.modifyUser(modifyUser);
-        } catch (Exception e) {
-            throw new Exception("Failed to update user information", e);
+        } catch (Exception exe) {
+            throw new Exception("Failed to update user information", exe);
         }
 
         return ADMIN_USER_MODIFIED;
@@ -85,7 +85,6 @@ public class AdminCntrllr {
 
     @GetMapping("/userdelete.htm")
     public String fetchDeleteUserObj(Model md, HttpServletRequest req,
-            VehicleDataAccessObject vehicleDAO,
             UserDataAccessObject userDataAccessObj)
             throws Exception {
 
@@ -140,6 +139,7 @@ public class AdminCntrllr {
 
     public void resetVehicleInUseByUser(List<Vehicle> vehiclesCurrentlyInUse,
             VehicleDataAccessObject vehicleDAO) throws Exception {
+        
         for (Vehicle vehicle : vehiclesCurrentlyInUse) {
             vehicle.setxUser(null);
             vehicle.setRentStartDate(null);

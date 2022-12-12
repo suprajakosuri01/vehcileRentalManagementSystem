@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -6,7 +5,7 @@
 <style>
 <%@include file="/WEB-INF/css/style.css"%>
 </style>
-<meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Reserved vehicles</title>
 </head>
 <body>
@@ -15,14 +14,14 @@
 <c:choose>
 <c:when test="${vehicles.size() gt 0}">
 <table id="table">
-<h3>Reservations</h3>
-	<th>Vehicle</th>
+<h2>MY Bookings</h2>
+	<th>Image</th>
 	<th>license Plate</th>
 	<th>model</th>
 	<th>Year</th>
-	<th>Reserved Date</th>
-	<th>Reserved Until</th>
-	<th>Return Date</th>		
+	<th>Rent start Date</th>
+	<th>Rent End Date</th>
+	<th> Rent Return Date</th>		
 	
 	<c:forEach items="${vehicles}" var="vehicle">
 	<tr>
@@ -39,7 +38,7 @@
 </table>
 	</c:when>
 	<c:otherwise>
-	<h1 align="center">No reservations available at this moment</h1>
+	<h1 align="center">No Bookings available at this moment</h1>
 	</c:otherwise>
 </c:choose>
 </body>

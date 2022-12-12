@@ -1,25 +1,22 @@
 package com.vehicle.controller;
-
+import org.springframework.ui.ModelMap;
 import static com.vehicle.dao.ProjectConstants.*;
 import com.vehicle.dao.UserDataAccessObject;
-import com.vehicle.dao.VehicleDataAccessObject;
+
 import com.vehicle.pojo.User;
+import org.springframework.web.bind.annotation.PostMapping;
 import com.vehicle.pojo.Vehicle;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import java.io.File;
+import com.vehicle.dao.VehicleDataAccessObject;
 import java.time.Instant;
-
 import java.util.LinkedHashMap;
-import java.util.List;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.validation.BindingResult;
 
 @Controller
 public class ManagerCntrllr {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,9 +25,15 @@
     <body>
         <div style="background-color:#FFDD33"> 
             <ul>
-                <li><a href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a></li>
-                <li><a href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Get listof User</a></li>
-                <li style="float:right">  <a  href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a></li>
+                <li>
+                    <a href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a>
+                </li>
+                <li>
+                    <a href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Listof User</a>
+                </li>
+                <li style="float:right"> 
+                    <a  href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a>
+                </li>
                 <label style="float:right;color:#ff0000;font-size:23px;">Welcome ${sessionScope.usrEmail} </label>
             </ul>
 
@@ -37,34 +44,42 @@
             <input type="hidden" name="uid2" value="${user.getUsrId()}"/>
             <div class="Umform">
 
-                <h2>Modify User </h2>
+                <h2>Modify User Information </h2>
 
-                <label>User Email:</label><br>
+                <label>User Email:</label>
+
+                <br>
                 <td>${user.getUsrEmail()}</td>
 
-                <br><br>
-                <label> User Name:</label><br>
+                <br>
+                <br>
+                <label> User Name:</label>
+                <br>
                 <td>${user.getName()}</td>
 
-                <br><br>
+                <br>
+                <br>
 
                 <label>User Address:</label><br>
                 <input type="text" name="userAddress" size="40"value="${user.getUserAddress()}" 
                        required="required"/>
-                <br><br>
+                <br>
+                <br>
 
                 <label>Mobile Number(10):</label><br>
                 <input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10"
                        name="userPhonenum" value="${user.getUserPhonenum()}" 
                        required="required"/>
 
-                <br><br>
+                <br>
+                <br>
 
                 <label>Title:</label><br>
                 <td>${user.getTitle()}</td>
 
-                <br><br>
-                <p><input  type="submit" value="Edit"></p>
+                <br>
+                <br>
+               <input  type="submit" value="ModifyUser">
         </form>
     </body>
 </html>

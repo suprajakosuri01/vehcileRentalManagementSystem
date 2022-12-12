@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -8,17 +7,17 @@
 <%@include file="/WEB-INF/css/style.css"%>
 </style>
 <meta charset="UTF-8">
-<title> My Reservations</title>
+<title> confirm rsvn</title>
 </head>
 <body>
 <jsp:include page="cusNavbar.jsp"/>
 
 
 <table id="table">
-<h2> Reservation Confirm</h2>
+<h2> Booking Confirm</h2>
 	<tr>
 	<td>
-	licensePlate: 
+	license Plate: 
 	</td>
 	<td>
 	${vehicle.licensePlate}
@@ -38,14 +37,14 @@
 	${vehicle.year}</td>
 	</tr>
 	<tr>
-	<td>Reserved Until: 
+	<td>Rent End date: 
 	</td>
 	<td>
 	${rentEndDate}
 	</td>
 	</tr>
 	<tr>
-	<td>Return Date: 
+	<td>Rent Return Date: 
 	</td>
 	<td>${rentReturnDate}</td>
 	</tr>
@@ -62,7 +61,9 @@
     <input type="hidden" name="rentEndDate" value="${rentEndDate}"/>
 	<input type="hidden" name="model" value="${vehicle.getModel()}"/>
 	<input type="hidden" name="usrEmail" value="${usrEmail}"/>
-<p><input type="submit" value="Confirm"></p>  
+        <br>
+        <br>
+<input type="submit" value="BookVehicle"> 
 </form>
 
 </body>

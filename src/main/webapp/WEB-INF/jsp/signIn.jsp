@@ -1,56 +1,46 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
-<head>
-<style>
-<%@include file="/WEB-INF/css/style.css"%>
-</style>
-<title>Sign In</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<style>
+    <head>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Sign In</title>
+    </head>
+    <style>
+        <%@include file="/WEB-INF/css/style.css"%>
         body{
             background-color: white;
             font-family: Times New Roman, Times, serif;
         }
-         .lform{
+        .lform{
 
-    padding-left: 400px;
-    padding-right: 200px;
-    padding-top: 50px;
-    padding-top: 50px;
+            padding-left: 400px;
+            padding-right: 200px;
+            padding-top: 50px;
+            padding-top: 50px;
 
-color:black
-}
-        
+            color:black
+        }
+
     </style>
-<body>
-    
-<div style="background-color:#FFDD33">   
+    <body>
 
-<h2 align="center">Vehicle Rental Management System
-<img src="https://cdn-icons-png.flaticon.com/512/632/632682.png" alt="logo" width="28" height="28">
-</h2>
-</div>
+        <h1 style="background-color:#FFDD33" align="center">Vehicle Rental Management System
+        </h1>
+        <form:form modelAttribute="user" method="post">
 
+            <div class="lform">
 
-
-<form:form modelAttribute="user" method="post">
-    
-
-<div class="lform">
-
-<h3>Sign In</h3>
-<p style="color:red">${error}</p>
-    <label>Enter Email:</label><br>
-    <form:input path="usrEmail" size="30" required="required"/>
-    <br><br>
-    <label>Enter Password:</label><br>
-    <form:password path="usrPassword" size="30" required="required" />
-     <br><br>
-	<a href="register.htm">New user?Sign Up</a>
-	<input type="submit" value="Sign In" />
-	 <br><br>
-</div>
-</form:form>
-</body>
+                <h3>Sign In</h3>
+                <h3 style="color:red">${error}</h3>
+                <label>Enter Email:</label><br>
+                <form:input path="usrEmail" size="30" required="required"/>
+                <br><br>
+                <label>Enter Password:</label><br>
+                <form:password path="usrPassword" size="30" required="required" />
+                <br><br>
+                <a href="register.htm">SignUp</a>
+                <input type="submit" value="SignIn" />
+                <br><br>
+            </div>
+        </form:form>
+    </body>
 </html>

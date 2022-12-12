@@ -7,9 +7,7 @@
      <style>
    <%@include file="/WEB-INF/css/style.css"%>
    </style>
-    <div style="background-color:#FFDD33"> 
-  <h2 align="center">Vehicle Rental Management System</h2>
-</div>
+  <h2 style="background-color:#FFDD33" align="center">Vehicle Rental Management System</h2>
 <br>
    <h2 align="center">Registration Success: ${user.usrEmail}</h2>
    <br><br>

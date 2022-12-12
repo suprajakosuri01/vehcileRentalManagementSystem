@@ -95,7 +95,7 @@ public class SignInContrllr {
                 .registerUser(newUser);
 
         if (bindErr.hasErrors()) {
-            
+
             System.out.println("Encountered error when registering new user");
             return REG_USR;
         }

@@ -17,9 +17,9 @@
                     <a href="adminhome.htm?usrEmail=${sessionScope.usrEmail}">Home</a>
                 </li>
                 <li>
-                    <a href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Listof Users</a>
+                    <a href="listofusrs.htm?usrEmail=${sessionScope.usrEmail}">Registered Users</a>
                 </li>
-                <li style="float:right">  <a  href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a></li>
+                <li style="float:right">  <a  href="signout.htm?usrEmail=${sessionScope.usrEmail}">SignOut</a></li>
                 <label style="float:right;color:#ff0000;font-size:23px;">Welcome ${sessionScope.usrEmail} </label>
             </ul>
 
@@ -45,7 +45,7 @@
                         <td>${user.userPhonenum}</td>
                         <td>${user.title}</td>
                         <td>
-                            <a style="color: #00b33c"href="usermodify.htm?usrId=${user.usrId}">Edit</a>|
+                            <a style="color: #00b33c"href="usermodify.htm?usrId=${user.usrId}">Update</a>|
                             <a href="userdelete.htm?usrId=${user.usrId}">Delete</a>
                         </td>
                     </tr>

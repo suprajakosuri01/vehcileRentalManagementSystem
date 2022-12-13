@@ -84,9 +84,9 @@
 
 
             </table>
-                    <br><!-- comment -->
                     <br>
-            <input type="submit" value="Edit Vehicle"> 
+                    <br>
+            <input type="submit" value="Update Vehicle"> 
         </form>
 
 

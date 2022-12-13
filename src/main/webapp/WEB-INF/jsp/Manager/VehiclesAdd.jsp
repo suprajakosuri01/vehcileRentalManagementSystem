@@ -30,7 +30,7 @@
                 <h2>Add New Vehicle Information</h2>
                 <h3 style="color:red">${licencsePlateError}</h3>
 
-                <label>License Plate(4-8):  </label>
+                <label>License Plate(4-6):  </label>
                 <br>
               
                         <form:input path="licensePlate" required="required" minlength="4" maxlength="6"/>
@@ -40,13 +40,13 @@
                         <label>Model:</label>  
                          <br>
                    
-                        <form:input path="model" required="required" maxlength="8"/>
+                        <form:input path="model" required="required" minlength="4" maxlength="20"/>
                           <br>
                           <br>
                     
                       <label>Year: </label>  
                    <br>
-                        <form:input path="year" required="required" maxlength="4"/>
+                        <form:input path="year" required="required" minlength="4" maxlength="4"/>
                         <br>
                         <br>
                         

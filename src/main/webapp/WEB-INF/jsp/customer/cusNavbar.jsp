@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="fetchVehicles.htm?usrEmail=${sessionScope.usrEmail}">Browse Vehicles
+                    <a href="fetchVehicles.htm?usrEmail=${sessionScope.usrEmail}">Rent Vehicles
                     </a>
                 </li>
                 <li>
@@ -28,7 +28,7 @@
                 </li>
 
                 <li style="float:right">
-                    <a  href="signout.htm?usrEmail=${sessionScope.usrEmail}">Logout</a>
+                    <a  href="signout.htm?usrEmail=${sessionScope.usrEmail}">SignOut</a>
                 </li>
                 <label style="float:right;color:#ff0000;font-size:23px;">Welcome ${sessionScope.usrEmail} 
                 </label>

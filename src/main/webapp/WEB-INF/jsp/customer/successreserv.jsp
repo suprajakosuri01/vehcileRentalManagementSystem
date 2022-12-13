@@ -9,6 +9,6 @@
 </head>
 <body>
 <jsp:include page="cusNavbar.jsp"/>
-<h2 align="center">Vehicle Reserved </h2>
+<h2 align="center">Vehicle Booked Successfully </h2>
 </body>
 </html>

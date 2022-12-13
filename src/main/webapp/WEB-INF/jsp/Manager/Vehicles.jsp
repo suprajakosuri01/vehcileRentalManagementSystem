@@ -16,7 +16,7 @@
 
                     <h2>Vehicles Information</h2>
 
-                    <a style="color:black" href="vehiclesadd.htm">Add Vehicles</a>
+                    <h1><a style="color: #00b33c" href="vehiclesadd.htm">Add Vehicles</a></h1>
                     <br>
                     <br>
 
@@ -63,7 +63,7 @@
 
 
                             <td>
-                                <a style="color:black" href="editvehicle.htm?carId=${v1.carId}">Edit
+                                <a style="color:black" href="editvehicle.htm?carId=${v1.carId}">Update
                                 </a> |
 
                                 <a style="color:black"  href="deleteall.htm?carId=${v1.carId}">

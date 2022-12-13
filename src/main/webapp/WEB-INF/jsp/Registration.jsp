@@ -47,8 +47,10 @@
                 <br>  <br>  
 
                 <label>Phone number(10-Digits)</label><br>
-                <form:input path="userPhonenum" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" size="30"  maxlength="10" required="required" placeholder="Enter mobile number"/> 
-                <br> <br>   
+                
+               <form:input type="tel" path="userPhonenum" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" size="30"  maxlength="10" required="required" placeholder="Enter mobile number"/> 
+                <small>Format: 1234567890</small>
+               <br> <br>   
                 <label>Title:</label><br>
 
                 <form:radiobutton path="title" value="admin" required="required"/>Admin
@@ -58,7 +60,8 @@
 
                 <form:radiobutton path="title" value="customer" required="required"/>Customer
                 <br><br>  
-                <input align="center" type="submit" value="Sign Up" /> 
+                <input align="center" type="submit" value="Sign Up" />
+                
 
             </div>
 

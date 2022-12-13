@@ -28,7 +28,7 @@
                     <th>Rent End Date</th>
                     <th>Rent Return Date</th>
                     <th>Booked By</th>
-                    <th>Current User</th>
+                    <th>In Use By</th>
                     <th>Action</th>
                      
                     <c:forEach items="${vehicle}" var="v1">

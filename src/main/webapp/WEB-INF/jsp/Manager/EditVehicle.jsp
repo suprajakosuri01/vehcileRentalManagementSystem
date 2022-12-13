@@ -82,26 +82,11 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td>
-                        Current User:
-                    </td>
-                    <td>
-                        ${vehicle.getxUser().getUsrEmail()}
-                    </td>
 
-                    <td>
-                        <input type="checkbox" id="deletecrntUser" name="deleteUsr" value="deleteUsr"> Delete Current User
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-
-                        <input type="submit" value="Edit Vehicle"> 
-                    </td>
-                </tr>
             </table>
+                    <br><!-- comment -->
+                    <br>
+            <input type="submit" value="Edit Vehicle"> 
         </form>
 
 

@@ -37,7 +37,7 @@
 
             <input type="hidden" name="usrdel" value="${user.usrId}"/>
 
-            <div style="text-align:center" class="Udform">
+            <div class="Udform">
 
                 <h3>Delete User </h3>
 
@@ -75,5 +75,14 @@
                         <br>
                         <input type="submit" value="DeleteUser"> 
                         </form>
+                         <footer>
+            <div class="footer">  
+                <h3>Reach Me Via:
+                    <a style="color: white" href="mailto:kosuri.sa@northeastern.edu">
+                        Email</a>
+                </h3>
+                <h4>Copyright &copy; 2022 All Rights Reserved &copy Sai supraja Kosuri</h4>
+            </div>
+        </footer>
                         </body>
                         </html>

@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>All Users</title>
+
         <style>
             <%@include file="/WEB-INF/css/style.css"%>
         </style>
@@ -53,6 +54,16 @@
             </c:forEach>
 
         </table>
+
+        <footer>
+            <div class="footer">  
+                <h3>Reach Me Via:
+                    <a style="color: white" href="mailto:kosuri.sa@northeastern.edu">
+                        Email</a>
+                </h3>
+                <h4>Copyright &copy; 2022 All Rights Reserved &copy Sai supraja Kosuri</h4>
+            </div>
+        </footer>
 
     </body>
 </html>

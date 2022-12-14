@@ -66,7 +66,7 @@
                 <br>
                 <br>
 
-                <label>Mobile Number(10):</label><br>
+                <label>Mobile Number(10 Digits):</label><br>
                 <input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10"
                        name="userPhonenum" value="${user.getUserPhonenum()}" 
                        required="required"/>

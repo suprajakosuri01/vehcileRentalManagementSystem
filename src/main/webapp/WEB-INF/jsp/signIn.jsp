@@ -42,5 +42,13 @@
                 <br><br>
             </div>
         </form:form>
+        <footer>
+  <div class="footer">  
+<h3>Reach Me Via:
+        <a style="color: white" href="mailto:kosuri.sa@northeastern.edu">
+         Email</a>
+</h3>
+<h4>Copyright &copy; 2022 All Rights Reserved &copy Sai supraja Kosuri</h4>
+ </div>
     </body>
 </html>

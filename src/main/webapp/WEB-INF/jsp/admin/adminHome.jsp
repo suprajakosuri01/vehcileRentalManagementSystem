@@ -6,13 +6,6 @@
     <body>
         <style>
             <%@include file="/WEB-INF/css/style.css"%>
- 
-
-.text{
- display:flex;
- align-items:center;
-flex-direction: row;
-}
 
         </style>
         <div style="background-color:#FFDD33"> 

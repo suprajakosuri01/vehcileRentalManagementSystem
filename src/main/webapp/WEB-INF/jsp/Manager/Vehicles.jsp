@@ -16,7 +16,7 @@
 
                     <h2>Vehicles Information</h2>
 
-                    <h1><a style="color: #00b33c" href="vehiclesadd.htm">Add Vehicles</a></h1>
+                    <h2><a style="color: #00b33c" href="vehiclesadd.htm">Add Vehicles</a></h2>
                     <br>
                     <br>
 
@@ -30,7 +30,7 @@
                     <th>Booked By</th>
                     <th>In Use By</th>
                     <th>Action</th>
-                     
+                
                     <c:forEach items="${vehicle}" var="v1">
                         <tr>
                             <td>
@@ -63,8 +63,8 @@
 
 
                             <td>
-                                <a style="color:black" href="editvehicle.htm?carId=${v1.carId}">Update
-                                </a> |
+                                <a style="color:black" href="editvehicle.htm?carId=${v1.carId}">Update|
+                                </a> 
 
                                 <a style="color:black"  href="deleteall.htm?carId=${v1.carId}">
                                     Delete</a>

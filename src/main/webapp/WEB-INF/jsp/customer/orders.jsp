@@ -41,5 +41,13 @@
                 <h2 align="center">You have no vehicles in use.</h2>
             </c:otherwise>
         </c:choose>
+        <footer>
+  <div class="footer">  
+<h3>Reach Me Via:
+        <a style="color: white" href="mailto:kosuri.sa@northeastern.edu">
+         Email</a>
+</h3>
+<h4>Copyright &copy; 2022 All Rights Reserved &copy Sai supraja Kosuri</h4>
+ </div>
     </body>
 </html>

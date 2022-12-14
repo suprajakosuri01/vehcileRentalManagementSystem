@@ -14,66 +14,73 @@
 <jsp:include page="ManagerNav.jsp"/>
 
 
-
-<table id="table">
+<div class="Udform">
 <h1>Return vehicle</h1>
-	<tr>
-	<td>
-	license Plate: 
-	</td>
+	
+	<label><b>License Plate: </b></label>
+	<br>
 	<td>
 	${vehicle.getLicensePlate()}
 	</td>
-	</tr>
-	<tr>
-	<td>
-	Model:
-	 </td>
+	<br>
+	<br>
+	
+	
+	<label><b>Model:</b></label>
+	<br>
 	<td>
 	${vehicle.getModel()}
 	</td>
-	</tr>
-	<tr>
-	<td>
-	Year: 
-	</td>
+	<br>
+	<br>
+	
+	
+<label><b>	Year: </b></label>
+<br>
+
 	<td>
 	${vehicle.getYear()}
 	</td>
-	</tr>
-	<tr>
-	<td>
-	Rent Start Date: 
-	</td>
+	<br>
+	<br>
+	
+	<label><b>Rent Start Date: </b></label>
+<br>
+
 	<td>
 	${vehicle.getRentStartDate()}
 	</td>
-	</tr>
-	<tr>
-	<td>
-	Rent End Date:
-	</td>
-	<td>
+	<br>
+	<br>
+	
+	
+		<label><b>Rent End Date:</b></label>
+	<br>
+		<td>
 	${vehicle.getRentEndDate()}
 	</td>
-	</tr>
-	<tr>
-	<td>
-	Rent Return Date: 
-	</td>
+	<br>
+	<br>
+	
+	
+	<label><b>Rent Return Date: </b></label>
+<br>
+
 	<td>
 	${vehicle.getRentReturnDate()}
 	</td>
-	</tr>
-	<tr>
-	<td>
-	Booked By: 
-	</td>
+	<br>
+	<br>
+	
+	
+		<label><b>Booked By: </b></label>
+	<br>
 	<td>
 	${vehicle.getxUser().getUsrEmail()}
 	</td>
-	</tr>
-</table>
+	
+	
+
 <form action="return.htm" method="POST">
 <input type="hidden" name="returnDate" value="${vehicle.getRentEndDate()}"/>
 	<input type="hidden" name="c5" value="${vehicle.getCarId()}"/>

@@ -39,28 +39,28 @@
 
             <div class="Udform">
 
-                <h3>Delete User </h3>
+                <h2>Delete User Information</h2>
 
 
-                <label>User Email:</label>
+                <label><b>User Email:</b></label>
                 <br>
                 <td>${user.usrEmail}</td>
                 <br>
                 <br>
-                <label>User Name:</label><br>
+                <label><b>User Name:</b></label><br>
                 <td>${user.name}</td>
                 <br>
                 <br>	
-                <label>User Address:</label><br>
+                <label><b>User Address:</b></label><br>
                 <td>${user.userAddress}</td>
                 <br>
                 <br>
-                <label>User Contact:</label>
+                <label><b>User Contact:</b></label>
                 <br>
                 <td>${user.userPhonenum}</td>
                 <br>
                 <br>
-                <label>Title:<label>
+                <label><b>Title:</b><label>
                             <br>
                         <td>${user.title}</td>
                             <br>
@@ -74,7 +74,9 @@
                         <br>
                         <br>
                         <input type="submit" value="DeleteUser"> 
+                        </div>
                         </form>
+                        
                          <footer>
             <div class="footer">  
                 <h3>Reach Me Via:

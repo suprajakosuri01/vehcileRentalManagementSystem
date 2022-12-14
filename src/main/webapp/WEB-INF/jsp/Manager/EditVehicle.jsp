@@ -16,7 +16,7 @@
             <input type="hidden" name="c1" value="${vehicle.getCarId()}"/>
 
             <table id="table">
-                <h2>Edit vehicle Information</h2>
+                <h2>Update vehicle Information</h2>
 
                 <tr>
                     <td>
@@ -74,10 +74,7 @@
                     </td>
                     <td>
                         ${vehicle.getReservedByUser().getUsrEmail()}
-                    </td>
-
-
-                    <td>
+              
                         <input type="checkbox" id="deleteRsvrtn" name="deleteRsvrtn" value="deleteRsvrtn"> Delete Booking
                     </td>
                 </tr>
@@ -86,8 +83,19 @@
             </table>
                     <br>
                     <br>
-            <input type="submit" value="Update Vehicle"> 
+            <input type="submit" value="Update"> 
         </form>
+<!-- Footer-->
+
+<footer>
+  <div class="footer">  
+<h3>Reach Me Via:
+        <a style="color: white" href="mailto:kosuri.sa@northeastern.edu">
+         Email</a>
+</h3>
+<h4>Copyright &copy; 2022 All Rights Reserved &copy Sai supraja Kosuri</h4>
+ </div>
+ </footer>
 
 
 

@@ -44,7 +44,7 @@
             <input type="hidden" name="uid2" value="${user.getUsrId()}"/>
             <div class="Umform">
 
-                <h2>Modify User Information </h2>
+                <h2>Update User Information </h2>
 
                 <label>User Email:</label>
 
@@ -79,7 +79,7 @@
 
                 <br>
                 <br>
-               <input  type="submit" value="ModifyUser">
+               <input  type="submit" value="UpdateUser">
         </form>
                 
                  <footer>

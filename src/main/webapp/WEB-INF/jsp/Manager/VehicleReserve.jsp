@@ -71,7 +71,7 @@
                                 ${vehicle.value}
                             </td>
                             <td>	
-                                <a style="color:black" href="pickup.htm?carId=${vehicle.key.carId}&usrEmail=${vehicle.value}">Vehicle Picked Up</a>
+                                <a style="color:black" href="pickup.htm?carId=${vehicle.key.carId}&usrEmail=${vehicle.value}">Accept Booking</a>
                             </td>
                         </tr>
                     </c:forEach>

@@ -47,7 +47,7 @@
                                 <c:choose>
                                     <c:when test= "${vehicle.rentEndDate != null || vehicle.rentReturnDate !=null}">
 
-                                        Booked
+                                        Booked by User
                                     </c:when>
 
                                     <c:when test="${usrVehicles.size() >=  2}">

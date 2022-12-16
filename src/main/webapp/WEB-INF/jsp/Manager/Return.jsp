@@ -92,7 +92,7 @@
 	<input type="hidden" name="Year" value="${vehicle.getYear()}"/>
         <br>
         <br>
-<input type="submit" value="Accept"> 
+<input type="submit" value="Confirm"> 
 </form>
 </body>
 </html>

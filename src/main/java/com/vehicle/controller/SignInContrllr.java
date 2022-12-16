@@ -1,20 +1,15 @@
 package com.vehicle.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.ModelMap;
 import com.vehicle.dao.LoginDataAccessObject;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import static com.vehicle.dao.ProjectConstants.*;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import com.vehicle.pojo.User;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
 
 import com.vehicle.dao.UserDataAccessObject;

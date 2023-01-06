@@ -20,3 +20,4 @@ use cases:
 3. Application admin use cases:
 • Admin can view user and Manager details
 • Admin can view/edit/delete user and Manager
+.
